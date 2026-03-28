@@ -1,6 +1,6 @@
 # Pegasus is designed to run on top of Isaac Sim's Python/runtime.
 FROM nvcr.io/nvidia/isaac-sim:5.1.0
-
+USER root
 ENV ACCEPT_EULA=Y \
     PRIVACY_CONSENT=Y \
     OMNI_KIT_ACCEPT_EULA=YES \
