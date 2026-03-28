@@ -283,4 +283,182 @@ NetLab-SWARM-SYM/
 └── assets/
     ├── maps/
     ├── models/
-    └── media/
+    └── media/### Setup Instructions
+
+This section is divided into two setup paths:
+
+- **Local users**: for users who only want to clone and run the repository on their local machine.
+- **Collaborators**: for users who will also contribute code and push changes to the remote repository.
+
+> **Assumption:** Git is already installed on the system.
+
+---
+
+## 👤 1. Local Users
+
+### 1.1 Clone the repository
+
+```bash
+git clone <REPOSITORY_URL>
+cd <REPOSITORY_NAME>
+```
+
+### 1.2 Install Docker Engine and Docker Compose
+
+```bash
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### 1.3 Allow Docker to run without `sudo`
+
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+### 1.4 Verify Docker installation
+
+```bash
+docker --version
+docker compose version
+docker run hello-world
+```
+
+### 1.5 Install Tilix and tmux
+
+```bash
+sudo apt update
+sudo apt install -y tilix tmux
+```
+
+### 1.6 Verify Tilix and tmux installation
+
+```bash
+tilix --version
+tmux -V
+```
+
+---
+
+## 🤝 2. Collaborators
+
+Collaborators must complete all the steps in the **Local Users** section first. After that, they must configure GitHub SSH access on the new machine.
+
+### 2.1 Generate an SSH key
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+When prompted for the file location, press `Enter` to use the default path:
+
+```bash
+~/.ssh/id_ed25519
+```
+
+### 2.2 Start the SSH agent and add the key
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+### 2.3 Copy the public key
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copy the full output.
+
+### 2.4 Add the SSH key to GitHub
+
+Go to:
+
+**GitHub → Settings → SSH and GPG keys → New SSH key**
+
+Then:
+
+- set a title for the machine, for example: `ubuntu-workstation`
+- paste the public key
+- save the key
+
+### 2.5 Test the SSH connection
+
+```bash
+ssh -T git@github.com
+```
+
+If prompted, type:
+
+```bash
+yes
+```
+
+If the configuration is correct, GitHub will confirm that the authentication was successful.
+
+### 2.6 Configure Git identity on the new machine
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+```
+
+Optional but recommended:
+
+```bash
+git config --global init.defaultBranch main
+git config --global pull.rebase false
+```
+
+### 2.7 Ensure the repository remote uses SSH
+
+Check the current remote:
+
+```bash
+git remote -v
+```
+
+If it is using HTTPS, change it to SSH:
+
+```bash
+git remote set-url origin git@github.com:<OWNER>/<REPOSITORY>.git
+```
+
+Verify again:
+
+```bash
+git remote -v
+```
+
+### 2.8 Pull the latest changes
+
+```bash
+git pull origin main
+```
+
+At this point, the new machine is ready to contribute to the repository.
+
+---
+
+## 📝 Notes
+
+- These instructions are intended for **Ubuntu-based systems**.
+- Docker is installed from Docker’s official Ubuntu repository.
+- Docker Compose is installed as the official Docker CLI plugin.
+- If Docker still requires `sudo` after setup, log out and log back in, or restart the machine.
+- Do **not** use `sudo` with Git commands inside the repository, as this may cause file permission issues.
