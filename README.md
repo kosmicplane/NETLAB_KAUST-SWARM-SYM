@@ -302,8 +302,8 @@ This section is divided into two setup paths:
 ### 1.1 Clone the repository
 
 ```bash
-git clone <REPOSITORY_URL>
-cd <REPOSITORY_NAME>
+git clone https://github.com/kosmicplane/NETLAB_KAUST-SWARM-SYM
+cd NETLAB_KAUST-SWARM-SYM
 ```
 
 ### 1.2 Install Docker Engine and Docker Compose
@@ -439,7 +439,7 @@ git remote -v
 If it is using HTTPS, change it to SSH:
 
 ```bash
-git remote set-url origin git@github.com:<OWNER>/<REPOSITORY>.git
+git remote set-url origin git@github.com:kosmicplane/NETLAB_KAUST-SWARM-SYM.git
 ```
 
 Verify again:
