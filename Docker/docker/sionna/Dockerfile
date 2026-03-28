@@ -1,13 +1,15 @@
 FROM nvidia/cuda:13.2.0-cudnn-devel-ubuntu24.04
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    LANG=en_US.UTF-8 \
-    LC_ALL=en_US.UTF-8 \
-    PIP_NO_CACHE_DIR=1
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    locales \
     python3 \
     python3-dev \
     python3-pip \
@@ -16,28 +18,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     wget \
     build-essential \
-    cmake \
     pkg-config \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender1 \
-    libomp-dev \
-    graphviz \
+    vim \
+    nano \
+    tmux \
+    && locale-gen en_US en_US.UTF-8 \
+    && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install --upgrade pip setuptools wheel && \
-    python3 -m pip install \
-      tensorflow==2.19.* \
-      sionna \
-      jupyterlab \
-      numpy \
-      scipy \
-      matplotlib \
-      pandas \
-      seaborn \
-      plotly \
-      ipykernel
+RUN python3 -m venv $VIRTUAL_ENV && \
+    $VIRTUAL_ENV/bin/pip install --upgrade pip setuptools wheel
+
+RUN pip install \
+    tensorflow==2.19.* \
+    sionna \
+    jupyterlab \
+    numpy \
+    scipy \
+    matplotlib \
+    pandas \
+    seaborn \
+    plotly \
+    ipykernel
 
 WORKDIR /workspace
-CMD ["bash"]
+
+CMD ["/bin/bash"]
