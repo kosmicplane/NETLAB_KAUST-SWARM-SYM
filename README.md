@@ -465,3 +465,114 @@ At this point, the new machine is ready to contribute to the repository.
 - Docker Compose is installed as the official Docker CLI plugin.
 - If Docker still requires `sudo` after setup, log out and log back in, or restart the machine.
 - Do **not** use `sudo` with Git commands inside the repository, as this may cause file permission issues.
+
+## Docker Compose Validation Steps
+
+After creating or modifying any Dockerfile or Compose configuration, validate the services step by step instead of building the entire stack at once.
+
+### 1. Move to the Compose directory
+
+```bash
+cd Docker/compose
+```
+
+### 2. Validate the Compose configuration
+
+This checks whether the `docker-compose.yml` file is valid and whether all referenced services are correctly defined.
+
+```bash
+docker compose config
+```
+
+### 3. Build the services individually
+
+Build each service separately to identify errors more easily.
+
+```bash
+docker compose build ros2-core
+docker compose build sionna-engine
+docker compose build isaacsim
+docker compose build pegasus
+```
+
+### 4. Rebuild without cache if needed
+
+If a service still fails after modifying its Dockerfile, rebuild it without using cached layers.
+
+```bash
+docker compose build --no-cache ros2-core
+docker compose build --no-cache sionna-engine
+docker compose build --no-cache isaacsim
+docker compose build --no-cache pegasus
+```
+
+### 5. Start only the validated services
+
+Once a service builds successfully, it can be started independently for testing.
+
+```bash
+docker compose up ros2-core
+docker compose up sionna-engine
+```
+
+To run them in the background:
+
+```bash
+docker compose up -d ros2-core sionna-engine
+```
+
+### 6. Check container status
+
+```bash
+docker compose ps
+```
+
+### 7. Inspect logs
+
+Logs should be reviewed after bringing up a service to confirm that it started correctly.
+
+```bash
+docker compose logs ros2-core
+docker compose logs sionna-engine
+docker compose logs isaacsim
+docker compose logs pegasus
+```
+
+### 8. Shut down the stack
+
+```bash
+docker compose down
+```
+
+To also remove associated volumes:
+
+```bash
+docker compose down -v
+```
+
+---
+
+## Recommended Validation Order
+
+For this project, the recommended validation order is:
+
+1. `ros2-core`
+2. `sionna-engine`
+3. `isaacsim`
+4. `pegasus`
+
+This order helps isolate dependency or runtime issues progressively, starting from the lighter services and moving toward the more GPU- and simulation-dependent components.
+
+---
+
+## Notes
+
+- If Docker is configured for non-root usage, `sudo` is not required.
+- If Docker still requires elevated permissions on your machine, prepend `sudo` to the commands above.
+- It is recommended to validate each service independently before attempting:
+
+```bash
+docker compose up --build
+```
+
+which builds and launches the full multicontainer stack.
