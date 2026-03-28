@@ -127,6 +127,21 @@ This stack was selected because it offers the most technically powerful combinat
 
 ---
 
+## System Requirements
+
+This project targets a high-fidelity UAV swarm simulation stack based on **Isaac Sim, Pegasus Simulator, ROS 2, and Sionna**, so it should be deployed on a **Linux workstation with strong GPU support** rather than a standard laptop. The selected combination was identified as the most technically powerful option for maximizing UAV realism, telecom realism, and experimental scalability. :contentReference[oaicite:13]{index=13}
+
+### Recommended environment
+
+- **OS:** Ubuntu 24.04
+- **CPU:** Intel Core i7 / Ryzen 7 or better
+- **RAM:** 16 GB recommended
+- **GPU:** NVIDIA RTX-class GPU
+- **VRAM:** 8 GB minimum
+- **Storage:** 100 GB SSD
+- **Containerization:** Docker and Docker Compose
+- **Notes:** Isaac Sim containers are Linux-only; Pegasus inherits Isaac Sim requirements; Sionna is recommended on Ubuntu 24.04 and typically benefits from TensorFlow-compatible GPU support. 
+
 ## What Each Tool Contributes
 
 ### ROS 2
