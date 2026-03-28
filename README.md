@@ -284,6 +284,7 @@ NetLab-SWARM-SYM/
     ├── maps/
     ├── models/
     └── media/
+```
 
 ### Setup Instructions
 
