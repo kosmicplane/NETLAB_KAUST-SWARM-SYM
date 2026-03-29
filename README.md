@@ -236,6 +236,7 @@ NetLab-SWARM-SYM/
     ├── maps/
     ├── models/
     └── media/
+```
 ### Setup Instructions
 
 This section is divided into two setup paths:
