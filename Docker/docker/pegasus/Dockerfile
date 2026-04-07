@@ -1,32 +1,121 @@
-# Pegasus is designed to run on top of Isaac Sim's Python/runtime.
 FROM nvcr.io/nvidia/isaac-sim:5.1.0
-USER root
-ENV ACCEPT_EULA=Y \
-    PRIVACY_CONSENT=Y \
-    OMNI_KIT_ACCEPT_EULA=YES \
-    PEGASUS_ROOT=/opt/PegasusSimulator
 
 SHELL ["/bin/bash", "-c"]
+USER root
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    wget \
-    curl \
-    unzip \
-    vim \
-    nano \
-    tmux \
-    python3-pip \
-    iputils-ping \
-    net-tools \
-    && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /var/lib/apt/lists/partial && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        wget \
+        curl \
+        vim \
+        nano \
+        tmux \
+        make \
+        cmake \
+        ninja-build \
+        build-essential \
+        gcc \
+        g++ \
+        python3-pip \
+        iputils-ping \
+        net-tools && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/PegasusSimulator/PegasusSimulator.git ${PEGASUS_ROOT}
+ENV ISAACSIM_PATH=/isaac-sim
+ENV ISAACSIM_PYTHON=/isaac-sim/python.sh
+ENV ISAACSIM=/isaac-sim/isaac-sim.sh
 
-# Install Python-side dependencies into Isaac Sim's bundled Python.
-RUN ./python.sh -m pip install --upgrade pip && \
-    if [ -f ${PEGASUS_ROOT}/requirements.txt ]; then ./python.sh -m pip install -r ${PEGASUS_ROOT}/requirements.txt; fi && \
-    ./python.sh -m pip install empy transforms3d numpy scipy pyyaml
+RUN cat <<'EOF' >> /root/.bashrc
 
-WORKDIR /opt/PegasusSimulator
-CMD ["bash"]
+# ---------------------------
+# ISAAC SIM SETUP
+# ---------------------------
+export ISAACSIM_PATH=/isaac-sim
+export ISAACSIM_PYTHON=${ISAACSIM_PATH}/python.sh
+export ISAACSIM=${ISAACSIM_PATH}/isaac-sim.sh
+
+isaac_run() {
+    if [ ! -x "$ISAACSIM_PYTHON" ]; then
+        echo "IsaacSim python.sh not found at: $ISAACSIM_PYTHON"
+        return 1
+    fi
+
+    if [ ! -x "$ISAACSIM" ]; then
+        echo "IsaacSim launcher not found at: $ISAACSIM"
+        return 1
+    fi
+
+    unset ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH
+
+    local ros_paths=("/opt/ros/humble" "/opt/ros/jazzy" "/opt/ros/iron" "/opt/ros/kilted")
+    for ros_path in "${ros_paths[@]}"; do
+        export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | tr ':' '\n' | grep -v "^${ros_path}" | paste -sd':' -)
+    done
+
+    if [ -f /etc/os-release ]; then
+        UBUNTU_VERSION=$(grep "^VERSION_ID=" /etc/os-release | cut -d'"' -f2)
+    fi
+
+    if [[ "$UBUNTU_VERSION" == "24.04" ]]; then
+        export ROS_DISTRO=jazzy
+        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/jazzy/lib"
+        echo "Detected Ubuntu 24.04 -> Using ROS_DISTRO=jazzy"
+    else
+        export ROS_DISTRO=humble
+        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/humble/lib"
+        echo "Detected Ubuntu ${UBUNTU_VERSION:-unknown} -> Using ROS_DISTRO=humble"
+    fi
+
+    if [ $# -eq 0 ]; then
+        echo "Launching Isaac Sim GUI..."
+        "${ISAACSIM}"
+    elif [[ "$1" == --* ]]; then
+        echo "Launching Isaac Sim with options: $*"
+        "${ISAACSIM}" "$@"
+    elif [ -f "$1" ]; then
+        local SCRIPT_PATH="$1"
+        shift
+        echo "Running Python script with Isaac Sim: $SCRIPT_PATH"
+        "${ISAACSIM_PYTHON}" "$SCRIPT_PATH" "$@"
+    else
+        echo "Unknown argument or file not found: '$1'"
+        echo "Usage:"
+        echo "  isaac_run                 -> launch GUI"
+        echo "  isaac_run my_script.py    -> run script with IsaacSim Python"
+        echo "  isaac_run --headless ...  -> launch IsaacSim with CLI flags"
+        return 1
+    fi
+}
+EOF
+
+WORKDIR /workspace
+
+# Pegasus
+RUN git clone https://github.com/PegasusSimulator/PegasusSimulator.git && \
+    cd /workspace/PegasusSimulator/extensions && \
+    ${ISAACSIM_PYTHON} -m pip install --editable pegasus.simulator
+
+# PX4 Python dependencies
+RUN pip install --break-system-packages \
+    kconfiglib \
+    jinja2 \
+    empy \
+    jsonschema \
+    pyros-genmsg \
+    packaging \
+    toml \
+    numpy \
+    future
+
+# PX4
+RUN git clone https://github.com/PX4/PX4-Autopilot.git /workspace/PX4-Autopilot && \
+    cd /workspace/PX4-Autopilot && \
+    git checkout v1.14.3 && \
+    git submodule update --init --recursive && \
+    make px4_sitl_default none
+
+CMD ["/bin/bash"]

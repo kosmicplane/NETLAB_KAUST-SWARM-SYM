@@ -1,0 +1,39 @@
+--progress is a global compose flag, better use `docker compose --progress xx build ...
+ Image compose-ros2-core Building 
+ Image compose-pegasus Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.08kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 3.62kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for nvcr.io/nvidia/isaac-sim:5.1.0
+#3 DONE 1.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/7] FROM nvcr.io/nvidia/isaac-sim:5.1.0@sha256:f3563cb2ba0c18af0b2fb321360dcb73a917b899f879e3213623d6bee484fa54
+#5 resolve nvcr.io/nvidia/isaac-sim:5.1.0@sha256:f3563cb2ba0c18af0b2fb321360dcb73a917b899f879e3213623d6bee484fa54 done
+#5 DONE 0.0s
+
+#6 [3/7] RUN cat <<'EOF' >> /root/.bashrc
+#6 CACHED
+
+#7 [4/7] WORKDIR /workspace
+#7 CACHED
+
+#8 [2/7] RUN mkdir -p /var/lib/apt/lists/partial &&     apt-get update &&     apt-get install -y --no-install-recommends         git         wget         curl         vim         nano         tmux         make         cmake         ninja-build         build-essential         gcc         g++         python3-pip         iputils-ping         net-tools &&     rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [5/7] RUN git clone https://github.com/PegasusSimulator/PegasusSimulator.git &&     cd /workspace/PegasusSimulator/extensions &&     /isaac-sim/python.sh -m pip install --editable pegasus.simulator
+#9 CACHED
+
+#10 [6/7] RUN pip install --break-system-packages     kconfiglib     jinja2     empy     jsonschema     pyros-genmsg     packaging     toml     numpy     future
+#10 CACHED
+
+#11 [7/7] RUN git clone https://github.com/PX4/PX4-Autopilot.git /workspace/PX4-Autopilot &&     cd /workspace/PX4-Autopilot &&     git checkout v1.14.3 &&     git submodule update --init --recursive &&     make px4_sitl_default none
+#11 0.088 Cloning into '/workspace/PX4-Autopilot'...

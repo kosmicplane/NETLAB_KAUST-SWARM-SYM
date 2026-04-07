@@ -60,7 +60,19 @@ services:
               capabilities: [gpu]
     stdin_open: true
     tty: true
-
+  px4:
+    build:
+      context: ..
+      dockerfile: docker/PX4/Dockerfile
+    container_name: px4-sitl
+    network_mode: host
+    stdin_open: true
+    tty: true
+    working_dir: /opt/PX4-Autopilot
+    volumes:
+      - ./PX4-Autopilot:/opt/PX4-Autopilot
+    environment:
+      - PX4_SIM_MODEL=gz_x500
   pegasus:
     build:
       context: ..

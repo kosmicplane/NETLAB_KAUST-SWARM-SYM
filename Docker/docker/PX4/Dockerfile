@@ -37,4 +37,5 @@ RUN echo 'source /opt/ros/jazzy/setup.bash' >> /root/.bashrc && \
     echo 'source /opt/uxrce_ws/install/local_setup.bash' >> /root/.bashrc
 
 WORKDIR /workspace
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-lc"]
+CMD ["source /opt/ros/jazzy/setup.bash && source /opt/uxrce_ws/install/local_setup.bash && exec MicroXRCEAgent udp4 -p 8888"]
