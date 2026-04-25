@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   ros2-core:
     build:
@@ -23,13 +25,6 @@ services:
       NVIDIA_DRIVER_CAPABILITIES: compute,utility
     volumes:
       - ${SIONNA_HOST_WS:-../workspace/sionna}:/workspace
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
     stdin_open: true
     tty: true
 
@@ -39,38 +34,33 @@ services:
       dockerfile: docker/isaacsim/Dockerfile
     container_name: netlab-isaacsim
     network_mode: host
-    entrypoint: ["/bin/bash", "-lc", "sleep infinity"]
     environment:
       ACCEPT_EULA: Y
       PRIVACY_CONSENT: Y
-      DISPLAY: ${DISPLAY:-:0}
-      XAUTHORITY: ${XAUTHORITY:-/tmp/.docker.xauth}
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
       OMNI_KIT_ALLOW_ROOT: "1"
+    ports:
+      - "8211:8211"   # ✅ WebRTC streaming
+    command: >
+      ./isaac-sim.sh
+      --headless
+      --streaming webrtc
     volumes:
       - ${ISAAC_SIM_HOST_DATA:-../data/isaac}:/isaac-sim/userdata
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ${XAUTHORITY:-/tmp/.docker.xauth}:${XAUTHORITY:-/tmp/.docker.xauth}:rw
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
     stdin_open: true
     tty: true
+
   px4:
     build:
       context: ..
       dockerfile: docker/PX4/Dockerfile
     container_name: px4-sitl
     network_mode: host
+    working_dir: /opt/PX4-Autopilot
     stdin_open: true
     tty: true
-    working_dir: /opt/PX4-Autopilot
 
   pegasus:
     build:
@@ -81,23 +71,12 @@ services:
     environment:
       ACCEPT_EULA: Y
       PRIVACY_CONSENT: Y
-      DISPLAY: ${DISPLAY:-:0}
-      XAUTHORITY: ${XAUTHORITY:-/tmp/.docker.xauth}
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
     volumes:
       - ${PEGASUS_HOST_DATA:-../data/pegasus}:/opt/PegasusSimulator/data
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ${XAUTHORITY:-/tmp/.docker.xauth}:${XAUTHORITY:-/tmp/.docker.xauth}:rw
     depends_on:
       - ros2-core
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
     stdin_open: true
     tty: true
