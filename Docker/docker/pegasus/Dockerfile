@@ -99,23 +99,4 @@ RUN git clone https://github.com/PegasusSimulator/PegasusSimulator.git && \
     cd /workspace/PegasusSimulator/extensions && \
     ${ISAACSIM_PYTHON} -m pip install --editable pegasus.simulator
 
-# PX4 Python dependencies
-RUN pip install --break-system-packages \
-    kconfiglib \
-    jinja2 \
-    empy \
-    jsonschema \
-    pyros-genmsg \
-    packaging \
-    toml \
-    numpy \
-    future
-
-# PX4
-RUN git clone https://github.com/PX4/PX4-Autopilot.git /workspace/PX4-Autopilot && \
-    cd /workspace/PX4-Autopilot && \
-    git checkout v1.14.3 && \
-    git submodule update --init --recursive && \
-    make px4_sitl_default none
-
 CMD ["/bin/bash"]

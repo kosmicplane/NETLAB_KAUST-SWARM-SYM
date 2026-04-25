@@ -39,6 +39,7 @@ services:
       dockerfile: docker/isaacsim/Dockerfile
     container_name: netlab-isaacsim
     network_mode: host
+    entrypoint: ["/bin/bash", "-lc", "sleep infinity"]
     environment:
       ACCEPT_EULA: Y
       PRIVACY_CONSENT: Y
@@ -47,6 +48,7 @@ services:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
+      OMNI_KIT_ALLOW_ROOT: "1"
     volumes:
       - ${ISAAC_SIM_HOST_DATA:-../data/isaac}:/isaac-sim/userdata
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
@@ -69,10 +71,7 @@ services:
     stdin_open: true
     tty: true
     working_dir: /opt/PX4-Autopilot
-    volumes:
-      - ./PX4-Autopilot:/opt/PX4-Autopilot
-    environment:
-      - PX4_SIM_MODEL=gz_x500
+
   pegasus:
     build:
       context: ..
