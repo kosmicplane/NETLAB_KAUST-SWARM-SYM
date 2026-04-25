@@ -42,7 +42,6 @@ services:
     environment:
       ACCEPT_EULA: Y
       PRIVACY_CONSENT: Y
-      DISPLAY: ${DISPLAY:-:0}
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
@@ -68,7 +67,6 @@ services:
     environment:
       ACCEPT_EULA: Y
       PRIVACY_CONSENT: Y
-      DISPLAY: ${DISPLAY:-:0}
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
