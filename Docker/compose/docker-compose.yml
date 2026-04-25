@@ -50,7 +50,6 @@ services:
     volumes:
       - ${ISAAC_SIM_HOST_DATA:-../data/isaac}:/isaac-sim/userdata
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ${XAUTHORITY:-/tmp/.docker.xauth}:${XAUTHORITY:-/tmp/.docker.xauth}:rw
     deploy:
       resources:
         reservations:
@@ -78,7 +77,6 @@ services:
     volumes:
       - ${PEGASUS_HOST_DATA:-../data/pegasus}:/opt/PegasusSimulator/data
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - ${XAUTHORITY:-/tmp/.docker.xauth}:${XAUTHORITY:-/tmp/.docker.xauth}:rw
     depends_on:
       - ros2-core
     deploy:
