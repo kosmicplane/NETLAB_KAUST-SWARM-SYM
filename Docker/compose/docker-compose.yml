@@ -42,8 +42,8 @@ services:
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
       OMNI_KIT_ALLOW_ROOT: "1"
     ports:
-      - "8211:8211"   # ✅ WebRTC streaming
-    command: >
+      - "8080:80"   # ✅ WebRTC streaming
+    command: 
       ./isaac-sim.sh
       --headless
       --streaming webrtc
