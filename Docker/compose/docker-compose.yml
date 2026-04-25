@@ -27,30 +27,34 @@ services:
       - ${SIONNA_HOST_WS:-../workspace/sionna}:/workspace
     stdin_open: true
     tty: true
-
-  isaacsim:
-    build:
-      context: ..
-      dockerfile: docker/isaacsim/Dockerfile
-    container_name: netlab-isaacsim
-    network_mode: host
+  isaac:
+    image: nvcr.io/nvidia/isaac-sim:5.1.0
+    container_name: isaac-sim
+    runtime: nvidia
     environment:
-      ACCEPT_EULA: Y
-      PRIVACY_CONSENT: Y
-      NVIDIA_VISIBLE_DEVICES: all
-      NVIDIA_DRIVER_CAPABILITIES: all
-      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
-      OMNI_KIT_ALLOW_ROOT: "1"
-    ports:
-      - "8080:80"   # ✅ WebRTC streaming
+      - ACCEPT_EULA=Y
+      - PRIVACY_CONSENT=Y
+      - OMNI_KIT_ALLOW_ROOT=1
     command: 
       ./isaac-sim.sh
       --headless
       --streaming webrtc
+    ports:
+      - "8211:8211"
     volumes:
-      - ${ISAAC_SIM_HOST_DATA:-../data/isaac}:/isaac-sim/userdata
-    stdin_open: true
-    tty: true
+      - ./isaac-data:/isaac-sim/userdata
+    shm_size: "8gb"
+
+  web-viewer:
+    image: nvcr.io/nvidia/omniverse-webrtc-web-viewer:latest
+    container_name: isaac-web-viewer
+    environment:
+      - STREAM_SERVER=isaac
+      - STREAM_PORT=8211
+    ports:
+      - "8080:80"
+    depends_on:
+      - isaac
 
   px4:
     build:
