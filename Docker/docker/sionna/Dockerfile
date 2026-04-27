@@ -1,15 +1,15 @@
-FROM nvidia/cuda:13.2.0-cudnn-devel-ubuntu24.04
-
-ENV DEBIAN_FRONTEND=noninteractive
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
-ENV VIRTUAL_ENV=/opt/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 SHELL ["/bin/bash", "-c"]
 
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    VIRTUAL_ENV=/opt/venv \
+    PATH="/opt/venv/bin:$PATH" \
+    TF_FORCE_GPU_ALLOW_GROWTH=true
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    locales \
     python3 \
     python3-dev \
     python3-pip \
@@ -22,25 +22,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     vim \
     nano \
     tmux \
-    && locale-gen en_US en_US.UTF-8 \
-    && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
+    iputils-ping \
+    net-tools \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv $VIRTUAL_ENV && \
-    $VIRTUAL_ENV/bin/pip install --upgrade pip setuptools wheel
+    pip install --upgrade pip setuptools wheel
 
 RUN pip install \
-    tensorflow==2.19.* \
+    tensorflow==2.15.* \
     sionna \
     jupyterlab \
     numpy \
     scipy \
     matplotlib \
     pandas \
-    seaborn \
     plotly \
     ipykernel
 
-WORKDIR /workspace
-
+WORKDIR /workspace/sionna
 CMD ["/bin/bash"]

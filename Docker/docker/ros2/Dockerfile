@@ -1,19 +1,21 @@
-FROM ros:jazzy-perception-noble
+FROM ros:humble-ros-base-jammy
 
 SHELL ["/bin/bash", "-c"]
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    ROS_DISTRO=humble \
+    RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    locales \
     git \
     curl \
     wget \
     vim \
     nano \
     tmux \
+    htop \
     python3-pip \
     python3-argcomplete \
     python3-colcon-common-extensions \
@@ -21,20 +23,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     net-tools \
     build-essential \
     ros-dev-tools \
-    && locale-gen en_US en_US.UTF-8 \
-    && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
+    ros-humble-vision-msgs \
+    ros-humble-tf2-ros \
+    ros-humble-tf-transformations \
+    ros-humble-geometry-msgs \
+    ros-humble-sensor-msgs \
+    ros-humble-nav-msgs \
+    ros-humble-std-msgs \
+    ros-humble-rosgraph-msgs \
+    ros-humble-rosbridge-suite \
     && rm -rf /var/lib/apt/lists/*
 
-RUN rosdep init || true && rosdep update
+RUN rosdep init || true && rosdep update || true
 
-WORKDIR /opt/uxrce_ws/src
-RUN git clone -b v2.4.3 https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install numpy scipy pandas matplotlib pyyaml
 
-WORKDIR /opt/uxrce_ws
-RUN bash -lc "source /opt/ros/jazzy/setup.bash && colcon build"
+RUN echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc && \
+    echo 'if [ -f /workspace/ros2/install/setup.bash ]; then source /workspace/ros2/install/setup.bash; fi' >> /root/.bashrc
 
-RUN echo 'source /opt/ros/jazzy/setup.bash' >> /root/.bashrc && \
-    echo 'source /opt/uxrce_ws/install/local_setup.bash' >> /root/.bashrc
-
-WORKDIR /workspace
+WORKDIR /workspace/ros2
 CMD ["/bin/bash"]

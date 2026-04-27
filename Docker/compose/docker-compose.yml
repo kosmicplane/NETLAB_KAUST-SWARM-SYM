@@ -1,86 +1,93 @@
-version: "3.9"
-
 services:
+  isaac:
+    build:
+      context: ..
+      dockerfile: docker/isaacsim/Dockerfile
+      args:
+        ISAACSIM_TAG: ${ISAACSIM_TAG:-5.1.0}
+    image: ${ISAAC_IMAGE:-netlab-isaac-sim-brev:5.1.0}
+    container_name: isaac-sim
+    runtime: nvidia
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    shm_size: "16gb"
+    environment:
+      ACCEPT_EULA: "Y"
+      PRIVACY_CONSENT: "Y"
+      OMNI_KIT_ALLOW_ROOT: "1"
+      NVIDIA_VISIBLE_DEVICES: "all"
+      NVIDIA_DRIVER_CAPABILITIES: "all"
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
+      ROS_DISTRO: "humble"
+      ROS_VERSION: "2"
+      ROS_PYTHON_VERSION: "3"
+      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+    volumes:
+      - ../workspace/isaac:/workspace/isaac
+      - ../workspace/ros2:/workspace/ros2
+      - ../workspace/results:/workspace/results
+      - ../workspace/shared:/workspace/shared
+      - ../data:/workspace/data
+    command: bash -lc "/isaac-sim/runheadless.sh -v"
+
   ros2-core:
     build:
       context: ..
       dockerfile: docker/ros2/Dockerfile
+    image: ${ROS2_IMAGE:-netlab-ros2-humble:brev}
     container_name: netlab-ros2-core
     network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
     environment:
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
       RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
     volumes:
-      - ${ROS2_HOST_WS:-../workspace/ros2}:/workspace
-    stdin_open: true
-    tty: true
-
-  sionna-engine:
-    build:
-      context: ..
-      dockerfile: docker/sionna/Dockerfile
-    container_name: netlab-sionna-engine
-    environment:
-      NVIDIA_VISIBLE_DEVICES: all
-      NVIDIA_DRIVER_CAPABILITIES: compute,utility
-    volumes:
-      - ${SIONNA_HOST_WS:-../workspace/sionna}:/workspace
-    stdin_open: true
-    tty: true
-  isaac:
-    image: nvcr.io/nvidia/isaac-sim:5.1.0
-    container_name: isaac-sim
-    runtime: nvidia
-    environment:
-      - ACCEPT_EULA=Y
-      - PRIVACY_CONSENT=Y
-      - OMNI_KIT_ALLOW_ROOT=1
-    command: 
-      ./isaac-sim.sh
-      --headless
-      --streaming webrtc
-    ports:
-      - "8211:8211"
-    volumes:
-      - ./isaac-data:/isaac-sim/userdata
-    shm_size: "8gb"
-
-  web-viewer:
-    image: nvcr.io/nvidia/omniverse-webrtc-web-viewer:latest
-    container_name: isaac-web-viewer
-    environment:
-      - STREAM_SERVER=isaac
-      - STREAM_PORT=8211
-    ports:
-      - "8080:80"
-    depends_on:
-      - isaac
+      - ../workspace/ros2:/workspace/ros2
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+    working_dir: /workspace/ros2
+    command: bash
 
   px4:
     build:
       context: ..
       dockerfile: docker/PX4/Dockerfile
+    image: ${PX4_IMAGE:-netlab-px4-sitl:brev}
     container_name: px4-sitl
     network_mode: host
-    working_dir: /opt/PX4-Autopilot
     stdin_open: true
     tty: true
+    environment:
+      PX4_HOME_LAT: "22.3080"
+      PX4_HOME_LON: "39.1044"
+      PX4_HOME_ALT: "10"
+    volumes:
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+    working_dir: /opt/PX4-Autopilot
+    command: bash
 
-  pegasus:
+  sionna-engine:
     build:
       context: ..
-      dockerfile: docker/pegasus/Dockerfile
-    container_name: netlab-pegasus
+      dockerfile: docker/sionna/Dockerfile
+    image: ${SIONNA_IMAGE:-netlab-sionna:brev}
+    container_name: netlab-sionna-engine
+    runtime: nvidia
     network_mode: host
-    environment:
-      ACCEPT_EULA: Y
-      PRIVACY_CONSENT: Y
-      NVIDIA_VISIBLE_DEVICES: all
-      NVIDIA_DRIVER_CAPABILITIES: all
-      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
-    volumes:
-      - ${PEGASUS_HOST_DATA:-../data/pegasus}:/opt/PegasusSimulator/data
-    depends_on:
-      - ros2-core
     stdin_open: true
     tty: true
+    environment:
+      NVIDIA_VISIBLE_DEVICES: "all"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      TF_FORCE_GPU_ALLOW_GROWTH: "true"
+    volumes:
+      - ../workspace/sionna:/workspace/sionna
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+    working_dir: /workspace/sionna
+    command: bash
