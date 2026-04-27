@@ -3,9 +3,7 @@ services:
     build:
       context: ..
       dockerfile: docker/isaacsim/Dockerfile
-      args:
-        ISAACSIM_TAG: ${ISAACSIM_TAG:-5.1.0}
-    image: ${ISAAC_IMAGE:-netlab-isaac-sim-brev:5.1.0}
+    image: kaust-isaac-sim:5.1.0
     container_name: isaac-sim
     runtime: nvidia
     network_mode: host
@@ -13,25 +11,24 @@ services:
     stdin_open: true
     tty: true
     shm_size: "16gb"
+
     environment:
       ACCEPT_EULA: "Y"
       PRIVACY_CONSENT: "Y"
       OMNI_KIT_ALLOW_ROOT: "1"
       NVIDIA_VISIBLE_DEVICES: "all"
       NVIDIA_DRIVER_CAPABILITIES: "all"
-      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
-      ROS_DISTRO: "humble"
+      ROS_DISTRO: "jazzy"
       ROS_VERSION: "2"
       ROS_PYTHON_VERSION: "3"
-      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+      RMW_IMPLEMENTATION: "rmw_fastrtps_cpp"
+
     volumes:
       - ../workspace/isaac:/workspace/isaac
-      - ../workspace/ros2:/workspace/ros2
-      - ../workspace/results:/workspace/results
-      - ../workspace/shared:/workspace/shared
-      - ../data:/workspace/data
-    command: bash -lc "/isaac-sim/runheadless.sh -v"
+      - ../workspace/ros2:/workspace/ros2_ws
+      - ../data/isaac:/workspace/data
 
+    command: /isaac-sim/runheadless.sh -v
   ros2-core:
     build:
       context: ..
