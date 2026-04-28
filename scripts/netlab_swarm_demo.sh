@@ -13,7 +13,12 @@ SIONNA_CONTAINER="${SIONNA_CONTAINER:-netlab-sionna-engine}"
 ISAAC_CONTAINER="${ISAAC_CONTAINER:-isaac-sim}"
 
 SIONNA_PORT="${SIONNA_PORT:-8090}"
+SIONNA_HOST="${SIONNA_HOST:-0.0.0.0}"
+SIONNA_HEALTH_URL="${SIONNA_HEALTH_URL:-http://127.0.0.1:${SIONNA_PORT}/health}"
 SIONNA_URL="${SIONNA_URL:-http://127.0.0.1:${SIONNA_PORT}/link}"
+
+SIONNA_LOG="/workspace/results/sionna_link_server.log"
+BRIDGE_LOG="/workspace/results/swarm_bridge.log"
 
 compose() {
   cd "$COMPOSE_DIR"
@@ -38,6 +43,7 @@ Environment overrides:
   ROS_CONTAINER=$ROS_CONTAINER
   SIONNA_CONTAINER=$SIONNA_CONTAINER
   ISAAC_CONTAINER=$ISAAC_CONTAINER
+  SIONNA_PORT=$SIONNA_PORT
   SIONNA_URL=$SIONNA_URL
 EOF
 }
@@ -47,48 +53,164 @@ ensure_stack_running() {
   compose ps
 }
 
+ensure_results_dirs() {
+  docker exec "$SIONNA_CONTAINER" bash -lc 'mkdir -p /workspace/results' || true
+  docker exec "$ROS_CONTAINER" bash -lc 'mkdir -p /workspace/results' || true
+}
+
+safe_stop_sionna() {
+  docker exec "$SIONNA_CONTAINER" bash -lc '
+    pkill -f "[r]ealtime_link_server.py" || true
+  ' 2>/dev/null || true
+}
+
+safe_stop_ros_bridge() {
+  docker exec "$ROS_CONTAINER" bash -lc '
+    pkill -f "[n]etlab_swarm_demo.swarm_bridge" || true
+    pkill -f "ros2 run netlab_swarm_demo [s]warm_bridge" || true
+  ' 2>/dev/null || true
+}
+
+wait_for_sionna_health() {
+  echo "[INFO] Waiting for Sionna health endpoint: ${SIONNA_HEALTH_URL}"
+
+  for i in $(seq 1 30); do
+    if curl -fsS "$SIONNA_HEALTH_URL" >/tmp/netlab_sionna_health.json 2>/dev/null; then
+      echo "[OK] Sionna service is healthy:"
+      cat /tmp/netlab_sionna_health.json
+      echo
+      return 0
+    fi
+    sleep 1
+  done
+
+  echo "[ERROR] Sionna service did not become healthy on ${SIONNA_HEALTH_URL}"
+  echo
+  echo "[INFO] Recent Sionna log:"
+  docker exec "$SIONNA_CONTAINER" bash -lc "cat ${SIONNA_LOG} 2>/dev/null || true" || true
+  echo
+  echo "[INFO] Sionna process list:"
+  docker exec "$SIONNA_CONTAINER" bash -lc 'ps aux | grep "[r]ealtime_link_server.py" || true' || true
+  return 1
+}
+
+wait_for_ros_bridge() {
+  echo "[INFO] Waiting for ROS swarm bridge to start..."
+
+  for i in $(seq 1 15); do
+    if docker exec "$ROS_CONTAINER" bash -lc 'ps aux | grep "[s]warm_bridge" >/dev/null 2>&1'; then
+      echo "[OK] ROS swarm bridge process is running."
+      return 0
+    fi
+    sleep 1
+  done
+
+  echo "[ERROR] ROS swarm bridge did not start."
+  echo
+  echo "[INFO] Recent ROS bridge log:"
+  docker exec "$ROS_CONTAINER" bash -lc "cat ${BRIDGE_LOG} 2>/dev/null || true" || true
+  return 1
+}
+
 build_ros() {
   ensure_stack_running
+  ensure_results_dirs
+
   echo "[INFO] Building ROS 2 package netlab_swarm_demo inside $ROS_CONTAINER"
+
   docker exec "$ROS_CONTAINER" bash -lc '
     set -e
     source /opt/ros/jazzy/setup.bash
     cd /workspace/ros2
     colcon build --symlink-install --packages-select netlab_swarm_demo
   '
-  echo "[OK] ROS 2 package built."
+
+  docker exec "$ROS_CONTAINER" bash -lc '
+    set -e
+    cd /workspace/ros2
+    test -f install/setup.bash
+  '
+
+  echo "[OK] ROS 2 package built and install/setup.bash exists."
 }
 
 start_sionna() {
   ensure_stack_running
+  ensure_results_dirs
+
   echo "[INFO] Starting Sionna real-time link service on port ${SIONNA_PORT}"
-  docker exec "$SIONNA_CONTAINER" bash -lc 'pkill -f "[r]ealtime_link_server.py" || true'
+
+  safe_stop_sionna
+
   docker exec -d "$SIONNA_CONTAINER" bash -lc "
-    cd /workspace/sionna && \
-    SIONNA_LINK_PORT=${SIONNA_PORT} python3 realtime_link_server.py \
-      > /workspace/results/sionna_link_server.log 2>&1
+    set -e
+    mkdir -p /workspace/results
+    cd /workspace/sionna
+    exec env SIONNA_LINK_HOST=${SIONNA_HOST} SIONNA_LINK_PORT=${SIONNA_PORT} python3 /workspace/sionna/realtime_link_server.py \
+      > ${SIONNA_LOG} 2>&1
   "
-  sleep 2
-  echo "[INFO] Sionna health check from Brev host:"
-  curl -s "http://127.0.0.1:${SIONNA_PORT}/health" || true
+
+  wait_for_sionna_health
+
+  echo "[INFO] Sionna /link smoke test:"
+  curl -fsS -X POST "http://127.0.0.1:${SIONNA_PORT}/link" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "tx": [-2.75, 0.0, 3.0],
+      "rx": [2.75, 0.0, 3.0],
+      "frequency_hz": 3500000000.0,
+      "bandwidth_hz": 20000000.0,
+      "tx_power_dbm": 20.0,
+      "noise_floor_dbm": -95.0
+    }' >/tmp/netlab_sionna_link_test.json
+
+  cat /tmp/netlab_sionna_link_test.json
   echo
+  echo "[OK] Sionna link service is running."
 }
 
 start_ros() {
   ensure_stack_running
+  ensure_results_dirs
+
   echo "[INFO] Starting ROS 2 swarm bridge using SIONNA_URL=${SIONNA_URL}"
-  docker exec "$ROS_CONTAINER" bash -lc 'pkill -f "[n]etlab_swarm_demo.swarm_bridge" || true; pkill -f "ros2 run netlab_swarm_demo [s]warm_bridge" || true'
-  docker exec -d "$ROS_CONTAINER" bash -lc "
+
+  if ! curl -fsS "$SIONNA_HEALTH_URL" >/dev/null 2>&1; then
+    echo "[ERROR] Sionna is not healthy. Run:"
+    echo "  $0 start-sionna"
+    return 1
+  fi
+
+  docker exec "$ROS_CONTAINER" bash -lc '
     set -e
     source /opt/ros/jazzy/setup.bash
     cd /workspace/ros2
-    if [ -f install/setup.bash ]; then source install/setup.bash; fi
+    if [ ! -f install/setup.bash ]; then
+      echo "[ERROR] /workspace/ros2/install/setup.bash does not exist."
+      echo "[ERROR] Run build-ros first."
+      exit 1
+    fi
+  '
+
+  safe_stop_ros_bridge
+
+  docker exec -d "$ROS_CONTAINER" bash -lc "
+    set -e
+    mkdir -p /workspace/results
+    source /opt/ros/jazzy/setup.bash
+    cd /workspace/ros2
+    source install/setup.bash
     export SIONNA_URL='${SIONNA_URL}'
-    ros2 run netlab_swarm_demo swarm_bridge \
-      > /workspace/results/swarm_bridge.log 2>&1
+    exec ros2 run netlab_swarm_demo swarm_bridge \
+      > ${BRIDGE_LOG} 2>&1
   "
-  sleep 2
-  echo "[OK] ROS bridge process requested. Check /workspace/results/swarm_bridge.log if needed."
+
+  wait_for_ros_bridge
+
+  echo "[INFO] Recent ROS bridge log:"
+  docker exec "$ROS_CONTAINER" bash -lc "tail -n 40 ${BRIDGE_LOG} 2>/dev/null || true"
+
+  echo "[OK] ROS bridge process requested."
 }
 
 start_all() {
@@ -122,10 +244,10 @@ monitor() {
 Open additional Brev terminals and use these commands:
 
 1) Monitor Sionna link service logs:
-   docker exec -it ${SIONNA_CONTAINER} bash -lc 'tail -f /workspace/results/sionna_link_server.log'
+   docker exec -it ${SIONNA_CONTAINER} bash -lc 'tail -f ${SIONNA_LOG}'
 
 2) Monitor ROS bridge logs:
-   docker exec -it ${ROS_CONTAINER} bash -lc 'tail -f /workspace/results/swarm_bridge.log'
+   docker exec -it ${ROS_CONTAINER} bash -lc 'tail -f ${BRIDGE_LOG}'
 
 3) List swarm ROS topics:
    docker exec -it ${ROS_CONTAINER} bash -lc 'source /opt/ros/jazzy/setup.bash && cd /workspace/ros2 && source install/setup.bash && ros2 topic list | grep /swarm'
@@ -136,14 +258,21 @@ Open additional Brev terminals and use these commands:
 5) Echo Drone 2 inbox messages:
    docker exec -it ${ROS_CONTAINER} bash -lc 'source /opt/ros/jazzy/setup.bash && cd /workspace/ros2 && source install/setup.bash && ros2 topic echo /swarm/drone_2/inbox'
 
-6) Run the compact ROS monitor node:
+6) Echo Drone 2 ACK messages:
+   docker exec -it ${ROS_CONTAINER} bash -lc 'source /opt/ros/jazzy/setup.bash && cd /workspace/ros2 && source install/setup.bash && ros2 topic echo /swarm/drone_2/ack'
+
+7) Run the compact ROS monitor node:
    docker exec -it ${ROS_CONTAINER} bash -lc 'source /opt/ros/jazzy/setup.bash && cd /workspace/ros2 && source install/setup.bash && ros2 run netlab_swarm_demo swarm_monitor'
+
+8) Record evidence with rosbag:
+   docker exec -it ${ROS_CONTAINER} bash -lc 'source /opt/ros/jazzy/setup.bash && cd /workspace/ros2 && source install/setup.bash && mkdir -p bags && ros2 bag record /swarm/drone_1/state /swarm/drone_2/state /swarm/sionna/link_metrics /swarm/drone_2/inbox /swarm/drone_2/ack'
 EOF
 }
 
 doctor() {
   echo "========== NETLAB Two-Drone Demo Doctor =========="
   echo
+
   echo "== Expected files =="
   ls -l "$PROJECT_ROOT/Docker/workspace/isaac/scripts/two_drone_hover_live.py" || true
   ls -l "$PROJECT_ROOT/Docker/workspace/sionna/realtime_link_server.py" || true
@@ -154,9 +283,31 @@ doctor() {
   compose ps || true
 
   echo
+  echo "== Sionna process =="
+  docker exec "$SIONNA_CONTAINER" bash -lc 'ps aux | grep "[r]ealtime_link_server.py" || true' || true
+
+  echo
   echo "== Sionna health =="
   curl -s "http://127.0.0.1:${SIONNA_PORT}/health" || true
   echo
+
+  echo
+  echo "== Sionna /link smoke test =="
+  curl -s -X POST "http://127.0.0.1:${SIONNA_PORT}/link" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "tx": [-2.75, 0.0, 3.0],
+      "rx": [2.75, 0.0, 3.0],
+      "frequency_hz": 3500000000.0,
+      "bandwidth_hz": 20000000.0,
+      "tx_power_dbm": 20.0,
+      "noise_floor_dbm": -95.0
+    }' || true
+  echo
+
+  echo
+  echo "== ROS bridge process =="
+  docker exec "$ROS_CONTAINER" bash -lc 'ps aux | grep "[s]warm_bridge" || true' || true
 
   echo
   echo "== ROS package check =="
@@ -177,12 +328,39 @@ doctor() {
   ' || true
 
   echo
+  echo "== Topic info: /swarm/sionna/link_metrics =="
+  docker exec "$ROS_CONTAINER" bash -lc '
+    source /opt/ros/jazzy/setup.bash
+    cd /workspace/ros2
+    if [ -f install/setup.bash ]; then source install/setup.bash; fi
+    ros2 topic info /swarm/sionna/link_metrics -v || true
+  ' || true
+
+  echo
+  echo "== One message: /swarm/sionna/link_metrics =="
+  docker exec "$ROS_CONTAINER" bash -lc '
+    source /opt/ros/jazzy/setup.bash
+    cd /workspace/ros2
+    if [ -f install/setup.bash ]; then source install/setup.bash; fi
+    timeout 5 ros2 topic echo --once /swarm/sionna/link_metrics || true
+  ' || true
+
+  echo
+  echo "== One message: /swarm/drone_2/inbox =="
+  docker exec "$ROS_CONTAINER" bash -lc '
+    source /opt/ros/jazzy/setup.bash
+    cd /workspace/ros2
+    if [ -f install/setup.bash ]; then source install/setup.bash; fi
+    timeout 5 ros2 topic echo --once /swarm/drone_2/inbox || true
+  ' || true
+
+  echo
   echo "== Recent Sionna log =="
-  docker exec "$SIONNA_CONTAINER" bash -lc 'tail -n 60 /workspace/results/sionna_link_server.log 2>/dev/null || true' || true
+  docker exec "$SIONNA_CONTAINER" bash -lc "tail -n 80 ${SIONNA_LOG} 2>/dev/null || true" || true
 
   echo
   echo "== Recent ROS bridge log =="
-  docker exec "$ROS_CONTAINER" bash -lc 'tail -n 80 /workspace/results/swarm_bridge.log 2>/dev/null || true' || true
+  docker exec "$ROS_CONTAINER" bash -lc "tail -n 100 ${BRIDGE_LOG} 2>/dev/null || true" || true
 
   echo
   echo "========== Doctor completed =========="
@@ -190,8 +368,10 @@ doctor() {
 
 stop_demo() {
   echo "[INFO] Stopping demo processes."
-  docker exec "$ROS_CONTAINER" bash -lc 'pkill -f "[n]etlab_swarm_demo.swarm_bridge" || true; pkill -f "ros2 run netlab_swarm_demo [s]warm_bridge" || true' || true
-  docker exec "$SIONNA_CONTAINER" bash -lc 'pkill -f "[r]ealtime_link_server.py" || true' || true
+
+  safe_stop_ros_bridge
+  safe_stop_sionna
+
   echo "[OK] Demo backend processes stopped. The Isaac visual script can be stopped by reloading the stage or restarting Isaac."
 }
 
