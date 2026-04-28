@@ -1,4 +1,6 @@
-# Quickstart on NVIDIA Brev
+# Quickstart on NVIDIA Brev - ROS 2 Jazzy version
+
+This version keeps the whole ROS-facing stack on ROS 2 Jazzy.
 
 ## 1. Connect to your Brev instance
 
@@ -23,46 +25,88 @@ cd /home/ubuntu/workspace/kaust-netlab-swarm-sym-docker
 
 Expected: `nvidia-smi` works on host and inside a CUDA Docker container.
 
-## 4. Build
+## 4. Configure environment
 
 ```bash
 cd compose
 cp .env.example .env
+nano .env
+```
+
+Set your Brev public IP:
+
+```env
+ISAACSIM_HOST=<YOUR_BREV_PUBLIC_IP>
+```
+
+Keep the ROS values as Jazzy:
+
+```env
+ROS_DISTRO=jazzy
+ROS_DOMAIN_ID=42
+RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+```
+
+## 5. Prepare folders and build
+
+```bash
+make prepare-brev
 make build
 ```
 
-## 5. Start Isaac Sim visualization service
+## 6. Start the main stack
+
+This starts only the three main containers: Isaac Sim, ROS 2 Jazzy, and Sionna.
 
 ```bash
-make up-isaac
+make up
 make logs-isaac
 ```
 
-When Isaac finishes loading, connect with Isaac Sim WebRTC Streaming Client to the public IP of your Brev instance.
+When Isaac finishes loading, connect with the Isaac Sim WebRTC Streaming Client to the public IP of your Brev instance.
 
-Required open ports:
+Required Brev ports:
 
 ```text
-8210
-49100
-47998
+49100/tcp
+47998/udp
 ```
 
-## 6. Run visual validation scene
+Do not rely on port `8210` unless you add a separate web-viewer service.
+
+## 7. Run visual validation scene
 
 ```bash
 ../scripts/run_isaac_sample_scene.sh
 ```
 
-## 7. Start the rest of the stack
+## 8. Verify ROS 2 Jazzy
 
 ```bash
-make up-ros2
-make up-px4
-make up-sionna
+make verify-ros2
 ```
 
-## 8. Stop everything
+Expected output includes:
+
+```text
+ROS_DISTRO=jazzy
+```
+
+## 9. Verify Sionna
+
+```bash
+make verify-sionna
+```
+
+## 10. Optional PX4 container
+
+PX4 is now optional and behind a Docker Compose profile:
+
+```bash
+make up-px4
+```
+
+## 11. Stop everything
 
 ```bash
 make down

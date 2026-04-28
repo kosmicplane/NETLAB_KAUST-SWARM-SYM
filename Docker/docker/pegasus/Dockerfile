@@ -26,15 +26,19 @@ RUN mkdir -p /var/lib/apt/lists/partial && \
 ENV ISAACSIM_PATH=/isaac-sim
 ENV ISAACSIM_PYTHON=/isaac-sim/python.sh
 ENV ISAACSIM=/isaac-sim/isaac-sim.sh
+ENV ROS_DISTRO=jazzy
+ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
-RUN cat <<'EOF' >> /root/.bashrc
+RUN cat <<'EOS' >> /root/.bashrc
 
 # ---------------------------
-# ISAAC SIM SETUP
+# ISAAC SIM + PEGASUS SETUP - JAZZY ONLY
 # ---------------------------
 export ISAACSIM_PATH=/isaac-sim
 export ISAACSIM_PYTHON=${ISAACSIM_PATH}/python.sh
 export ISAACSIM=${ISAACSIM_PATH}/isaac-sim.sh
+export ROS_DISTRO=jazzy
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
 isaac_run() {
     if [ ! -x "$ISAACSIM_PYTHON" ]; then
@@ -47,31 +51,16 @@ isaac_run() {
         return 1
     fi
 
-    unset ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH
-
-    local ros_paths=("/opt/ros/humble" "/opt/ros/jazzy" "/opt/ros/iron" "/opt/ros/kilted")
-    for ros_path in "${ros_paths[@]}"; do
-        export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | tr ':' '\n' | grep -v "^${ros_path}" | paste -sd':' -)
-    done
-
-    if [ -f /etc/os-release ]; then
-        UBUNTU_VERSION=$(grep "^VERSION_ID=" /etc/os-release | cut -d'"' -f2)
-    fi
-
-    if [[ "$UBUNTU_VERSION" == "24.04" ]]; then
-        export ROS_DISTRO=jazzy
-        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/jazzy/lib"
-        echo "Detected Ubuntu 24.04 -> Using ROS_DISTRO=jazzy"
-    else
-        export ROS_DISTRO=humble
-        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/humble/lib"
-        echo "Detected Ubuntu ${UBUNTU_VERSION:-unknown} -> Using ROS_DISTRO=humble"
+    local jazzy_bridge_lib="${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/jazzy/lib"
+    if [ -d "$jazzy_bridge_lib" ]; then
+        case ":${LD_LIBRARY_PATH:-}:" in
+            *":${jazzy_bridge_lib}:"*) ;;
+            *) export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}${jazzy_bridge_lib}" ;;
+        esac
     fi
 
     if [ $# -eq 0 ]; then
-        echo "Launching Isaac Sim GUI..."
+        echo "Launching Isaac Sim GUI with ROS_DISTRO=jazzy..."
         "${ISAACSIM}"
     elif [[ "$1" == --* ]]; then
         echo "Launching Isaac Sim with options: $*"
@@ -90,11 +79,11 @@ isaac_run() {
         return 1
     fi
 }
-EOF
+EOS
 
 WORKDIR /workspace
 
-# Pegasus
+# Pegasus is optional and should be integrated after Isaac + ROS 2 Jazzy + Sionna are stable.
 RUN git clone https://github.com/PegasusSimulator/PegasusSimulator.git && \
     cd /workspace/PegasusSimulator/extensions && \
     ${ISAACSIM_PYTHON} -m pip install --editable pegasus.simulator

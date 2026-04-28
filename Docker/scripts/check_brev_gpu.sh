@@ -9,6 +9,6 @@ docker --version
 docker compose version
 
 echo "[3/4] NVIDIA container runtime check"
-docker run --rm --gpus all nvidia/cuda:12.4.1-base-ubuntu22.04 nvidia-smi
+docker run --rm --gpus all nvidia/cuda:12.4.1-base-ubuntu24.04 nvidia-smi
 
 echo "[4/4] Done. Docker can access the GPU."

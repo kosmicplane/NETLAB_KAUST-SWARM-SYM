@@ -3,7 +3,7 @@ services:
     build:
       context: ..
       dockerfile: docker/isaacsim/Dockerfile
-    image: kaust-isaac-sim:5.1.0
+    image: ${ISAAC_IMAGE:-netlab-isaac-sim-jazzy:5.1.0}
     container_name: isaac-sim
     runtime: nvidia
     network_mode: host
@@ -11,7 +11,6 @@ services:
     stdin_open: true
     tty: true
     shm_size: "16gb"
-
     environment:
       ACCEPT_EULA: "Y"
       PRIVACY_CONSENT: "Y"
@@ -21,51 +20,52 @@ services:
       ROS_DISTRO: "jazzy"
       ROS_VERSION: "2"
       ROS_PYTHON_VERSION: "3"
-      RMW_IMPLEMENTATION: "rmw_fastrtps_cpp"
-
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
+      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+      FASTRTPS_DEFAULT_PROFILES_FILE: /workspace/shared/fastdds.xml
+      isaac_sim_package_path: /isaac-sim
+      ISAACSIM_HOST: ${ISAACSIM_HOST:-127.0.0.1}
+      ISAACSIM_SIGNAL_PORT: ${ISAACSIM_SIGNAL_PORT:-49100}
+      ISAACSIM_STREAM_PORT: ${ISAACSIM_STREAM_PORT:-47998}
     volumes:
       - ../workspace/isaac:/workspace/isaac
       - ../workspace/ros2:/workspace/ros2_ws
-      - ../data/isaac:/workspace/data
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+      - ../data/isaac/cache/main:/isaac-sim/.cache:rw
+      - ../data/isaac/cache/computecache:/isaac-sim/.nv/ComputeCache:rw
+      - ../data/isaac/logs:/isaac-sim/.nvidia-omniverse/logs:rw
+      - ../data/isaac/config:/isaac-sim/.nvidia-omniverse/config:rw
+      - ../data/isaac/local-data:/isaac-sim/.local/share/ov/data:rw
+      - ../data/isaac/pkg:/isaac-sim/.local/share/ov/pkg:rw
+    command:
+      - /isaac-sim/runheadless.sh
+      - -v
+      - --/isaac/startup/ros_bridge_extension=isaacsim.ros2.bridge
+      - --/exts/omni.kit.livestream.app/primaryStream/publicIp=${ISAACSIM_HOST:-127.0.0.1}
+      - --/exts/omni.kit.livestream.app/primaryStream/signalPort=${ISAACSIM_SIGNAL_PORT:-49100}
+      - --/exts/omni.kit.livestream.app/primaryStream/streamPort=${ISAACSIM_STREAM_PORT:-47998}
 
-    command: /isaac-sim/runheadless.sh -v
   ros2-core:
     build:
       context: ..
       dockerfile: docker/ros2/Dockerfile
-    image: ${ROS2_IMAGE:-netlab-ros2-humble:brev}
+    image: ${ROS2_IMAGE:-netlab-ros2-jazzy:brev}
     container_name: netlab-ros2-core
     network_mode: host
     ipc: host
     stdin_open: true
     tty: true
     environment:
+      ROS_DISTRO: "jazzy"
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
       RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+      FASTRTPS_DEFAULT_PROFILES_FILE: /workspace/shared/fastdds.xml
     volumes:
       - ../workspace/ros2:/workspace/ros2
       - ../workspace/shared:/workspace/shared
       - ../workspace/results:/workspace/results
     working_dir: /workspace/ros2
-    command: bash
-
-  px4:
-    build:
-      context: ..
-      dockerfile: docker/PX4/Dockerfile
-    image: ${PX4_IMAGE:-netlab-px4-sitl:brev}
-    container_name: px4-sitl
-    network_mode: host
-    stdin_open: true
-    tty: true
-    environment:
-      PX4_HOME_LAT: "22.3080"
-      PX4_HOME_LON: "39.1044"
-      PX4_HOME_ALT: "10"
-    volumes:
-      - ../workspace/shared:/workspace/shared
-      - ../workspace/results:/workspace/results
-    working_dir: /opt/PX4-Autopilot
     command: bash
 
   sionna-engine:
@@ -87,4 +87,24 @@ services:
       - ../workspace/shared:/workspace/shared
       - ../workspace/results:/workspace/results
     working_dir: /workspace/sionna
+    command: bash
+
+  px4:
+    profiles: ["px4"]
+    build:
+      context: ..
+      dockerfile: docker/PX4/Dockerfile
+    image: ${PX4_IMAGE:-netlab-px4-sitl:brev}
+    container_name: px4-sitl
+    network_mode: host
+    stdin_open: true
+    tty: true
+    environment:
+      PX4_HOME_LAT: "22.3080"
+      PX4_HOME_LON: "39.1044"
+      PX4_HOME_ALT: "10"
+    volumes:
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+    working_dir: /opt/PX4-Autopilot
     command: bash

@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu24.04
 
 SHELL ["/bin/bash", "-c"]
 
@@ -8,6 +8,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     VIRTUAL_ENV=/opt/venv \
     PATH="/opt/venv/bin:$PATH" \
     TF_FORCE_GPU_ALLOW_GROWTH=true
+
+COPY requirements/sionna-requirements.txt /tmp/sionna-requirements.txt
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
@@ -27,18 +29,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv $VIRTUAL_ENV && \
-    pip install --upgrade pip setuptools wheel
-
-RUN pip install \
-    tensorflow==2.15.* \
-    sionna \
-    jupyterlab \
-    numpy \
-    scipy \
-    matplotlib \
-    pandas \
-    plotly \
-    ipykernel
+    pip install --upgrade pip setuptools wheel && \
+    pip install -r /tmp/sionna-requirements.txt
 
 WORKDIR /workspace/sionna
 CMD ["/bin/bash"]
