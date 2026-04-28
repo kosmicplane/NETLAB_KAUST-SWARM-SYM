@@ -16,6 +16,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 COPY requirements/isaac-python.txt /tmp/isaac-python.txt
 
+USER root
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     locales \
     git \
@@ -42,7 +44,7 @@ ENV LC_ALL=en_US.UTF-8
 
 # Keep Isaac Sim clean: do not apt-install an external ROS 2 distro here.
 # Isaac Sim 5.1 uses its internal ROS 2 Jazzy bridge libraries through entrypoint.sh.
-RUN python3 -m pip install --break-system-packages --upgrade pip && \
+RUN \
     python3 -m pip install --break-system-packages -r /tmp/isaac-python.txt
 
 RUN mkdir -p /workspace/project \

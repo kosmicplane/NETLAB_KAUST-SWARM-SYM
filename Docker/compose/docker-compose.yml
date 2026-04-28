@@ -42,10 +42,12 @@ services:
       - /isaac-sim/runheadless.sh
       - -v
       - --/isaac/startup/ros_bridge_extension=isaacsim.ros2.bridge
-      - --/exts/omni.kit.livestream.app/primaryStream/publicIp=${ISAACSIM_HOST:-127.0.0.1}
-      - --/exts/omni.kit.livestream.app/primaryStream/signalPort=${ISAACSIM_SIGNAL_PORT:-49100}
-      - --/exts/omni.kit.livestream.app/primaryStream/streamPort=${ISAACSIM_STREAM_PORT:-47998}
-
+      - --/app/livestream/publicEndpointAddress=${ISAACSIM_HOST:-127.0.0.1}
+      - --/app/livestream/port=${ISAACSIM_SIGNAL_PORT:-49100}
+      - --/persistent/app/window/width=1280
+      - --/persistent/app/window/height=720
+      - --/app/window/dpiScaleOverride=1.0
+      - --/app/window/scaleToMonitor=false
   ros2-core:
     build:
       context: ..

@@ -17,7 +17,7 @@ RUN apt-get update && \
 
 RUN rosdep init || true && rosdep update || true
 
-RUN python3 -m pip install --break-system-packages --upgrade pip && \
+RUN \
     python3 -m pip install --break-system-packages -r /tmp/ros2-python.txt
 
 RUN echo 'source /opt/ros/jazzy/setup.bash' >> /root/.bashrc && \
