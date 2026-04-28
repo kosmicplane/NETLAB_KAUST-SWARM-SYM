@@ -1,0 +1,38 @@
+[0.000000] (-) TimerEvent: {}
+[0.000402] (netlab_swarm_demo) JobQueued: {'identifier': 'netlab_swarm_demo', 'dependencies': OrderedDict()}
+[0.000444] (netlab_swarm_demo) JobStarted: {'identifier': 'netlab_swarm_demo'}
+[0.099877] (-) TimerEvent: {}
+[0.200109] (-) TimerEvent: {}
+[0.300332] (-) TimerEvent: {}
+[0.400555] (-) TimerEvent: {}
+[0.500796] (-) TimerEvent: {}
+[0.501778] (netlab_swarm_demo) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/workspace/ros2/build/netlab_swarm_demo/build', '--no-deps', 'symlink_data'], 'cwd': '/workspace/ros2/build/netlab_swarm_demo', 'env': {'HOSTNAME': 'brev-kea7kmw4d', 'SHLVL': '0', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/lib', 'HOME': '/root', 'OLDPWD': '/workspace/ros2', 'ROS_PYTHON_VERSION': '3', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'FASTRTPS_DEFAULT_PROFILES_FILE': '/workspace/shared/fastdds.xml', 'LANG': 'C.UTF-8', 'RMW_IMPLEMENTATION': 'rmw_fastrtps_cpp', 'ROS_DOMAIN_ID': '42', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/workspace/ros2/build/netlab_swarm_demo', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/workspace/ros2/build/netlab_swarm_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2/install/netlab_swarm_demo/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1'}, 'shell': False}
+[0.600886] (-) TimerEvent: {}
+[0.697470] (netlab_swarm_demo) StdoutLine: {'line': b'running develop\n'}
+[0.700954] (-) TimerEvent: {}
+[0.788578] (netlab_swarm_demo) StdoutLine: {'line': b'running egg_info\n'}
+[0.788726] (netlab_swarm_demo) StdoutLine: {'line': b'creating netlab_swarm_demo.egg-info\n'}
+[0.796734] (netlab_swarm_demo) StdoutLine: {'line': b'writing netlab_swarm_demo.egg-info/PKG-INFO\n'}
+[0.796906] (netlab_swarm_demo) StdoutLine: {'line': b'writing dependency_links to netlab_swarm_demo.egg-info/dependency_links.txt\n'}
+[0.797027] (netlab_swarm_demo) StdoutLine: {'line': b'writing entry points to netlab_swarm_demo.egg-info/entry_points.txt\n'}
+[0.797108] (netlab_swarm_demo) StdoutLine: {'line': b'writing requirements to netlab_swarm_demo.egg-info/requires.txt\n'}
+[0.797180] (netlab_swarm_demo) StdoutLine: {'line': b'writing top-level names to netlab_swarm_demo.egg-info/top_level.txt\n'}
+[0.797253] (netlab_swarm_demo) StdoutLine: {'line': b"writing manifest file 'netlab_swarm_demo.egg-info/SOURCES.txt'\n"}
+[0.801015] (-) TimerEvent: {}
+[0.817877] (netlab_swarm_demo) StdoutLine: {'line': b"reading manifest file 'netlab_swarm_demo.egg-info/SOURCES.txt'\n"}
+[0.818349] (netlab_swarm_demo) StdoutLine: {'line': b"writing manifest file 'netlab_swarm_demo.egg-info/SOURCES.txt'\n"}
+[0.828653] (netlab_swarm_demo) StdoutLine: {'line': b'running build_ext\n'}
+[0.828790] (netlab_swarm_demo) StdoutLine: {'line': b'Creating /workspace/ros2/install/netlab_swarm_demo/lib/python3.12/site-packages/netlab-swarm-demo.egg-link (link to .)\n'}
+[0.829215] (netlab_swarm_demo) StdoutLine: {'line': b'Installing swarm_bridge script to /workspace/ros2/install/netlab_swarm_demo/lib/netlab_swarm_demo\n'}
+[0.829379] (netlab_swarm_demo) StdoutLine: {'line': b'Installing swarm_monitor script to /workspace/ros2/install/netlab_swarm_demo/lib/netlab_swarm_demo\n'}
+[0.829535] (netlab_swarm_demo) StdoutLine: {'line': b'\n'}
+[0.829606] (netlab_swarm_demo) StdoutLine: {'line': b'Installed /workspace/ros2/build/netlab_swarm_demo\n'}
+[0.829725] (netlab_swarm_demo) StdoutLine: {'line': b'running symlink_data\n'}
+[0.829884] (netlab_swarm_demo) StdoutLine: {'line': b'creating /workspace/ros2/install/netlab_swarm_demo/share/ament_index\n'}
+[0.829969] (netlab_swarm_demo) StdoutLine: {'line': b'creating /workspace/ros2/install/netlab_swarm_demo/share/ament_index/resource_index\n'}
+[0.830057] (netlab_swarm_demo) StdoutLine: {'line': b'creating /workspace/ros2/install/netlab_swarm_demo/share/ament_index/resource_index/packages\n'}
+[0.830112] (netlab_swarm_demo) StdoutLine: {'line': b'symbolically linking /workspace/ros2/build/netlab_swarm_demo/resource/netlab_swarm_demo -> /workspace/ros2/install/netlab_swarm_demo/share/ament_index/resource_index/packages\n'}
+[0.830172] (netlab_swarm_demo) StdoutLine: {'line': b'symbolically linking /workspace/ros2/build/netlab_swarm_demo/package.xml -> /workspace/ros2/install/netlab_swarm_demo/share/netlab_swarm_demo\n'}
+[0.854121] (netlab_swarm_demo) CommandEnded: {'returncode': 0}
+[0.861706] (netlab_swarm_demo) JobEnded: {'identifier': 'netlab_swarm_demo', 'rc': 0}
+[0.862282] (-) EventReactorShutdown: {}

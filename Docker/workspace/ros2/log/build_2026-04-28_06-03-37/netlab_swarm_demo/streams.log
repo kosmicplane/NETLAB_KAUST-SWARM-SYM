@@ -1,0 +1,18 @@
+[0.501s] Invoking command in '/workspace/ros2/build/netlab_swarm_demo': PYTHONPATH=/workspace/ros2/build/netlab_swarm_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2/install/netlab_swarm_demo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /workspace/ros2/build/netlab_swarm_demo/build --no-deps symlink_data
+[0.695s] running develop
+[0.791s] running egg_info
+[0.802s] writing netlab_swarm_demo.egg-info/PKG-INFO
+[0.802s] writing dependency_links to netlab_swarm_demo.egg-info/dependency_links.txt
+[0.802s] writing entry points to netlab_swarm_demo.egg-info/entry_points.txt
+[0.802s] writing requirements to netlab_swarm_demo.egg-info/requires.txt
+[0.802s] writing top-level names to netlab_swarm_demo.egg-info/top_level.txt
+[0.822s] reading manifest file 'netlab_swarm_demo.egg-info/SOURCES.txt'
+[0.822s] writing manifest file 'netlab_swarm_demo.egg-info/SOURCES.txt'
+[0.833s] running build_ext
+[0.833s] Creating /workspace/ros2/install/netlab_swarm_demo/lib/python3.12/site-packages/netlab-swarm-demo.egg-link (link to .)
+[0.834s] Installing swarm_bridge script to /workspace/ros2/install/netlab_swarm_demo/lib/netlab_swarm_demo
+[0.834s] Installing swarm_monitor script to /workspace/ros2/install/netlab_swarm_demo/lib/netlab_swarm_demo
+[0.834s] 
+[0.834s] Installed /workspace/ros2/build/netlab_swarm_demo
+[0.834s] running symlink_data
+[0.858s] Invoked command in '/workspace/ros2/build/netlab_swarm_demo' returned '0': PYTHONPATH=/workspace/ros2/build/netlab_swarm_demo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspace/ros2/install/netlab_swarm_demo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /workspace/ros2/build/netlab_swarm_demo/build --no-deps symlink_data

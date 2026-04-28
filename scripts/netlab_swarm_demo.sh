@@ -62,7 +62,7 @@ build_ros() {
 start_sionna() {
   ensure_stack_running
   echo "[INFO] Starting Sionna real-time link service on port ${SIONNA_PORT}"
-  docker exec "$SIONNA_CONTAINER" bash -lc 'pkill -f realtime_link_server.py || true'
+  docker exec "$SIONNA_CONTAINER" bash -lc 'pkill -f "[r]ealtime_link_server.py" || true'
   docker exec -d "$SIONNA_CONTAINER" bash -lc "
     cd /workspace/sionna && \
     SIONNA_LINK_PORT=${SIONNA_PORT} python3 realtime_link_server.py \
@@ -77,7 +77,7 @@ start_sionna() {
 start_ros() {
   ensure_stack_running
   echo "[INFO] Starting ROS 2 swarm bridge using SIONNA_URL=${SIONNA_URL}"
-  docker exec "$ROS_CONTAINER" bash -lc 'pkill -f netlab_swarm_demo.swarm_bridge || true; pkill -f "ros2 run netlab_swarm_demo swarm_bridge" || true'
+  docker exec "$ROS_CONTAINER" bash -lc 'pkill -f "[n]etlab_swarm_demo.swarm_bridge" || true; pkill -f "ros2 run netlab_swarm_demo [s]warm_bridge" || true'
   docker exec -d "$ROS_CONTAINER" bash -lc "
     set -e
     source /opt/ros/jazzy/setup.bash
@@ -190,8 +190,8 @@ doctor() {
 
 stop_demo() {
   echo "[INFO] Stopping demo processes."
-  docker exec "$ROS_CONTAINER" bash -lc 'pkill -f netlab_swarm_demo.swarm_bridge || true; pkill -f "ros2 run netlab_swarm_demo swarm_bridge" || true' || true
-  docker exec "$SIONNA_CONTAINER" bash -lc 'pkill -f realtime_link_server.py || true' || true
+  docker exec "$ROS_CONTAINER" bash -lc 'pkill -f "[n]etlab_swarm_demo.swarm_bridge" || true; pkill -f "ros2 run netlab_swarm_demo [s]warm_bridge" || true' || true
+  docker exec "$SIONNA_CONTAINER" bash -lc 'pkill -f "[r]ealtime_link_server.py" || true' || true
   echo "[OK] Demo backend processes stopped. The Isaac visual script can be stopped by reloading the stage or restarting Isaac."
 }
 
