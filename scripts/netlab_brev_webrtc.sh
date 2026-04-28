@@ -502,9 +502,9 @@ Expected:
   Encoder session appears after WebRTC Client connects.
 
 Full-stack checks:
-  ./Scripts/netlab_brev_webrtc.sh ros-check
-  ./Scripts/netlab_brev_webrtc.sh sionna-check
-  ./Scripts/netlab_brev_webrtc.sh doctor-stack
+  ./scripts/netlab_brev_webrtc.sh ros-check
+  ./scripts/netlab_brev_webrtc.sh sionna-check
+  ./scripts/netlab_brev_webrtc.sh doctor-stack
 EOF
 }
 
