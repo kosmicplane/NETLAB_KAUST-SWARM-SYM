@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: netlab-swarm-demo
-Version: 0.1.0
-Summary: Two-drone hover demo bridge for Isaac Sim, ROS 2 Jazzy, and Sionna.
-Maintainer: NETLAB KAUST SWARM-SYM
-Maintainer-email: netlab@example.com
-License: MIT

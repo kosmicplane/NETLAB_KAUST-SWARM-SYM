@@ -50,7 +50,6 @@ RUN \
 RUN mkdir -p /workspace/project \
     /workspace/isaac \
     /workspace/ros2_ws/src \
-    /workspace/pegasus \
     /workspace/results \
     /workspace/scripts \
     /workspace/shared

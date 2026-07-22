@@ -1,9 +1,0 @@
-source;share/netlab_swarm_demo/hook/pythonpath.ps1
-source;share/netlab_swarm_demo/hook/pythonpath.dsv
-source;share/netlab_swarm_demo/hook/pythonpath.sh
-source;share/netlab_swarm_demo/hook/ament_prefix_path.ps1
-source;share/netlab_swarm_demo/hook/ament_prefix_path.dsv
-source;share/netlab_swarm_demo/hook/ament_prefix_path.sh
-source;../../build/netlab_swarm_demo/share/netlab_swarm_demo/hook/pythonpath_develop.ps1
-source;../../build/netlab_swarm_demo/share/netlab_swarm_demo/hook/pythonpath_develop.dsv
-source;../../build/netlab_swarm_demo/share/netlab_swarm_demo/hook/pythonpath_develop.sh

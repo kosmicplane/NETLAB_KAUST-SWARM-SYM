@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ROS 2 bridge node for the NETLAB KAUST two-drone hover demo.
+ROS 2 bridge node for the NETLAB two-UAV hover demonstration.
 
 Responsibilities
 ----------------

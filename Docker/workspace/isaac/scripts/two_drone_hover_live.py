@@ -1,4 +1,4 @@
-# NETLAB KAUST SWARM-SYM - Live two-drone hover scene for Isaac Sim.
+# NETLAB SNaaS - Live two-drone hover scene for Isaac Sim.
 #
 # Usage inside the already-running Isaac Sim WebRTC session:
 #   Window -> Script Editor -> paste/run:
@@ -291,4 +291,20 @@ def _start_demo() -> None:
     globals()["__NETLAB_TWO_DRONE_DEMO__"] = TwoDroneHoverDemo()
 
 
+# ============================================================
+# NETLAB optional custom drone visual asset
+# ============================================================
+# This keeps the existing hover, ROS 2, and Sionna logic, but
+# replaces the simple drone geometry with a custom USD drone.
+# ============================================================
+
+import os as _netlab_os
+
+_NETLAB_CUSTOM_DRONE_VISUAL_SCRIPT = "/workspace/isaac/scripts/apply_custom_drone_visual.py"
+
+if _netlab_os.path.exists(_NETLAB_CUSTOM_DRONE_VISUAL_SCRIPT):
+    print("[NETLAB] Applying custom drone visual asset...")
+    exec(open(_NETLAB_CUSTOM_DRONE_VISUAL_SCRIPT).read())
+else:
+    print("[NETLAB] Custom drone visual script not found. Using default drone geometry.")
 _start_demo()

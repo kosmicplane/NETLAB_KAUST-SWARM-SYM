@@ -1,4 +1,101 @@
+name: netlab
+
+x-common-environment: &common-environment
+  NETLAB_REPO_ROOT: /workspace/netlab
+  PYTHONPATH: /workspace/netlab
+  NETLAB_SHARED_FILE_MODE: ${NETLAB_SHARED_FILE_MODE:-0664}
+  NETLAB_SHARED_DIR_MODE: ${NETLAB_SHARED_DIR_MODE:-2775}
+  NETLAB_SHARED_UID: ${NETLAB_SHARED_UID:-}
+  NETLAB_SHARED_GID: ${NETLAB_SHARED_GID:-}
+
 services:
+  sionna-engine:
+    build:
+      context: ..
+      dockerfile: docker/sionna/Dockerfile
+    image: ${SIONNA_IMAGE:-netlab-sionna:brev}
+    container_name: netlab-sionna-engine
+    runtime: nvidia
+    network_mode: host
+    init: true
+    restart: unless-stopped
+    environment:
+      <<: *common-environment
+      NVIDIA_VISIBLE_DEVICES: "all"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      TF_FORCE_GPU_ALLOW_GROWTH: "true"
+      SIONNA_HOST: "0.0.0.0"
+      SIONNA_PORT: "8090"
+      SIONNA_HEARTBEAT: /workspace/results/snaas_sionna_heartbeat.json
+      SIONNA_REVISION_ACK: /workspace/results/revision_sionna_ack.json
+    volumes:
+      - ../..:/workspace/netlab:ro
+      - ../workspace/sionna:/workspace/sionna
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+    working_dir: /workspace/sionna
+    command: ["python3", "-u", "/workspace/sionna/realtime_link_server.py"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8090/ready >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+
+  ros2-core:
+    build:
+      context: ..
+      dockerfile: docker/ros2/Dockerfile
+    image: ${ROS2_IMAGE:-netlab-ros2-jazzy:brev}
+    container_name: netlab-ros2-core
+    network_mode: host
+    ipc: host
+    init: true
+    restart: unless-stopped
+    environment:
+      <<: *common-environment
+      ROS_DISTRO: "jazzy"
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
+      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
+      FASTRTPS_DEFAULT_PROFILES_FILE: /workspace/shared/fastdds.xml
+      SIONNA_URL: http://127.0.0.1:8090/link
+      SNAAS_CONFIG: /workspace/shared/snaas_relay_config.json
+      SNAAS_RESULTS_DIR: /workspace/results
+      SNAAS_PACKET_HEARTBEAT: /workspace/results/snaas_packet_runtime_heartbeat.json
+      SNAAS_ROS_REVISION_ACK: /workspace/results/revision_ros_ack.json
+      SNAAS_PLUGINS_DIR: /workspace/plugins
+      SNAAS_ALGORITHM_ROOT: /workspace/netlab/plugins
+      SNAAS_PLUGIN_SELECTION: /workspace/results/snaas_active_algorithm.json
+      SNAAS_ALGORITHM_HEARTBEAT: /workspace/results/snaas_algorithm_runtime_heartbeat.json
+      NETLAB_ALGORITHM_BRIDGE_MODE: typed
+      NETLAB_ALGORITHM_API_VERSION: "2.0"
+    volumes:
+      - ../..:/workspace/netlab:ro
+      - ../workspace/ros2:/workspace/ros2
+      - ../workspace/shared:/workspace/shared
+      - ../workspace/results:/workspace/results
+      - ../workspace/plugins:/workspace/plugins
+    working_dir: /workspace/ros2
+    command: ["/workspace/ros2/runtime_entrypoint.sh"]
+    depends_on:
+      sionna-engine:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          . /opt/ros/jazzy/setup.sh >/dev/null 2>&1 &&
+          [ -f /workspace/ros2/install/setup.bash ] &&
+          . /workspace/ros2/install/setup.sh >/dev/null 2>&1 &&
+          nodes="$$(timeout 5 ros2 node list 2>/dev/null)" &&
+          echo "$${nodes}" | grep -q netlab_snaas_relay_chain &&
+          echo "$${nodes}" | grep -q netlab_researcher_algorithm_bridge &&
+          python3 -c "import json,os,time; p='/workspace/results/snaas_algorithm_runtime_heartbeat.json'; d=json.load(open(p)); assert d.get('ready') and time.time()-os.path.getmtime(p)<10"
+      interval: 5s
+      timeout: 7s
+      retries: 30
+      start_period: 45s
+
   isaac:
     build:
       context: ..
@@ -8,10 +105,13 @@ services:
     runtime: nvidia
     network_mode: host
     ipc: host
+    init: true
+    restart: unless-stopped
     stdin_open: true
     tty: true
     shm_size: "16gb"
     environment:
+      <<: *common-environment
       ACCEPT_EULA: "Y"
       PRIVACY_CONSENT: "Y"
       OMNI_KIT_ALLOW_ROOT: "1"
@@ -27,7 +127,14 @@ services:
       ISAACSIM_HOST: ${ISAACSIM_HOST:-127.0.0.1}
       ISAACSIM_SIGNAL_PORT: ${ISAACSIM_SIGNAL_PORT:-49100}
       ISAACSIM_STREAM_PORT: ${ISAACSIM_STREAM_PORT:-47998}
+      SNAAS_CONFIG: /workspace/shared/snaas_relay_config.json
+      SNAAS_LATEST_STATUS: /workspace/results/snaas_relay_latest_status.json
+      SNAAS_ISAAC_HEARTBEAT: /workspace/results/snaas_isaac_heartbeat.json
+      SNAAS_ISAAC_SYNC_SIGNAL: /workspace/results/snaas_isaac_sync_signal.json
+      SNAAS_ISAAC_SYNC_ACK: /workspace/results/snaas_isaac_sync_ack.json
+      SNAAS_REVISION_DIR: /workspace/shared/revisions
     volumes:
+      - ../..:/workspace/netlab:ro
       - ../workspace/isaac:/workspace/isaac
       - ../workspace/ros2:/workspace/ros2_ws
       - ../workspace/shared:/workspace/shared
@@ -40,6 +147,8 @@ services:
       - ../data/isaac/pkg:/isaac-sim/.local/share/ov/pkg:rw
     command:
       - /isaac-sim/runheadless.sh
+      - --exec
+      - /workspace/isaac/scripts/snaas_autoload.py
       - -v
       - --/isaac/startup/ros_bridge_extension=isaacsim.ros2.bridge
       - --/app/livestream/publicEndpointAddress=${ISAACSIM_HOST:-127.0.0.1}
@@ -48,48 +157,19 @@ services:
       - --/persistent/app/window/height=720
       - --/app/window/dpiScaleOverride=1.0
       - --/app/window/scaleToMonitor=false
-  ros2-core:
-    build:
-      context: ..
-      dockerfile: docker/ros2/Dockerfile
-    image: ${ROS2_IMAGE:-netlab-ros2-jazzy:brev}
-    container_name: netlab-ros2-core
-    network_mode: host
-    ipc: host
-    stdin_open: true
-    tty: true
-    environment:
-      ROS_DISTRO: "jazzy"
-      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-42}
-      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION:-rmw_fastrtps_cpp}
-      FASTRTPS_DEFAULT_PROFILES_FILE: /workspace/shared/fastdds.xml
-    volumes:
-      - ../workspace/ros2:/workspace/ros2
-      - ../workspace/shared:/workspace/shared
-      - ../workspace/results:/workspace/results
-    working_dir: /workspace/ros2
-    command: bash
-
-  sionna-engine:
-    build:
-      context: ..
-      dockerfile: docker/sionna/Dockerfile
-    image: ${SIONNA_IMAGE:-netlab-sionna:brev}
-    container_name: netlab-sionna-engine
-    runtime: nvidia
-    network_mode: host
-    stdin_open: true
-    tty: true
-    environment:
-      NVIDIA_VISIBLE_DEVICES: "all"
-      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
-      TF_FORCE_GPU_ALLOW_GROWTH: "true"
-    volumes:
-      - ../workspace/sionna:/workspace/sionna
-      - ../workspace/shared:/workspace/shared
-      - ../workspace/results:/workspace/results
-    working_dir: /workspace/sionna
-    command: bash
+    depends_on:
+      ros2-core:
+        condition: service_started
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          python3 -c "import json,os,time; p='/workspace/results/snaas_isaac_heartbeat.json';
+          d=json.load(open(p)); assert d.get('scene_ready') and time.time()-os.path.getmtime(p)<30"
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 90s
 
   px4:
     profiles: ["px4"]
@@ -99,6 +179,7 @@ services:
     image: ${PX4_IMAGE:-netlab-px4-sitl:brev}
     container_name: px4-sitl
     network_mode: host
+    init: true
     stdin_open: true
     tty: true
     environment:
@@ -109,4 +190,4 @@ services:
       - ../workspace/shared:/workspace/shared
       - ../workspace/results:/workspace/results
     working_dir: /opt/PX4-Autopilot
-    command: bash
+    command: ["bash"]

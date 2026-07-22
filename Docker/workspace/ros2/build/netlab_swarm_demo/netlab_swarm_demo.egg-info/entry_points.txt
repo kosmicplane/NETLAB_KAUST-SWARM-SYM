@@ -1,3 +1,0 @@
-[console_scripts]
-swarm_bridge = netlab_swarm_demo.swarm_bridge:main
-swarm_monitor = netlab_swarm_demo.swarm_monitor:main

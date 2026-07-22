@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_ROOT="${PROJECT_ROOT:-$HOME/workspace/NETLAB}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="${PROJECT_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 COMPOSE_DIR="${COMPOSE_DIR:-$PROJECT_ROOT/Docker/compose}"
 COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.yml}"
 ENV_FILE="${ENV_FILE:-.env}"
@@ -28,6 +29,8 @@ Usage:
   $0 setup-brev      Install/check Brev-side dependencies and update .env with Tailscale IP
   $0 build-stack     Build ROS 2 Jazzy and Sionna Docker services
   $0 start-stack     Start Isaac, ROS 2 Jazzy, and Sionna together
+  $0 restart-stack   Restart Isaac, ROS 2 Jazzy, and Sionna deterministically
+  $0 stop-stack      Stop the Docker Compose stack
   $0 start-brev      Recreate Isaac container and wait for streaming readiness
   $0 doctor-stack    Diagnose Isaac/WebRTC, ROS 2, and Sionna
   $0 doctor-brev     Diagnose Docker GPU, Tailscale, ports, Isaac logs, and NVENC sessions
@@ -59,7 +62,29 @@ require_cmd() {
   }
 }
 
+ensure_env_file() {
+  local target="$COMPOSE_DIR/$ENV_FILE"
+  local example="$COMPOSE_DIR/${ENV_FILE}.example"
+  if [ ! -f "$target" ]; then
+    if [ -f "$example" ]; then
+      sed 's/YOUR_BREV_PUBLIC_IP/127.0.0.1/g' "$example" > "$target"
+    else
+      cat > "$target" <<'EOF'
+ROS_DISTRO=jazzy
+ROS_DOMAIN_ID=42
+RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+ISAACSIM_HOST=127.0.0.1
+ISAACSIM_SIGNAL_PORT=49100
+ISAACSIM_STREAM_PORT=47998
+ISAACSIM_TAG=5.1.0
+EOF
+    fi
+    echo "[INFO] Created safe local Compose environment: $target" >&2
+  fi
+}
+
 compose() {
+  ensure_env_file
   cd "$COMPOSE_DIR"
   docker compose --env-file "$ENV_FILE" -f "$COMPOSE_FILE" "$@"
 }
@@ -111,29 +136,48 @@ update_env_key() {
 }
 
 wait_for_isaac_ready() {
-  echo "[INFO] Waiting for Isaac streaming readiness..."
-  echo "[INFO] Target log line: Isaac Sim Full Streaming App is loaded."
+  echo "[INFO] Waiting for a fresh Isaac scene heartbeat and scene-ready acknowledgement..."
 
   local timeout="${ISAAC_READY_TIMEOUT:-600}"
   local elapsed=0
+  local heartbeat="$PROJECT_ROOT/Docker/workspace/results/snaas_isaac_heartbeat.json"
+  local isaac_target=""
 
   while [ "$elapsed" -lt "$timeout" ]; do
-    if docker logs "$ISAAC_CONTAINER" 2>&1 | grep -q "Isaac Sim Full Streaming App is loaded"; then
-      echo "[OK] Isaac Sim Full Streaming App is loaded."
+    isaac_target="$(get_container_for_service "$ISAAC_SERVICE" "$ISAAC_CONTAINER" || true)"
+    if [ -n "$isaac_target" ] && [ -f "$heartbeat" ] && python3 - "$heartbeat" <<'PY_HB'
+import json, os, sys, time
+path=sys.argv[1]
+try:
+    data=json.load(open(path, encoding='utf-8'))
+    fresh=time.time()-os.path.getmtime(path) < 30.0
+    raise SystemExit(0 if fresh and bool(data.get('scene_ready', data.get('ready', False))) else 1)
+except Exception:
+    raise SystemExit(1)
+PY_HB
+    then
+      echo "[OK] Isaac emitted a fresh scene-ready heartbeat."
       return 0
     fi
 
-    if docker logs "$ISAAC_CONTAINER" 2>&1 | grep -q "Waiting for RtPso async group async compilation"; then
-      echo "[INFO] RTX shader/RtPso warmup still running..."
+    if [ -n "$isaac_target" ]; then
+      if docker logs "$isaac_target" 2>&1 | tail -n 300 | grep -q "Isaac Sim Full Streaming App is loaded"; then
+        echo "[INFO] Streaming application loaded; waiting for the authoritative scene heartbeat..."
+      elif docker logs "$isaac_target" 2>&1 | tail -n 300 | grep -q "Waiting for RtPso async group async compilation"; then
+        echo "[INFO] RTX shader/RtPso warmup is still running..."
+      fi
     fi
 
     sleep 5
     elapsed=$((elapsed + 5))
   done
 
-  echo "[ERROR] Isaac did not become ready within ${timeout}s."
-  echo "[INFO] Recent logs:"
-  docker logs "$ISAAC_CONTAINER" 2>&1 | tail -n 120 || true
+  echo "[ERROR] Isaac did not emit a fresh scene-ready heartbeat within ${timeout}s."
+  echo "[INFO] Heartbeat path: $heartbeat"
+  if [ -n "$isaac_target" ]; then
+    echo "[INFO] Recent Isaac logs:"
+    docker logs "$isaac_target" 2>&1 | tail -n 120 || true
+  fi
   return 1
 }
 
@@ -190,6 +234,11 @@ setup_brev() {
   echo "[INFO] Checking final .env values:"
   grep -E 'ROS_DISTRO|ISAACSIM_HOST|ISAACSIM_SIGNAL_PORT|ISAACSIM_STREAM_PORT|ISAACSIM_TAG' "$COMPOSE_DIR/$ENV_FILE" || true
 
+  if [ "${NETLAB_SKIP_CANONICAL_PREPARE:-0}" != "1" ]; then
+    echo "[INFO] Running the canonical NETLAB preparation and validation path..."
+    "$PROJECT_ROOT/scripts/netlab" bootstrap --no-start --non-interactive
+  fi
+
   echo "[DONE] setup-brev completed."
 }
 
@@ -231,42 +280,18 @@ build_stack() {
 }
 
 start_stack() {
-  echo "[INFO] Starting full NETLAB stack: Isaac + ROS 2 Jazzy + Sionna."
+  echo "[INFO] Delegating to the authoritative NETLAB orchestrator."
+  exec "$PROJECT_ROOT/scripts/netlab" start "$@"
+}
 
-  cd "$COMPOSE_DIR"
+stop_stack() {
+  echo "[INFO] Delegating to the authoritative NETLAB orchestrator."
+  exec "$PROJECT_ROOT/scripts/netlab" stop
+}
 
-  echo "[INFO] Validating compose..."
-  compose config >/tmp/netlab_compose_config.yml
-
-  echo "[INFO] Checking livestream flags in rendered compose..."
-  if grep -q "primaryStream" /tmp/netlab_compose_config.yml; then
-    echo "[WARN] Rendered compose still contains old primaryStream flags."
-    echo "[WARN] Recommended Isaac 5.1 flags are:"
-    echo "       --/app/livestream/publicEndpointAddress=\${ISAACSIM_HOST}"
-    echo "       --/app/livestream/port=\${ISAACSIM_SIGNAL_PORT}"
-  fi
-
-  grep -E 'publicEndpointAddress|/app/livestream|primaryStream|ISAACSIM_HOST' -n /tmp/netlab_compose_config.yml || true
-
-  echo "[INFO] Starting all services with build if needed..."
-  compose up -d --build
-
-  echo "[INFO] Current containers:"
-  compose ps
-
-  wait_for_isaac_ready
-
-  echo "[INFO] Running ROS check..."
-  ros_check || true
-
-  echo "[INFO] Running Sionna check..."
-  sionna_check || true
-
-  echo "[INFO] Encoder sessions:"
-  nvidia-smi encodersessions || true
-
-  echo "[DONE] Full stack started. Connect WebRTC Client to:"
-  grep '^ISAACSIM_HOST=' "$COMPOSE_DIR/$ENV_FILE" | cut -d= -f2
+restart_stack() {
+  echo "[INFO] Delegating to the authoritative NETLAB orchestrator."
+  exec "$PROJECT_ROOT/scripts/netlab" restart "$@"
 }
 
 start_brev() {
@@ -450,6 +475,7 @@ doctor_brev() {
 
 doctor_stack() {
   echo "========== NETLAB Full Stack Doctor =========="
+  "$PROJECT_ROOT/scripts/netlab" doctor || true
 
   echo
   echo "========== Brev + Isaac/WebRTC Layer =========="
@@ -581,6 +607,12 @@ case "${1:-}" in
     ;;
   start-stack)
     start_stack
+    ;;
+  restart-stack)
+    restart_stack
+    ;;
+  stop-stack)
+    stop_stack
     ;;
   start-brev)
     start_brev

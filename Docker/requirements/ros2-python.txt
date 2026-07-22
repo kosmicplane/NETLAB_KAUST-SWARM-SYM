@@ -1,5 +1,7 @@
-numpy
-scipy
-pandas
-matplotlib
-pyyaml
+# Pinned for Ubuntu 24.04 / Python 3.12 and ROS 2 Jazzy.
+# PyYAML is intentionally provided by the Debian python3-yaml package so pip
+# never attempts to uninstall the distribution-owned copy without a RECORD.
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.3
+matplotlib==3.9.4

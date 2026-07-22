@@ -28,3 +28,13 @@ ros-jazzy-nav-msgs
 ros-jazzy-std-msgs
 ros-jazzy-rosgraph-msgs
 ros-jazzy-rosbridge-suite
+
+python3-yaml
+
+ros-jazzy-ament-cmake
+
+ros-jazzy-rosidl-default-generators
+
+ros-jazzy-rosidl-default-runtime
+
+ros-jazzy-builtin-interfaces
