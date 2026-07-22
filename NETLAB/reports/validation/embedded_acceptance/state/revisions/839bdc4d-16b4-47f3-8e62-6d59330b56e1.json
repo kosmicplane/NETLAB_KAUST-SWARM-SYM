@@ -1,0 +1,208 @@
+{
+  "acknowledgements": {
+    "isaac": {
+      "accepted": true,
+      "details": {},
+      "message": "embedded acceptance participant",
+      "observed_hashes": {
+        "antenna_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+        "antennas_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+        "config_hash": "477d958f8f02077fc60bcc0f3c6e96a1a9cc73f9e3db392655ff2809c4fe3183",
+        "failure_hash": "9b8bc9dc2b9a418a2e26e4534f6cc94835b343ab9db11b1bd94834ca470f1ebf",
+        "swarm_hash": "18023d9864190f067fa6db69bfc5b5b574ff991f119ed4320ccc0e24df7d3726",
+        "topology_hash": "5f4f974a9f57800823b88449fc935513453eb42a5536b3917630b15c06a79ef3",
+        "traffic_hash": "12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73",
+        "world_hash": "84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2"
+      },
+      "participant": "isaac",
+      "revision_id": "839bdc4d-16b4-47f3-8e62-6d59330b56e1",
+      "timestamp": 1784131400.262923
+    },
+    "ros": {
+      "accepted": true,
+      "details": {},
+      "message": "embedded acceptance participant",
+      "observed_hashes": {
+        "antenna_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+        "antennas_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+        "config_hash": "477d958f8f02077fc60bcc0f3c6e96a1a9cc73f9e3db392655ff2809c4fe3183",
+        "failure_hash": "9b8bc9dc2b9a418a2e26e4534f6cc94835b343ab9db11b1bd94834ca470f1ebf",
+        "swarm_hash": "18023d9864190f067fa6db69bfc5b5b574ff991f119ed4320ccc0e24df7d3726",
+        "topology_hash": "5f4f974a9f57800823b88449fc935513453eb42a5536b3917630b15c06a79ef3",
+        "traffic_hash": "12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73",
+        "world_hash": "84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2"
+      },
+      "participant": "ros",
+      "revision_id": "839bdc4d-16b4-47f3-8e62-6d59330b56e1",
+      "timestamp": 1784131400.2599483
+    },
+    "sionna": {
+      "accepted": true,
+      "details": {},
+      "message": "embedded acceptance participant",
+      "observed_hashes": {
+        "antenna_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+        "antennas_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+        "config_hash": "477d958f8f02077fc60bcc0f3c6e96a1a9cc73f9e3db392655ff2809c4fe3183",
+        "failure_hash": "9b8bc9dc2b9a418a2e26e4534f6cc94835b343ab9db11b1bd94834ca470f1ebf",
+        "swarm_hash": "18023d9864190f067fa6db69bfc5b5b574ff991f119ed4320ccc0e24df7d3726",
+        "topology_hash": "5f4f974a9f57800823b88449fc935513453eb42a5536b3917630b15c06a79ef3",
+        "traffic_hash": "12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73",
+        "world_hash": "84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2"
+      },
+      "participant": "sionna",
+      "revision_id": "839bdc4d-16b4-47f3-8e62-6d59330b56e1",
+      "timestamp": 1784131400.261296
+    }
+  },
+  "candidate": {
+    "antennas": {
+      "definitions": [
+        {
+          "id": "uav_omni_reference"
+        },
+        {
+          "id": "ground_sector_reference"
+        }
+      ]
+    },
+    "communication": {
+      "bandwidth_hz": 20000000.0,
+      "carrier_frequency_hz": 3500000000.0,
+      "hard_outage_distance_m": 220.0,
+      "min_capacity_mbps": 1.0,
+      "min_snr_db": 3.0,
+      "noise_figure_db": 7.0,
+      "operational_range_m": 90.0,
+      "tx_power_dbm": 23.0
+    },
+    "experiment": {
+      "id": "embedded_acceptance",
+      "seed": 7009
+    },
+    "failures": {
+      "schedule": [
+        {
+          "target": "drone_3",
+          "type": "uav_failure"
+        }
+      ]
+    },
+    "schema_version": "2.0.0",
+    "swarm": {
+      "drones": [
+        {
+          "active": true,
+          "failed": false,
+          "id": "drone_1",
+          "position": [
+            30.0,
+            3.0,
+            31.0
+          ]
+        },
+        {
+          "active": true,
+          "failed": false,
+          "id": "drone_2",
+          "position": [
+            56.0,
+            0.0,
+            30.0
+          ]
+        },
+        {
+          "active": true,
+          "failed": true,
+          "id": "drone_3",
+          "position": [
+            84.0,
+            0.0,
+            30.0
+          ]
+        },
+        {
+          "active": true,
+          "failed": false,
+          "id": "drone_4",
+          "position": [
+            112.0,
+            0.0,
+            30.0
+          ]
+        },
+        {
+          "active": true,
+          "failed": false,
+          "id": "drone_5",
+          "position": [
+            140.0,
+            0.0,
+            30.0
+          ]
+        },
+        {
+          "active": true,
+          "failed": false,
+          "id": "drone_6",
+          "position": [
+            168.0,
+            0.0,
+            30.0
+          ]
+        }
+      ]
+    },
+    "topology": {
+      "branches": [
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          2,
+          4,
+          6
+        ]
+      ],
+      "mode": "parallel",
+      "sinks": [
+        "drone_5",
+        "drone_6"
+      ],
+      "source": "station"
+    },
+    "traffic": {
+      "flows": [
+        {
+          "id": "flow_1"
+        }
+      ]
+    },
+    "world": {
+      "template": "open_reference"
+    }
+  },
+  "command_id": "03367e0b-f6d9-4cbe-87a3-04246d1810d1",
+  "created_at": 1784131400.2578516,
+  "error": null,
+  "hashes": {
+    "antenna_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+    "antennas_hash": "ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7",
+    "config_hash": "477d958f8f02077fc60bcc0f3c6e96a1a9cc73f9e3db392655ff2809c4fe3183",
+    "failure_hash": "9b8bc9dc2b9a418a2e26e4534f6cc94835b343ab9db11b1bd94834ca470f1ebf",
+    "swarm_hash": "18023d9864190f067fa6db69bfc5b5b574ff991f119ed4320ccc0e24df7d3726",
+    "topology_hash": "5f4f974a9f57800823b88449fc935513453eb42a5536b3917630b15c06a79ef3",
+    "traffic_hash": "12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73",
+    "world_hash": "84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2"
+  },
+  "idempotency_key": "71384eef-5843-4c3e-913e-3e30d3be4a9f",
+  "initiator": "operator",
+  "parent_revision_id": "91f28bea-2a8b-4889-aba4-9f645968a5a3",
+  "retry_count": 0,
+  "revision_id": "839bdc4d-16b4-47f3-8e62-6d59330b56e1",
+  "scene_checksum": "",
+  "status": "COMMITTED",
+  "updated_at": 1784131400.2641177
+}

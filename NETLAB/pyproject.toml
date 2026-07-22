@@ -1,0 +1,36 @@
+[project]
+name = "netlab-snaas"
+version = "9.0.0"
+description = "Swarm Network-as-a-Service research simulator control plane"
+requires-python = ">=3.10"
+authors = [{name = "NETLAB Research Team"}]
+license = {file = "LICENSE"}
+readme = "README.md"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+exclude = [
+  "Docker/workspace/ros2/build",
+  "Docker/workspace/ros2/install",
+  "Docker/workspace/ros2/log",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = "Docker/workspace/ros2/(build|install|log)"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.coverage.run]
+source = ["netlab", "apps/mission_control/backend"]
+omit = ["tests/*"]

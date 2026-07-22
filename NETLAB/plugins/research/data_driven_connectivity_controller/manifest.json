@@ -1,0 +1,131 @@
+{
+  "action_schema": {
+    "additionalProperties": true,
+    "type": "object"
+  },
+  "algorithm_id": "data_driven_connectivity_controller",
+  "api_version": "2.0",
+  "assumptions": [
+    "Local ENU coordinate frame",
+    "NETLAB safety and communication-feasibility shield remains authoritative"
+  ],
+  "author": "NETLAB Research Team",
+  "category": "formation_controller",
+  "checkpoint_contract": {
+    "supported": false
+  },
+  "citations": [
+    {
+      "authors": "Yang et al.",
+      "title": "Integrating Online Learning and Connectivity Maintenance for Communication-Aware Multi-Robot Coordination",
+      "venue": "IROS 2024",
+      "year": 2024
+    }
+  ],
+  "description": "Online uncertainty-aware link-quality surrogate for communication-aware coordination.",
+  "deterministic_seed": true,
+  "entrypoint": "algorithm.py",
+  "execution_mode": "isolated_python",
+  "hooks": [
+    "initialize",
+    "validate",
+    "reset",
+    "step",
+    "plan_positions",
+    "plan_velocities",
+    "plan_trajectories",
+    "on_state_update",
+    "on_topology_update",
+    "on_link_update",
+    "on_failure",
+    "select_standby",
+    "recompute_topology",
+    "compute_metric",
+    "shutdown"
+  ],
+  "known_limitations": [
+    "Reference implementation prioritizes reproducibility and traceability over exact reproduction of every solver detail."
+  ],
+  "license": "MIT",
+  "name": "Data-Driven Connectivity Controller",
+  "observation_schema": {
+    "required": [
+      "uavs",
+      "topology",
+      "constraints"
+    ],
+    "type": "object"
+  },
+  "organization": "NETLAB",
+  "parameter_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "confidence_beta": {
+        "default": 2,
+        "maximum": 10,
+        "minimum": 0,
+        "type": "number"
+      },
+      "length_scale_m": {
+        "default": 50,
+        "maximum": 500,
+        "minimum": 1,
+        "type": "number"
+      },
+      "minimum_snr_db": {
+        "default": 3,
+        "maximum": 50,
+        "minimum": -30,
+        "type": "number"
+      }
+    },
+    "type": "object"
+  },
+  "parameters": {
+    "confidence_beta": {
+      "default": 2,
+      "maximum": 10,
+      "minimum": 0,
+      "type": "number"
+    },
+    "length_scale_m": {
+      "default": 50,
+      "maximum": 500,
+      "minimum": 1,
+      "type": "number"
+    },
+    "minimum_snr_db": {
+      "default": 3,
+      "maximum": 50,
+      "minimum": -30,
+      "type": "number"
+    }
+  },
+  "plugin_id": "data_driven_connectivity_controller",
+  "required_ros_interfaces": [
+    "/netlab/algorithm/action",
+    "/netlab/algorithm/status"
+  ],
+  "required_state_fields": [
+    "uavs",
+    "topology",
+    "links",
+    "constraints"
+  ],
+  "resource_budget": {
+    "cpu_cores": 1.0,
+    "gpu_required": false,
+    "memory_mb": 1024,
+    "network_policy": "deny",
+    "output_kb": 512,
+    "timeout_s": 1.0
+  },
+  "safety_fallback": "hold_position",
+  "supported_fidelity_profiles": [
+    "F1_ANALYTICAL",
+    "F2_STOCHASTIC"
+  ],
+  "timeout_s": 1.0,
+  "validity_domain": "Kernel surrogate reference; a calibrated GP backend is recommended for empirical studies.",
+  "version": "1.0.0"
+}

@@ -1,0 +1,354 @@
+{
+  "checks": [
+    {
+      "duration_s": 0.7806136640001569,
+      "name": "python_compile",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "compiled=193\n"
+    },
+    {
+      "duration_s": 16.536352805000206,
+      "name": "unittest_full_suite",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "test_all_primary_views_render_without_blank_screen_or_javascript_errors (browser.test_mission_control_browser.MissionControlBrowserTests.test_all_primary_views_render_without_blank_screen_or_javascript_errors) ... ok\ntest_isaac_scene_projects_authoritative_configuration (docker.test_authoritative_config_projection.AuthoritativeConfigProjectionTests.test_isaac_scene_projects_authoritative_configuration) ... ok\ntest_ros_packet_runtime_projects_authoritative_configuration (docker.test_authoritative_config_projection.AuthoritativeConfigProjectionTests.test_ros_packet_runtime_projects_authoritative_configuration) ... ok\ntest_complete_stack_autostarts_runtime_components (docker.test_compose_contract.ComposeContractTests.test_complete_stack_autostarts_runtime_components) ... ok\ntest_legacy_brev_setup_delegates_to_canonical_bootstrap (docker.test_compose_contract.ComposeContractTests.test_legacy_brev_setup_delegates_to_canonical_bootstrap) ... ok\ntest_algorithm_bridge_uses_typed_ros_contract_and_safety_shield (docker.test_research_algorithm_ros_contract.ResearchAlgorithmRosContractTests.test_algorithm_bridge_uses_typed_ros_contract_and_safety_shield) ... ok\ntest_compose_health_requires_packet_and_algorithm_bridge (docker.test_research_algorithm_ros_contract.ResearchAlgorithmRosContractTests.test_compose_health_requires_packet_and_algorithm_bridge) ... ok\ntest_entrypoint_supervises_revision_agent_bridge_and_packet_runtime (docker.test_research_algorithm_ros_contract.ResearchAlgorithmRosContractTests.test_entrypoint_supervises_revision_agent_bridge_and_packet_runtime) ... ok\ntest_typed_interfaces_are_declared_and_generated (docker.test_research_algorithm_ros_contract.ResearchAlgorithmRosContractTests.test_typed_interfaces_are_declared_and_generated) ... ok\ntest_compose_mounts_the_ros_environment_helper (docker.test_ros_entrypoint_contract.RosEntrypointContractTests.test_compose_mounts_the_ros_environment_helper) ... ok\ntest_nounset_is_deferred_until_ros_environment_is_sourced (docker.test_ros_entrypoint_contract.RosEntrypointContractTests.test_nounset_is_deferred_until_ros_environment_is_sourced) ... ok\ntest_packet_runtime_writes_revision_ack_after_callback_application (docker.test_ros_revision_application_contract.RosRevisionApplicationContractTests.test_packet_runtime_writes_revision_ack_after_callback_application) ... ok\ntest_revision_agent_publishes_runtime_configuration_and_waits_for_packet_ack (docker.test_ros_revision_application_contract.RosRevisionApplicationContractTests.test_revision_agent_publishes_runtime_configuration_and_waits_for_packet_ack) ... ok\ntest_action_registry_maps_algorithm_actions_to_runtime_participants (frontend.test_algorithm_lab_contract.AlgorithmLabFrontendContractTests.test_action_registry_maps_algorithm_actions_to_runtime_participants) ... ok\ntest_algorithm_lab_exposes_complete_researcher_workflow (frontend.test_algorithm_lab_contract.AlgorithmLabFrontendContractTests.test_algorithm_lab_exposes_complete_researcher_workflow) ... ok\ntest_every_declared_button_has_an_action_contract (frontend.test_algorithm_lab_contract.AlgorithmLabFrontendContractTests.test_every_declared_button_has_an_action_contract) ... ok\ntest_frontend_api_exposes_algorithm_endpoints (frontend.test_algorithm_lab_contract.AlgorithmLabFrontendContractTests.test_frontend_api_exposes_algorithm_endpoints) ... ok\ntest_guided_demo_is_english_only (frontend.test_frontend_contract.FrontendContractTests.test_guided_demo_is_english_only) ... ok\ntest_live_telemetry_uses_stream_with_polling_fallback (frontend.test_frontend_contract.FrontendContractTests.test_live_telemetry_uses_stream_with_polling_fallback) ... ok\ntest_no_raw_latest_status_dump_in_overview (frontend.test_frontend_contract.FrontendContractTests.test_no_raw_latest_status_dump_in_overview) ... ok\ntest_primary_actions_are_api_backed (frontend.test_frontend_contract.FrontendContractTests.test_primary_actions_are_api_backed) ... ok\ntest_required_research_modules_exist (frontend.test_frontend_contract.FrontendContractTests.test_required_research_modules_exist) ... ok\ntest_topology_coordinates_and_graph_are_submitted_atomically (frontend.test_frontend_contract.FrontendContractTests.test_topology_coordinates_and_graph_are_submitted_atomically) ... ok\ntest_transactional_synchronization_is_first_class (frontend.test_frontend_contract.FrontendContractTests.test_transactional_synchronization_is_first_class) ... ok\ntest_health_config_and_topology (integration.test_mission_control_api.MissionControlApiTests.test_health_config_and_topology) ... ok\ntest_link_preview_and_validation (integration.test_mission_control_api.MissionControlApiTests.test_link_preview_and_validation) ... ok\ntest_offline_runtime_save_is_durable_but_not_falsely_committed (integration.test_mission_control_api.MissionControlApiTests.test_offline_runtime_save_is_durable_but_not_falsely_committed) ... ok\ntest_researcher_algorithm_api_end_to_end_contract (integration.test_mission_control_api.MissionControlApiTests.test_researcher_algorithm_api_end_to_end_contract) ... ok\ntest_revision_and_synchronization_api_contract (integration.test_mission_control_api.MissionControlApiTests.test_revision_and_synchronization_api_contract) ... ok\ntest_telemetry_sse_once (integration.test_mission_control_api.MissionControlApiTests.test_telemetry_sse_once) ... ok\ntest_topology_and_coordinate_edit_share_one_revision_contract (integration.test_mission_control_api.MissionControlApiTests.test_topology_and_coordinate_edit_share_one_revision_contract) ... ok\ntest_topology_inventory_replacement_is_atomic_and_durable (integration.test_mission_control_api.MissionControlApiTests.test_topology_inventory_replacement_is_atomic_and_durable) ... ok\ntest_machine_readable_api_covers_runtime_critical_routes (integration.test_openapi_contract.OpenApiContractTests.test_machine_readable_api_covers_runtime_critical_routes) ... ok\ntest_health_models_and_link (integration.test_sionna_service_api.SionnaServiceApiTests.test_health_models_and_link) ... ok\ntest_complete_sequence (regression_contracts.test_acceptance.TestAcceptance.test_complete_sequence) ... ok\ntest_mode_and_atomic_readers (regression_contracts.test_atomic_io.TestAtomicIO.test_mode_and_atomic_readers) ... ok\ntest_repair (regression_contracts.test_atomic_io.TestAtomicIO.test_repair) ... ok\ntest_health_config_research (regression_contracts.test_backend_api.TestAPI.test_health_config_research) ... ok\ntest_static (regression_contracts.test_backend_api.TestAPI.test_static) ... ok\ntest_all_scenarios (regression_contracts.test_configuration.TestConfiguration.test_all_scenarios) ... ok\ntest_default (regression_contracts.test_configuration.TestConfiguration.test_default) ... ok\ntest_unknown_antenna (regression_contracts.test_configuration.TestConfiguration.test_unknown_antenna) ... ok\ntest_english_and_no_dead_inline (regression_contracts.test_frontend_contract.TestFrontend.test_english_and_no_dead_inline) ... ok\ntest_modules (regression_contracts.test_frontend_contract.TestFrontend.test_modules) ... ok\ntest_node_syntax (regression_contracts.test_frontend_contract.TestFrontend.test_node_syntax) ... ok\ntest_bridge_requires_observed_transform_application (regression_contracts.test_isaac_contract.TestIsaac.test_bridge_requires_observed_transform_application) ... ok\ntest_extension_and_bridge (regression_contracts.test_isaac_contract.TestIsaac.test_extension_and_bridge) ... ok\ntest_default_compose_has_single_isaac_ack_writer (regression_contracts.test_isaac_contract.TestIsaacAuthoritativeAck.test_default_compose_has_single_isaac_ack_writer) ... ok\ntest_default_scene_ack_is_observation_gated (regression_contracts.test_isaac_contract.TestIsaacAuthoritativeAck.test_default_scene_ack_is_observation_gated) ... ok\ntest_openapi (regression_contracts.test_openapi_sbom.TestRelease.test_openapi) ... ok\ntest_sbom (regression_contracts.test_openapi_sbom.TestRelease.test_sbom) ... ok\ntest_version (regression_contracts.test_openapi_sbom.TestRelease.test_version) ... ok\ntest_manifests_and_hooks (regression_contracts.test_plugins.TestPlugins.test_manifests_and_hooks) ... ok\ntest_no_contradictory_ready (regression_contracts.test_readiness.TestReadiness.test_no_contradictory_ready) ... ok\ntest_a2g (regression_contracts.test_research_models.TestModels.test_a2g) ... ok\ntest_calibration (regression_contracts.test_research_models.TestModels.test_calibration) ... ok\ntest_capacity (regression_contracts.test_research_models.TestModels.test_capacity) ... ok\ntest_energy (regression_contracts.test_research_models.TestModels.test_energy) ... ok\ntest_fairness (regression_contracts.test_research_models.TestModels.test_fairness) ... ok\ntest_fspl (regression_contracts.test_research_models.TestModels.test_fspl) ... ok\ntest_noise (regression_contracts.test_research_models.TestModels.test_noise) ... ok\ntest_ntn (regression_contracts.test_research_models.TestModels.test_ntn) ... ok\ntest_offload (regression_contracts.test_research_models.TestModels.test_offload) ... ok\ntest_radio_map (regression_contracts.test_research_models.TestModels.test_radio_map) ... ok\ntest_candidate_contains_revision_metadata_and_signal_path (regression_contracts.test_revision_sync.TestImmutableIsaacCandidate.test_candidate_contains_revision_metadata_and_signal_path) ... ok\ntest_commit_requires_all (regression_contracts.test_revision_sync.TestRevision.test_commit_requires_all) ... ok\ntest_disconnected_isaac_pending (regression_contracts.test_revision_sync.TestRevision.test_disconnected_isaac_pending) ... ok\ntest_hash_drift (regression_contracts.test_revision_sync.TestRevision.test_hash_drift) ... ok\ntest_interfaces (regression_contracts.test_ros_entrypoint.TestROS.test_interfaces) ... ok\ntest_nounset_after_setup (regression_contracts.test_ros_entrypoint.TestROS.test_nounset_after_setup) ... ok\ntest_shell_syntax (regression_contracts.test_ros_entrypoint.TestROS.test_shell_syntax) ... ok\ntest_asset (regression_contracts.test_security.TestSecurity.test_asset) ... ok\ntest_zip_slip (regression_contracts.test_security.TestSecurity.test_zip_slip) ... ok\ntest_failed_endpoint (regression_contracts.test_sionna_service.TestLink.test_failed_endpoint) ... ok\ntest_feasible_and_outage (regression_contracts.test_sionna_service.TestLink.test_feasible_and_outage) ... ok\ntest_chain (regression_contracts.test_topology_metrics.TestGraph.test_chain) ... ok\ntest_cycle (regression_contracts.test_topology_metrics.TestGraph.test_cycle) ... ok\ntest_fspl_matches_equivalent_km_mhz_expression (scientific_validation.test_link_budget_reference.ScientificReferenceTests.test_fspl_matches_equivalent_km_mhz_expression) ... ok\ntest_every_packaged_algorithm_entrypoint_executes_against_canonical_snapshot (unit.test_algorithm_runtime_v9.ResearchAlgorithmLibraryTests.test_every_packaged_algorithm_entrypoint_executes_against_canonical_snapshot) ... ok\ntest_every_packaged_algorithm_manifest_is_valid (unit.test_algorithm_runtime_v9.ResearchAlgorithmLibraryTests.test_every_packaged_algorithm_manifest_is_valid) ... ok\ntest_isolated_dry_run_and_negative_output_rejection (unit.test_algorithm_runtime_v9.ResearcherAlgorithmRuntimeTests.test_isolated_dry_run_and_negative_output_rejection) ... ok\ntest_paired_seed_comparison_is_reproducible (unit.test_algorithm_runtime_v9.ResearcherAlgorithmRuntimeTests.test_paired_seed_comparison_is_reproducible) ... ok\ntest_pettingzoo_parallel_contract_uses_same_safety_shield (unit.test_algorithm_runtime_v9.ResearcherAlgorithmRuntimeTests.test_pettingzoo_parallel_contract_uses_same_safety_shield) ... ok\ntest_registry_discovers_valid_v2_packages (unit.test_algorithm_runtime_v9.ResearcherAlgorithmRuntimeTests.test_registry_discovers_valid_v2_packages) ... ok\ntest_safety_shield_rejects_unknown_entity_and_preserves_fallback (unit.test_algorithm_runtime_v9.ResearcherAlgorithmRuntimeTests.test_safety_shield_rejects_unknown_entity_and_preserves_fallback) ... ok\ntest_bootstrap_starts_mission_control_through_canonical_wrapper (unit.test_bootstrap.BootstrapTests.test_bootstrap_starts_mission_control_through_canonical_wrapper) ... ok\ntest_environment_generation_records_host_identity (unit.test_bootstrap.BootstrapTests.test_environment_generation_records_host_identity) ... ok\ntest_host_requirements_are_reported_without_mutation (unit.test_bootstrap.BootstrapTests.test_host_requirements_are_reported_without_mutation) ... ok\ntest_repair_creates_reference_when_active_config_is_missing (unit.test_bootstrap.BootstrapTests.test_repair_creates_reference_when_active_config_is_missing) ... ok\ntest_repair_preserves_invalid_researcher_configuration (unit.test_bootstrap.BootstrapTests.test_repair_preserves_invalid_researcher_configuration) ... ok\ntest_repair_preserves_valid_experiment (unit.test_bootstrap.BootstrapTests.test_repair_preserves_valid_experiment) ... ok\ntest_repair_replaces_only_invalid_generated_configuration (unit.test_bootstrap.BootstrapTests.test_repair_replaces_only_invalid_generated_configuration) ... ok\ntest_smoke_test_rejects_preview_or_non_feasible_flow (unit.test_bootstrap.BootstrapTests.test_smoke_test_rejects_preview_or_non_feasible_flow) ... ok\ntest_smoke_test_requires_live_feasible_packet_progress (unit.test_bootstrap.BootstrapTests.test_smoke_test_requires_live_feasible_packet_progress) ... ok\ntest_default_antenna_assignments_and_failure_state_are_self_consistent (unit.test_config.ConfigTests.test_default_antenna_assignments_and_failure_state_are_self_consistent) ... ok\ntest_default_configuration_is_valid_and_scale_is_separate (unit.test_config.ConfigTests.test_default_configuration_is_valid_and_scale_is_separate) ... ok\ntest_example_scenarios_validate (unit.test_config.ConfigTests.test_example_scenarios_validate) ... ok\ntest_invalid_count_is_rejected (unit.test_config.ConfigTests.test_invalid_count_is_rejected) ... ok\ntest_legacy_round_trip_preserves_authoritative_v6_and_v5_alias (unit.test_config.ConfigTests.test_legacy_round_trip_preserves_authoritative_v6_and_v5_alias) ... ok\ntest_prefixed_container_name_is_resolved_from_compose (unit.test_docker_resolution.DockerResolutionTests.test_prefixed_container_name_is_resolved_from_compose) ... ok\ntest_bootstrap_delegates_to_authoritative_cli (unit.test_host_bootstrap_contract.HostBootstrapContractTests.test_bootstrap_delegates_to_authoritative_cli) ... ok\ntest_existing_docker_is_never_replaced_or_mixed_with_containerd_io (unit.test_host_bootstrap_contract.HostBootstrapContractTests.test_existing_docker_is_never_replaced_or_mixed_with_containerd_io) ... ok\ntest_analytical_reference_equations (unit.test_link_gate.LinkGateTests.test_analytical_reference_equations) ... ok\ntest_feasible_hop (unit.test_link_gate.LinkGateTests.test_feasible_hop) ... ok\ntest_gate_reasons_are_specific_and_ordered (unit.test_link_gate.LinkGateTests.test_gate_reasons_are_specific_and_ordered) ... ok\ntest_stale_metric_is_rejected (unit.test_link_gate.LinkGateTests.test_stale_metric_is_rejected) ... ok\ntest_stochastic_seed_is_process_stable (unit.test_link_gate.LinkGateTests.test_stochastic_seed_is_process_stable) ... ok\ntest_preview_blocks_failed_endpoint (unit.test_link_preview.TopologyLinkPreviewTests.test_preview_blocks_failed_endpoint) ... ok\ntest_preview_is_explicit_and_covers_every_chain_edge (unit.test_link_preview.TopologyLinkPreviewTests.test_preview_is_explicit_and_covers_every_chain_edge) ... ok\ntest_start_does_not_create_duplicate_runtime_when_observed_stack_is_ready (unit.test_orchestrator_idempotence.OrchestratorIdempotenceTests.test_start_does_not_create_duplicate_runtime_when_observed_stack_is_ready) ... ok\ntest_feasible_chain_advances_and_counts_once (unit.test_packet.PacketRuntimeTests.test_feasible_chain_advances_and_counts_once) ... ok\ntest_infeasible_gate_never_advances_cursor (unit.test_packet.PacketRuntimeTests.test_infeasible_gate_never_advances_cursor) ... ok\ntest_parallel_streams_are_independent (unit.test_packet.PacketRuntimeTests.test_parallel_streams_are_independent) ... ok\ntest_invalid_position_plan_is_rejected (unit.test_plugins.PluginTests.test_invalid_position_plan_is_rejected) ... ok\ntest_isolated_controller_invocation (unit.test_plugins.PluginTests.test_isolated_controller_invocation) ... ok\ntest_isolated_worker_enforces_plugin_execution_deadline (unit.test_plugins.PluginTests.test_isolated_worker_enforces_plugin_execution_deadline) ... ok\ntest_registry_is_valid (unit.test_plugins.PluginTests.test_registry_is_valid) ... ok\ntest_v6_research_plugins_are_discoverable (unit.test_plugins.PluginTests.test_v6_research_plugins_are_discoverable) ... ok\ntest_observed_hash_drift_reports_exact_component (unit.test_revisions.RevisionTests.test_observed_hash_drift_reports_exact_component) ... ok\ntest_observed_revision_drift_is_detected (unit.test_revisions.RevisionTests.test_observed_revision_drift_is_detected) ... ok\ntest_revision_cannot_commit_before_required_acknowledgements (unit.test_revisions.RevisionTests.test_revision_cannot_commit_before_required_acknowledgements) ... ok\ntest_revision_commits_only_after_matching_acknowledgements (unit.test_revisions.RevisionTests.test_revision_commits_only_after_matching_acknowledgements) ... ok\ntest_revision_rejects_acknowledgement_with_mismatched_domain_hash (unit.test_revisions.RevisionTests.test_revision_rejects_acknowledgement_with_mismatched_domain_hash) ... ok\ntest_revision_rejects_acknowledgement_with_missing_component_hashes (unit.test_revisions.RevisionTests.test_revision_rejects_acknowledgement_with_missing_component_hashes) ... ok\ntest_atomic_replace_preserves_shared_mode (unit.test_shared_io.SharedIoTests.test_atomic_replace_preserves_shared_mode) ... ok\ntest_concurrent_readers_never_observe_partial_json (unit.test_shared_io.SharedIoTests.test_concurrent_readers_never_observe_partial_json) ... ok\ntest_repair_shared_tree_restores_readability (unit.test_shared_io.SharedIoTests.test_repair_shared_tree_restores_readability) ... ok\ntest_fresh_csv_is_live_and_aggregated (unit.test_state_telemetry.StateTelemetryTests.test_fresh_csv_is_live_and_aggregated) ... ok\ntest_state_sequence_and_sync_ack (unit.test_state_telemetry.StateTelemetryTests.test_state_sequence_and_sync_ack) ... ok\ntest_telemetry_never_labels_empty_data_live (unit.test_state_telemetry.StateTelemetryTests.test_telemetry_never_labels_empty_data_live) ... ok\ntest_advanced_graph_metrics_are_exposed (unit.test_topology.TopologyTests.test_advanced_graph_metrics_are_exposed) ... ok\ntest_default_topology_is_structurally_and_physically_valid (unit.test_topology.TopologyTests.test_default_topology_is_structurally_and_physically_valid) ... ok\ntest_generation_modes (unit.test_topology.TopologyTests.test_generation_modes) ... ok\ntest_graph_metrics_expose_resilience_structure (unit.test_topology.TopologyTests.test_graph_metrics_expose_resilience_structure) ... ok\ntest_manual_editor_detects_invalid_graph (unit.test_topology.TopologyTests.test_manual_editor_detects_invalid_graph) ... ok\n\n----------------------------------------------------------------------\nRan 135 tests in 15.744s\n\nOK\n",
+      "stdout": "[NETLAB-LINK] \"GET /health HTTP/1.1\" 200 -\n[NETLAB-LINK] \"GET /ready HTTP/1.1\" 200 -\n[NETLAB-LINK] \"GET /models HTTP/1.1\" 200 -\n[NETLAB-LINK] \"POST /link HTTP/1.1\" 200 -\n"
+    },
+    {
+      "duration_s": 0.001855117000559403,
+      "name": "bash_syntax:scripts/bootstrap_host.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0016591469993727515,
+      "name": "bash_syntax:scripts/diagnostics/validate_release.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.001790399000128673,
+      "name": "bash_syntax:scripts/migration/migrate_from_v4.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0014998429996921914,
+      "name": "bash_syntax:scripts/migration/rollback_installation.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0020175210001980304,
+      "name": "bash_syntax:scripts/netlab_brev_webrtc.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0016264119994957582,
+      "name": "bash_syntax:scripts/netlab_mission_control.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0017696149998300825,
+      "name": "bash_syntax:scripts/netlab_snaas_relay_demo.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0016453270000056364,
+      "name": "bash_syntax:scripts/netlab_snaas_visuals.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0021568089996435447,
+      "name": "bash_syntax:scripts/netlab_swarm_demo.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0019928120000258787,
+      "name": "bash_syntax:scripts/netlab_world_loader.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0027301130003252183,
+      "name": "bash_syntax:scripts/release/package_release.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0019134900003336952,
+      "name": "bash_syntax:Docker/docker/isaacsim/entrypoint.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0017653160002737422,
+      "name": "bash_syntax:Docker/scripts/check_brev_gpu.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0016158469998117653,
+      "name": "bash_syntax:Docker/scripts/run_isaac_headless.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0019497770008456428,
+      "name": "bash_syntax:Docker/scripts/run_isaac_sample_scene.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0017284819996348233,
+      "name": "bash_syntax:Docker/workspace/ros2/netlab_ros_env.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0023843330000090646,
+      "name": "bash_syntax:Docker/workspace/ros2/runtime_entrypoint.sh",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.01736898299986933,
+      "name": "javascript_syntax:algorithm_lab.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.018907627000771754,
+      "name": "javascript_syntax:antenna_lab.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.019456325000646757,
+      "name": "javascript_syntax:api.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.019415261000176542,
+      "name": "javascript_syntax:app.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.019677415999467485,
+      "name": "javascript_syntax:components.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0172111820002101,
+      "name": "javascript_syntax:diagnostics.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.015991420000318612,
+      "name": "javascript_syntax:evidence.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.017953773000044748,
+      "name": "javascript_syntax:experiment_manager.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.018874458000027516,
+      "name": "javascript_syntax:fault_recovery.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.01700610800071445,
+      "name": "javascript_syntax:guided_demo.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.0174892209997779,
+      "name": "javascript_syntax:live_telemetry.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.019522912999491382,
+      "name": "javascript_syntax:mission_designer.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.017982094999752007,
+      "name": "javascript_syntax:overview.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.01762172799953987,
+      "name": "javascript_syntax:research_tools.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.017191021000144246,
+      "name": "javascript_syntax:settings.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.01651851299993723,
+      "name": "javascript_syntax:state.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.020831818000260682,
+      "name": "javascript_syntax:storage.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.016669857999659143,
+      "name": "javascript_syntax:swarm_control.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.01823705999959202,
+      "name": "javascript_syntax:synchronization.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.02096875600000203,
+      "name": "javascript_syntax:topology_studio.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.016139515999384457,
+      "name": "javascript_syntax:traffic_services.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.02016224700037128,
+      "name": "javascript_syntax:world_lab.js",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "duration_s": 0.7344683920000534,
+      "name": "json_yaml_scenario_gate",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"json\": 95, \"yaml\": 4, \"scenarios\": 44}\n"
+    },
+    {
+      "duration_s": 0.9151351760001489,
+      "name": "embedded_acceptance",
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\n  \"final_revision\": \"1dc03610-c49d-4a32-b966-2055ae85e9f5\",\n  \"ok\": true,\n  \"output_dir\": \"/mnt/data/netlab_release/stage/NETLAB/Docker/workspace/results/target_acceptance\",\n  \"stage_count\": 11,\n  \"stages\": [\n    {\n      \"detail\": {\n        \"antenna_ids\": [\n          \"uav_omni_reference\",\n          \"ground_sector_reference\"\n        ]\n      },\n      \"duration_s\": 1.5610003174515441e-06,\n      \"name\": \"default_configuration\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"acknowledgements\": {\n          \"isaac\": {\n            \"accepted\": true,\n            \"details\": {},\n            \"message\": \"embedded acceptance participant\",\n            \"observed_hashes\": {\n              \"antenna_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n              \"antennas_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n              \"config_hash\": \"f11e0c463af150bf22e0bfb26aab46c01cb14552c6be5ddd06bdd09e1ef1e2d2\",\n              \"failure_hash\": \"fdb396d4ed49147606cf7fcf0cc9c77e1a5fa56b681f3d2242f9a3f1335666e3\",\n              \"swarm_hash\": \"4e12bfef8834a134547b2e983690f47b84a4d3ffcf37f051ac0612a851c9d858\",\n              \"topology_hash\": \"e0e34030a4c4c1a5814cdbf7a741dd4b56db358929e3ea905f952e4421352430\",\n              \"traffic_hash\": \"12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73\",\n              \"world_hash\": \"84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2\"\n            },\n            \"participant\": \"isaac\",\n            \"revision_id\": \"d89fb0d0-4daa-4657-a89c-254dcad2dedd\",\n            \"timestamp\": 1784690111.46232\n          },\n          \"ros\": {\n            \"accepted\": true,\n            \"details\": {},\n            \"message\": \"embedded acceptance participant\",\n            \"observed_hashes\": {\n              \"antenna_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n              \"antennas_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n              \"config_hash\": \"f11e0c463af150bf22e0bfb26aab46c01cb14552c6be5ddd06bdd09e1ef1e2d2\",\n              \"failure_hash\": \"fdb396d4ed49147606cf7fcf0cc9c77e1a5fa56b681f3d2242f9a3f1335666e3\",\n              \"swarm_hash\": \"4e12bfef8834a134547b2e983690f47b84a4d3ffcf37f051ac0612a851c9d858\",\n              \"topology_hash\": \"e0e34030a4c4c1a5814cdbf7a741dd4b56db358929e3ea905f952e4421352430\",\n              \"traffic_hash\": \"12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73\",\n              \"world_hash\": \"84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2\"\n            },\n            \"participant\": \"ros\",\n            \"revision_id\": \"d89fb0d0-4daa-4657-a89c-254dcad2dedd\",\n            \"timestamp\": 1784690111.4450893\n          },\n          \"sionna\": {\n            \"accepted\": true,\n            \"details\": {},\n            \"message\": \"embedded acceptance participant\",\n            \"observed_hashes\": {\n              \"antenna_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n              \"antennas_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n              \"config_hash\": \"f11e0c463af150bf22e0bfb26aab46c01cb14552c6be5ddd06bdd09e1ef1e2d2\",\n              \"failure_hash\": \"fdb396d4ed49147606cf7fcf0cc9c77e1a5fa56b681f3d2242f9a3f1335666e3\",\n              \"swarm_hash\": \"4e12bfef8834a134547b2e983690f47b84a4d3ffcf37f051ac0612a851c9d858\",\n              \"topology_hash\": \"e0e34030a4c4c1a5814cdbf7a741dd4b56db358929e3ea905f952e4421352430\",\n              \"traffic_hash\": \"12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73\",\n              \"world_hash\": \"84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2\"\n            },\n            \"participant\": \"sionna\",\n            \"revision_id\": \"d89fb0d0-4daa-4657-a89c-254dcad2dedd\",\n            \"timestamp\": 1784690111.4527411\n          }\n        },\n        \"candidate\": {\n          \"antennas\": {\n            \"definitions\": [\n              {\n                \"id\": \"uav_omni_reference\"\n              },\n              {\n                \"id\": \"ground_sector_reference\"\n              }\n            ]\n          },\n          \"communication\": {\n            \"bandwidth_hz\": 20000000.0,\n            \"carrier_frequency_hz\": 3500000000.0,\n            \"hard_outage_distance_m\": 220.0,\n            \"min_capacity_mbps\": 1.0,\n            \"min_snr_db\": 3.0,\n            \"noise_figure_db\": 7.0,\n            \"operational_range_m\": 90.0,\n            \"tx_power_dbm\": 23.0\n          },\n          \"experiment\": {\n            \"id\": \"embedded_acceptance\",\n            \"seed\": 7009\n          },\n          \"failures\": {\n            \"schedule\": []\n          },\n          \"schema_version\": \"2.0.0\",\n          \"swarm\": {\n            \"drones\": [\n              {\n                \"active\": true,\n                \"failed\": false,\n                \"id\": \"drone_1\",\n                \"position\": [\n                  28.0,\n                  0.0,\n                  30.0\n                ]\n              },\n              {\n                \"active\": true,\n                \"failed\": false,\n                \"id\": \"drone_2\",\n                \"position\": [\n                  56.0,\n                  0.0,\n                  30.0\n                ]\n              },\n              {\n                \"active\": true,\n                \"failed\": false,\n                \"id\": \"drone_3\",\n                \"position\": [\n                  84.0,\n                  0.0,\n                  30.0\n                ]\n              },\n              {\n                \"active\": true,\n                \"failed\": false,\n                \"id\": \"drone_4\",\n                \"position\": [\n                  112.0,\n                  0.0,\n                  30.0\n                ]\n              },\n              {\n                \"active\": true,\n                \"failed\": false,\n                \"id\": \"drone_5\",\n                \"position\": [\n                  140.0,\n                  0.0,\n                  30.0\n                ]\n              },\n              {\n                \"active\": true,\n                \"failed\": false,\n                \"id\": \"drone_6\",\n                \"position\": [\n                  168.0,\n                  0.0,\n                  30.0\n                ]\n              }\n            ]\n          },\n          \"topology\": {\n            \"branches\": [\n              [\n                1,\n                2,\n                3,\n                4,\n                5,\n                6\n              ]\n            ],\n            \"mode\": \"chain\",\n            \"sinks\": [\n              \"drone_6\"\n            ],\n            \"source\": \"station\"\n          },\n          \"traffic\": {\n            \"flows\": [\n              {\n                \"id\": \"flow_1\"\n              }\n            ]\n          },\n          \"world\": {\n            \"template\": \"open_reference\"\n          }\n        },\n        \"command_id\": \"8dff19b8-a117-4f8e-8962-b3effcdfe05c\",\n        \"created_at\": 1784690111.4259527,\n        \"error\": null,\n        \"hashes\": {\n          \"antenna_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n          \"antennas_hash\": \"ebd7393dd61950e7a103988e9cc45289e4b83e5454ae83dff24a728946c837e7\",\n          \"config_hash\": \"f11e0c463af150bf22e0bfb26aab46c01cb14552c6be5ddd06bdd09e1ef1e2d2\",\n          \"failure_hash\": \"fdb396d4ed49147606cf7fcf0cc9c77e1a5fa56b681f3d2242f9a3f1335666e3\",\n          \"swarm_hash\": \"4e12bfef8834a134547b2e983690f47b84a4d3ffcf37f051ac0612a851c9d858\",\n          \"topology_hash\": \"e0e34030a4c4c1a5814cdbf7a741dd4b56db358929e3ea905f952e4421352430\",\n          \"traffic_hash\": \"12c002a755bd3c17261f37e720959753e07c369002b2286b41b21651a756db73\",\n          \"world_hash\": \"84a4d900236db16d5153b823a09ffee19ef8998119ab5cdc80dc49dcccd7c2f2\"\n        },\n        \"idempotency_key\": \"b3776804-02c4-41b3-9349-f8e8ec6562cf\",\n        \"initiator\": \"operator\",\n        \"parent_revision_id\": \"\",\n        \"retry_count\": 0,\n        \"revision_id\": \"d89fb0d0-4daa-4657-a89c-254dcad2dedd\",\n        \"scene_checksum\": \"\",\n        \"status\": \"COMMITTED\",\n        \"updated_at\": 1784690111.4692235\n      },\n      \"duration_s\": 0.048636079999596404,\n      \"name\": \"transactional_initial_sync\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"capacity_mbps\": 237.64736272820883,\n        \"distance_m\": 28.0,\n        \"gate\": \"FEASIBLE\",\n        \"path_loss_db\": 72.27230473573327,\n        \"snr_db\": 47.69258250185503\n      },\n      \"duration_s\": 1.4764000297873281e-05,\n      \"name\": \"feasible_link_gate\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"current\": \"drone_1\",\n        \"sequence\": 1,\n        \"status\": \"ADVANCED\"\n      },\n      \"duration_s\": 2.6730003810371272e-06,\n      \"name\": \"authoritative_packet_advance\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"revision\": \"0330699e-87fb-4bfc-a9cb-79064c9fcf08\",\n        \"status\": \"COMMITTED\"\n      },\n      \"duration_s\": 0.043047112999374804,\n      \"name\": \"uav_coordinate_transaction\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"branches\": 2,\n        \"revision\": \"fe4613b9-f7fa-4018-af76-395c198e10af\",\n        \"status\": \"COMMITTED\"\n      },\n      \"duration_s\": 0.03855543699955888,\n      \"name\": \"parallel_topology_transaction\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"branch_0\": 1,\n        \"branch_1\": 3\n      },\n      \"duration_s\": 5.880001481273212e-07,\n      \"name\": \"parallel_cursor_independence\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"packet\": {\n          \"current\": \"drone_1\",\n          \"sequence\": 1,\n          \"status\": \"PAUSED_OUTAGE\"\n        },\n        \"reason\": \"DESTINATION_FAILED\",\n        \"revision\": \"241f9bfb-4e1b-45e1-8730-30b4a3c12fcf\"\n      },\n      \"duration_s\": 0.04574931700062734,\n      \"name\": \"failure_and_outage\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"gate\": \"FEASIBLE\",\n        \"packet\": {\n          \"current\": \"drone_1\",\n          \"sequence\": 1,\n          \"status\": \"ADVANCED\"\n        },\n        \"revision\": \"1dc03610-c49d-4a32-b966-2055ae85e9f5\"\n      },\n      \"duration_s\": 0.04287684599967179,\n      \"name\": \"fault_aware_recovery\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"fresh\": true,\n        \"sample_count\": 9,\n        \"source\": \"LIVE\"\n      },\n      \"duration_s\": 7.389999154838733e-07,\n      \"name\": \"telemetry_source_integrity\",\n      \"ok\": true\n    },\n    {\n      \"detail\": {\n        \"experiment_id\": \"embedded_acceptance\",\n        \"revision\": \"1dc03610-c49d-4a32-b966-2055ae85e9f5\",\n        \"seed\": 7009\n      },\n      \"duration_s\": 0.00012356999923213152,\n      \"name\": \"evidence_provenance\",\n      \"ok\": true\n    }\n  ]\n}\n"
+    }
+  ],
+  "duration_s": 19.404102563858032,
+  "finished_at": 1784690111.7668355,
+  "ok": true,
+  "release": "9.0.0",
+  "root": "/mnt/data/netlab_release/stage/NETLAB",
+  "started_at": 1784690092.362733
+}

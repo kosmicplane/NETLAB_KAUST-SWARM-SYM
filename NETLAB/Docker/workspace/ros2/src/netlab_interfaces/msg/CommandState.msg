@@ -1,0 +1,10 @@
+std_msgs/Header header
+string command_id
+string idempotency_key
+string command_type
+string initiator
+string requested_revision_id
+string resulting_revision_id
+string status
+string error_code
+string error_message

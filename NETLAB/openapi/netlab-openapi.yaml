@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info: {title: NETLAB Mission Control API, version: 9.0.0}
+servers: [{url: /}]
+paths:
+  /api/health: {get: {responses: {'200': {description: Service health}}}}
+  /api/status: {get: {responses: {'200': {description: Authoritative readiness}}}}
+  /api/config: {get: {responses: {'200': {description: Experiment configuration}}}}
+  /api/config/validate: {post: {requestBody: {required: true, content: {application/json: {schema: {type: object}}}}, responses: {'200': {description: Validation result}}}}
+  /api/apply: {post: {responses: {'202': {description: Transactional application job}}}}
+  /api/telemetry: {get: {responses: {'200': {description: Source-labeled telemetry}}}}
+  /api/stream: {get: {responses: {'200': {description: Server-sent event stream}}}}
+  /api/synchronization: {get: {responses: {'200': {description: Desired and observed revisions}}}}
+  /api/command: {post: {responses: {'202': {description: Asynchronous command}}}}
+  /api/jobs: {get: {responses: {'200': {description: Job collection}}}}
+
+  /api/algorithms: {get: {responses: {'200': {description: Researcher algorithm registry}}}}
+  /api/algorithm/validate: {post: {responses: {'200': {description: Algorithm validation}}}}
+  /api/algorithm/dry-run: {post: {responses: {'200': {description: Isolated dry-run and safety shield}}}}
+  /api/algorithm/activate: {post: {responses: {'200': {description: Revisioned algorithm activation}}}}
+  /api/algorithm/compare: {post: {responses: {'200': {description: Paired-seed algorithm comparison}}}}
+  /api/actions: {get: {responses: {'200': {description: Declarative Mission Control action registry}}}}
+  /api/algorithm/source: {get: {responses: {'200': {description: Algorithm source and source hash}}}}
+  /api/algorithm/create: {post: {responses: {'200': {description: Create a researcher algorithm project}}}}
+  /api/algorithm/deactivate: {post: {responses: {'200': {description: Deactivate the selected algorithm through one revision}}}}
+  /api/algorithm/runs: {get: {responses: {'200': {description: Algorithm dry-run and comparison evidence}}}}
+  /api/algorithm/export: {post: {responses: {'200': {description: Export an algorithm evidence bundle}}}}
+  /api/algorithm/selection: {get: {responses: {'200': {description: Current algorithm selection}}}}

@@ -1,0 +1,15 @@
+[package]
+version = "9.0.0"
+title = "NETLAB SNaaS Synchronization Bridge"
+description = "Persistent revisioned desired/observed-state bridge for NETLAB and Isaac Sim."
+category = "Simulation"
+authors = ["NETLAB Maintainers"]
+repository = ""
+keywords = ["NETLAB", "SNaaS", "UAV", "ROS 2", "synchronization"]
+
+[dependencies]
+"omni.kit.app" = {}
+"omni.usd" = {}
+
+[[python.module]]
+name = "netlab.snaas.bridge"

@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# NETLAB runtime artifacts
+Docker/workspace/results/*
+!Docker/workspace/results/.gitkeep
+Docker/workspace/ros2/build/
+Docker/workspace/ros2/install/
+Docker/workspace/ros2/log/
+Docker/data/
+*.pid
+*.log
+
+# Local deployment configuration
+Docker/compose/.env
+.env
+.env.local
+
+# Generated reports and archives
+*.zip
+*.tar
+*.tar.gz
+coverage.xml
+junit.xml
+
+# Isaac/Omniverse caches
+*.usd~
+*.usda~
+*.usdc~
+.ov/
+.cache/
+.nv/
+
+# Release staging
+dist/

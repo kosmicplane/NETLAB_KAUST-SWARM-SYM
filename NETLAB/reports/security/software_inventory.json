@@ -1,0 +1,85 @@
+{
+  "algorithm_packages": 27,
+  "docker_images": {
+    "isaac": "nvcr.io/nvidia/isaac-sim:5.1.0",
+    "px4_optional": "px4io/px4-dev:v1.16.0",
+    "ros2": "ros:jazzy-ros-base-noble",
+    "sionna_base": "nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04"
+  },
+  "generated_utc": "2026-07-22T03:02:51.333109+00:00",
+  "notes": [
+    "Container image digests are captured during target acceptance after pull/build.",
+    "Pegasus is not included in the required execution path."
+  ],
+  "python_requires": ">=3.10",
+  "release": "9.0.0",
+  "requirements": {
+    "Docker/requirements/isaac-python.txt": [
+      "numpy",
+      "scipy",
+      "pandas",
+      "matplotlib",
+      "pyyaml",
+      "rospkg",
+      "empy==3.3.4",
+      "catkin_pkg",
+      "lark"
+    ],
+    "Docker/requirements/ros2-jazzy-apt.txt": [
+      "git",
+      "curl",
+      "wget",
+      "vim",
+      "nano",
+      "tmux",
+      "htop",
+      "python3-pip",
+      "python3-argcomplete",
+      "python3-colcon-common-extensions",
+      "python3-rosdep",
+      "iputils-ping",
+      "net-tools",
+      "build-essential",
+      "ros-dev-tools",
+      "ros-jazzy-rmw-fastrtps-cpp",
+      "ros-jazzy-rmw-cyclonedds-cpp",
+      "ros-jazzy-vision-msgs",
+      "ros-jazzy-ackermann-msgs",
+      "ros-jazzy-tf2-ros",
+      "ros-jazzy-tf-transformations",
+      "ros-jazzy-geometry-msgs",
+      "ros-jazzy-sensor-msgs",
+      "ros-jazzy-nav-msgs",
+      "ros-jazzy-std-msgs",
+      "ros-jazzy-rosgraph-msgs",
+      "ros-jazzy-rosbridge-suite",
+      "python3-yaml",
+      "ros-jazzy-ament-cmake",
+      "ros-jazzy-rosidl-default-generators",
+      "ros-jazzy-rosidl-default-runtime",
+      "ros-jazzy-builtin-interfaces"
+    ],
+    "Docker/requirements/ros2-python.txt": [
+      "numpy==1.26.4",
+      "scipy==1.13.1",
+      "pandas==2.2.3",
+      "matplotlib==3.9.4"
+    ],
+    "Docker/requirements/sionna-requirements.txt": [
+      "tensorflow==2.19.*",
+      "sionna==1.2.1",
+      "jupyterlab",
+      "numpy",
+      "scipy",
+      "matplotlib",
+      "pandas",
+      "plotly",
+      "ipykernel",
+      "pyyaml"
+    ],
+    "requirements-dev.txt": [
+      "PyYAML==6.0.2",
+      "pytest==8.3.5"
+    ]
+  }
+}

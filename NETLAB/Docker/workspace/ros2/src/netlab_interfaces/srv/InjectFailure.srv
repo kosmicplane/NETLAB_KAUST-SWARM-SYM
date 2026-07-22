@@ -1,0 +1,11 @@
+string failure_id
+string failure_type
+string target_id
+float64 duration_s
+string parameters_json
+---
+bool accepted
+string revision_id
+string status
+string error_code
+string error_message

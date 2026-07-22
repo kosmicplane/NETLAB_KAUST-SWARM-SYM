@@ -1,0 +1,2 @@
+export async function api(path, options={}){const r=await fetch(path,{headers:{'Content-Type':'application/json',...(options.headers||{})},...options});let d;try{d=await r.json()}catch{d={ok:false,error:{message:await r.text()}}}if(!r.ok)throw Object.assign(new Error(d?.error?.message||`HTTP ${r.status}`),{response:d});return d}
+export const get=p=>api(p);export const post=(p,b)=>api(p,{method:'POST',body:JSON.stringify(b)});

@@ -1,0 +1,437 @@
+openapi: 3.1.0
+info:
+  title: NETLAB Mission Control API
+  version: 9.0.0
+  description: >-
+    Versioned operator API for the NETLAB Swarm Network-as-a-Service research
+    platform. Runtime-changing requests return typed command and revision state;
+    a durable save is not equivalent to a committed runtime application.
+servers:
+  - url: http://127.0.0.1:8765
+    description: Local Mission Control
+paths:
+  /api/health:
+    get:
+      operationId: getHealth
+      responses:
+        '200': {description: Process health, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/readiness:
+    get:
+      operationId: getReadiness
+      responses:
+        '200': {description: Observed service readiness, content: {application/json: {schema: {$ref: '#/components/schemas/ReadinessResponse'}}}}
+  /api/status:
+    get:
+      operationId: getStatus
+      responses:
+        '200': {description: Authoritative system status, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/config:
+    get:
+      operationId: getConfiguration
+      responses:
+        '200': {description: Active experiment, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+    post:
+      operationId: saveConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ConfigurationApplyRequest'}
+      responses:
+        '200': {description: Durable draft and runtime application result, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+        '400': {$ref: '#/components/responses/Error'}
+  /api/config/validate:
+    post:
+      operationId: validateConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Validation result, content: {application/json: {schema: {$ref: '#/components/schemas/ValidationResponse'}}}}
+  /api/swarm:
+    post:
+      operationId: applySwarmEdit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Revisioned swarm application result, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/topology:
+    get:
+      operationId: getTopology
+      responses:
+        '200': {description: Topology inventory and validation, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+    post:
+      operationId: applyTopology
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/TopologyApplyRequest'}
+      responses:
+        '200': {description: Durable topology draft and participant acknowledgements, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/topology/validate:
+    post:
+      operationId: validateTopology
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Structural, physical, communication-preview, and operational evidence, content: {application/json: {schema: {$ref: '#/components/schemas/ValidationResponse'}}}}
+  /api/link/preview:
+    post:
+      operationId: previewLinks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Explicitly PREVIEW-labelled analytical link results, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/synchronization:
+    get:
+      operationId: getSynchronization
+      responses:
+        '200': {description: Desired, committed, and observed revisions, content: {application/json: {schema: {$ref: '#/components/schemas/SynchronizationResponse'}}}}
+  /api/revisions:
+    get:
+      operationId: listRevisions
+      responses:
+        '200': {description: Revision history, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/reconcile:
+    post:
+      operationId: reconcileRevision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                revision_id: {type: string}
+      responses:
+        '200': {description: Reconciliation result, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/revisions/rollback:
+    post:
+      operationId: rollbackRevision
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [revision_id]
+              properties:
+                revision_id: {type: string}
+                reason: {type: string}
+      responses:
+        '200': {description: Rollback candidate and synchronization result, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/telemetry:
+    get:
+      operationId: getTelemetrySnapshot
+      responses:
+        '200': {description: Source-labelled metric snapshot, content: {application/json: {schema: {$ref: '#/components/schemas/TelemetryResponse'}}}}
+  /api/telemetry/stream:
+    get:
+      operationId: streamTelemetry
+      parameters:
+        - in: query
+          name: once
+          schema: {type: boolean, default: false}
+      responses:
+        '200':
+          description: Server-sent telemetry events
+          content:
+            text/event-stream:
+              schema: {type: string}
+  /api/events:
+    get:
+      operationId: getEvents
+      responses:
+        '200': {description: Runtime event journal, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/command:
+    post:
+      operationId: submitCommand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [command]
+              properties:
+                command: {type: string}
+                payload: {$ref: '#/components/schemas/GenericObject'}
+                idempotency_key: {type: string}
+      responses:
+        '200': {description: Acknowledged command result, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/diagnostics:
+    get:
+      operationId: getDiagnostics
+      responses:
+        '200': {description: Observed runtime diagnostics, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/diagnostics/repair:
+    post:
+      operationId: repairGeneratedState
+      responses:
+        '200': {description: Bounded generated-state repair result, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/packet-doctor:
+    get:
+      operationId: getPacketDiagnostics
+      responses:
+        '200': {description: Packet pipeline and gate evidence, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/smoke-test:
+    post:
+      operationId: runSmokeTest
+      responses:
+        '200': {description: Live reference-flow smoke result, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/support-bundle:
+    post:
+      operationId: createSupportBundle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason: {type: string}
+      responses:
+        '200': {description: Generated redacted support-bundle metadata, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/actions:
+    get:
+      operationId: listMissionControlActions
+      responses:
+        '200': {description: Declarative UI-to-runtime action registry, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/plugins:
+    get:
+      operationId: listPlugins
+      responses:
+        '200': {description: Validated plugin registry, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/plugin/invoke:
+    post:
+      operationId: invokePlugin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Isolated plugin result, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/evidence:
+    get:
+      operationId: getEvidenceIndex
+      responses:
+        '200': {description: Evidence inventory, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/evidence/export:
+    post:
+      operationId: exportEvidence
+      responses:
+        '200': {description: Evidence bundle metadata, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithms:
+    get:
+      operationId: listResearchAlgorithms
+      responses:
+        '200': {description: Versioned researcher-algorithm registry, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithms/{algorithm_id}:
+    get:
+      operationId: getResearchAlgorithm
+      parameters:
+        - in: path
+          name: algorithm_id
+          required: true
+          schema: {type: string}
+      responses:
+        '200': {description: Algorithm package and manifest, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+        '404': {$ref: '#/components/responses/Error'}
+  /api/algorithm/source:
+    get:
+      operationId: getAlgorithmSource
+      parameters:
+        - in: query
+          name: algorithm_id
+          required: true
+          schema: {type: string}
+      responses:
+        '200': {description: Algorithm entry-point source and source hash, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+    post:
+      operationId: saveAlgorithmSource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Syntax-validated source update, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/create:
+    post:
+      operationId: createAlgorithmProject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: New isolated algorithm package, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/validate:
+    post:
+      operationId: validateAlgorithmPackage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Manifest, source, and execution-contract validation, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/dry-run:
+    post:
+      operationId: dryRunAlgorithm
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Isolated invocation and safety-shield result, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/activate:
+    post:
+      operationId: activateAlgorithm
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Revisioned ROS 2, Sionna, and Isaac application result, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/algorithm/deactivate:
+    post:
+      operationId: deactivateAlgorithm
+      responses:
+        '200': {description: Return to the safe built-in hold controller through one revision, content: {application/json: {schema: {$ref: '#/components/schemas/CommandRevisionResponse'}}}}
+  /api/algorithm/compare:
+    post:
+      operationId: compareAlgorithms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Paired-seed benchmark results, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/selection:
+    get:
+      operationId: getAlgorithmSelection
+      responses:
+        '200': {description: Current selected researcher algorithm and parameters, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/runs:
+    get:
+      operationId: listAlgorithmRuns
+      responses:
+        '200': {description: Dry-run and comparison evidence, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+  /api/algorithm/export:
+    post:
+      operationId: exportAlgorithmEvidence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/GenericObject'}
+      responses:
+        '200': {description: Reproducible algorithm evidence bundle, content: {application/json: {schema: {$ref: '#/components/schemas/GenericObject'}}}}
+components:
+  schemas:
+    GenericObject:
+      type: object
+      additionalProperties: true
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: {type: string}
+        message: {type: string}
+        component: {type: string}
+        command_id: {type: string}
+        recommendation: {type: string}
+        details: {}
+    ReadinessResponse:
+      type: object
+      required: [readiness]
+      properties:
+        ok: {type: boolean}
+        generated_at: {type: number}
+        readiness:
+          type: object
+          properties:
+            docker_ready: {type: boolean}
+            gpu_ready: {type: boolean}
+            compose_ready: {type: boolean}
+            ros_container_ready: {type: boolean}
+            ros_graph_ready: {type: boolean}
+            packet_runtime_ready: {type: boolean}
+            sionna_ready: {type: boolean}
+            isaac_process_ready: {type: boolean}
+            isaac_scene_ready: {type: boolean}
+            isaac_scenario_acknowledged: {type: boolean}
+            telemetry_ready: {type: boolean}
+            critical_ready: {type: boolean}
+    ConfigurationApplyRequest:
+      type: object
+      required: [config]
+      properties:
+        config: {$ref: '#/components/schemas/GenericObject'}
+        apply_runtime: {type: boolean, default: true}
+        reason: {type: string}
+        idempotency_key: {type: string}
+    TopologyApplyRequest:
+      type: object
+      required: [topology]
+      properties:
+        topology: {$ref: '#/components/schemas/GenericObject'}
+        drones:
+          type: array
+          items: {$ref: '#/components/schemas/GenericObject'}
+        apply_runtime: {type: boolean, default: true}
+        reason: {type: string}
+    ValidationResponse:
+      type: object
+      required: [ok, errors, warnings]
+      properties:
+        ok: {type: boolean}
+        errors: {type: array, items: {$ref: '#/components/schemas/GenericObject'}}
+        warnings: {type: array, items: {$ref: '#/components/schemas/GenericObject'}}
+    CommandRevisionResponse:
+      type: object
+      required: [ok]
+      properties:
+        ok: {type: boolean}
+        pending: {type: boolean}
+        command: {$ref: '#/components/schemas/GenericObject'}
+        revision: {$ref: '#/components/schemas/GenericObject'}
+        synchronization: {$ref: '#/components/schemas/GenericObject'}
+        error: {$ref: '#/components/schemas/Error'}
+    SynchronizationResponse:
+      type: object
+      properties:
+        ok: {type: boolean}
+        synchronization: {$ref: '#/components/schemas/GenericObject'}
+    TelemetryResponse:
+      type: object
+      required: [source, rows]
+      properties:
+        source: {$ref: '#/components/schemas/GenericObject'}
+        rows: {type: array, items: {$ref: '#/components/schemas/GenericObject'}}
+        analytics: {$ref: '#/components/schemas/GenericObject'}
+  responses:
+    Error:
+      description: Structured NETLAB error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ok: {type: boolean, const: false}
+              error: {$ref: '#/components/schemas/Error'}

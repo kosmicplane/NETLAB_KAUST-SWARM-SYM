@@ -1,0 +1,26 @@
+requirement_id,requirement,implementation,verification_evidence,status,limitation
+P0-01,Packet cursor advances only on a failure-aware feasible hop,netlab/link.py; netlab/packet.py; ROS relay adapter,test_link_gate.py; test_packet.py; scientific reference test,VERIFIED_HOST,Target ROS/Isaac end-to-end required
+P0-02,Chain pauses on one infeasible required hop,PacketRuntime chain semantics and ROS compatibility runtime,test_infeasible_gate_never_advances_cursor,VERIFIED_HOST,Target visualization required
+P0-03,Parallel branches have independent state,Per-BranchStream packet cursors,test_parallel_streams_are_independent,VERIFIED_HOST,Target ROS branch integration required
+P0-04,"Complete stack starts Sionna, ROS packet runtime, and Isaac",Compose commands/healthchecks; Orchestrator.start_stack,test_complete_stack_autostarts_runtime_components; compose parse,VERIFIED_CONTRACT,Docker/GPU run unavailable in sandbox
+P0-05,No hardcoded ephemeral container dependency,ComposeProject service resolution and compatibility fallbacks,test_prefixed_container_name_is_resolved_from_compose,VERIFIED_HOST,Live Brev prefix test required
+P0-06,Isaac readiness uses fresh heartbeat and scenario acknowledgement,snaas_autoload.py; snaas_relay_scene.py; StateStore.sync_status,state/sync unit tests; source inspection,VERIFIED_HOST_CONTRACT,Isaac execution unavailable
+P0-07,Telemetry never labels empty or stale data LIVE,TelemetryReader source/freshness contract,test_telemetry_never_labels_empty_data_live; SSE tests,VERIFIED_HOST,Live ROS sample stream unavailable
+P0-08,Commands expose acknowledgement rather than optimistic success,"Mission Control command journal, jobs, runtime status waits",API and frontend contract tests; button matrix,PARTIALLY_VERIFIED,Target ROS acknowledgement paths unavailable
+CFG-01,Versioned authoritative experiment schema and migration,netlab/config.py; schemas/experiment; migrate_from_v4.sh,config migration/round-trip tests,VERIFIED_HOST,Historical user configurations beyond supplied baseline may need review
+CFG-02,SI units and coordinate-frame metadata,v5 configuration and validation,config tests; schema inspection,VERIFIED_HOST,Runtime ENU/NED transform integration is incomplete
+UAV-01,Visual drone scale defaults to 0.2 and is separate from physics dimensions,default config; Isaac scene adapter,test_default_configuration_is_valid_and_scale_is_separate,VERIFIED_HOST,Target asset/collision visual check required
+TOP-01,Chain/parallel/forest/manual topology generation and validation,netlab/topology.py; Topology Studio,topology unit tests,VERIFIED_HOST,Full graph canvas browser E2E unavailable
+TOP-02,"Topology status separates structural, physical, communication, operational state",topology validation response and UI badges,topology tests; frontend source contract,VERIFIED_HOST_CONTRACT,Live communication feasibility requires runtime
+UI-01,Modular bright interface with readable typography,frontend modules and styles.css,frontend contract tests; static review,VERIFIED_STATIC,Playwright navigation blocked by sandbox policy
+UI-02,Guided Demo is English-only and acknowledgement-aware,guided_demo.js; guided_demo_steps; backend actions,frontend language test; API contract,VERIFIED_HOST_CONTRACT,Complete 30-step target execution required
+UI-03,Mission Designer covers experiment variables with progressive disclosure,mission_designer.js; v5 schema,config/frontend tests,VERIFIED_HOST_CONTRACT,Usability study not performed
+UI-04,Swarm changes synchronize with ROS 2 and Isaac,save_config + update_config + sync signal,API/source tests,PARTIALLY_VERIFIED,Target runtime acknowledgement required
+RF-01,"Analytical link budget exposes distance, loss, RX power, SNR/SINR, capacity, delay",netlab/link.py; Sionna-compatible service,link unit/scientific/API tests,VERIFIED_HOST,Not a complete 3GPP or ray-traced model
+RF-02,Fidelity/model provenance is explicit,FidelityProfile and service response contract,link and API tests,VERIFIED_HOST,F3/F4/F5 not executed
+RF-03,World and antenna changes invalidate/recalculate relevant state,configuration revision and synchronization contract,frontend/API contract,PARTIALLY_VERIFIED,Sionna RT scene invalidation target integration required
+PLUGIN-01,Researcher controllers are isolated and validated,netlab/plugins.py; plugin manifests/examples,plugin unit tests,VERIFIED_HOST,Not a hostile-code sandbox
+EVID-01,"Runs preserve IDs, hashes, versions, configuration, events and metrics",StateStore; evidence.py; run manifests,state/evidence/API tests and source inspection,VERIFIED_HOST,Container image digest capture requires target Docker
+DOC-01,One authoritative README and canonical documentation set,README.md; docs/ hierarchy,release hygiene scan,VERIFIED_STATIC,None
+SEC-01,Asset/plugin paths are contained and request sizes are bounded,static server containment; plugin root checks; 16 MiB request limit,security review and source inspection,PARTIALLY_VERIFIED,No built-in multi-user auth/TLS
+TEST-01,Automated host validation succeeds,tests/run_all.py; validate_release.sh,69 tests and 30 parameterized subtests passed; compilation/syntax/Compose/P0/self-test passed,VERIFIED_HOST,Docker/GPU/Isaac/ROS/WebRTC not executed

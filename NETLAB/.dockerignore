@@ -1,0 +1,17 @@
+.git
+.gitignore
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+Docker/workspace/ros2/build
+Docker/workspace/ros2/install
+Docker/workspace/ros2/log
+Docker/workspace/results
+Docker/data
+reports
+*.zip
+*.log
+.env

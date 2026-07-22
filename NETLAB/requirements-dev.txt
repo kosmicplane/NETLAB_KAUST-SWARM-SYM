@@ -1,0 +1,4 @@
+# Host-side validation dependencies for NETLAB.
+# Runtime/container dependencies remain pinned under Docker/requirements/.
+PyYAML==6.0.2
+pytest==8.3.5

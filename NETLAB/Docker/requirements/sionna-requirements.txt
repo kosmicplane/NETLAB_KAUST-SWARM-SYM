@@ -1,0 +1,10 @@
+tensorflow==2.19.*
+sionna==1.2.1
+jupyterlab
+numpy
+scipy
+matplotlib
+pandas
+plotly
+ipykernel
+pyyaml

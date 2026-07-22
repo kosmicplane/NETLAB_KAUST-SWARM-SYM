@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netlab.local/schemas/runtime/revision-v1.schema.json",
+  "title": "NETLAB Transactional Runtime Revision",
+  "type": "object",
+  "required": ["revision_id", "phase", "hashes", "participants", "candidate_config_path"],
+  "properties": {
+    "revision_id": {"type": "string", "minLength": 1},
+    "parent_revision_id": {"type": "string"},
+    "command_id": {"type": "string"},
+    "idempotency_key": {"type": "string"},
+    "phase": {"enum": ["DRAFT_SAVED", "VALIDATED", "PENDING_RUNTIME_APPLY", "PARTIALLY_APPLIED", "COMMITTED", "FAILED", "ROLLED_BACK"]},
+    "hashes": {
+      "type": "object",
+      "required": ["config_hash", "topology_hash", "swarm_hash", "antenna_hash", "world_hash", "traffic_hash", "failure_hash"],
+      "additionalProperties": {"type": "string"}
+    },
+    "participants": {
+      "type": "object",
+      "required": ["ros", "sionna", "isaac"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["required", "state"],
+        "properties": {
+          "required": {"type": "boolean"},
+          "state": {"enum": ["NOT_REQUIRED", "PENDING", "APPLYING", "ACKNOWLEDGED", "FAILED", "ROLLED_BACK"]},
+          "observed_revision": {"type": "string"},
+          "observed_hashes": {"type": "object"}
+        }
+      }
+    },
+    "candidate_config_path": {"type": "string"},
+    "created_at": {"type": "number"},
+    "updated_at": {"type": "number"}
+  },
+  "additionalProperties": true
+}

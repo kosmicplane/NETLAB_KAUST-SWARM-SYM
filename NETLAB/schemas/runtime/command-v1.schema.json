@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netlab.local/schemas/runtime/command-v1.schema.json",
+  "title": "NETLAB Acknowledged Command",
+  "type": "object",
+  "required": ["command_id", "name", "status", "created_at"],
+  "properties": {
+    "command_id": {"type": "string", "minLength": 1},
+    "idempotency_key": {"type": "string"},
+    "name": {"type": "string", "minLength": 1},
+    "component": {"type": "string"},
+    "status": {"enum": ["CREATED", "VALIDATING", "REJECTED", "ACCEPTED", "DISPATCHING", "WAITING_FOR_ACK", "PARTIALLY_APPLIED", "COMPLETED", "FAILED", "ROLLING_BACK", "ROLLED_BACK", "CANCELLED"]},
+    "payload": {"type": "object"},
+    "acknowledgement": {"type": ["object", "null"]},
+    "error": {"type": ["object", "null"]},
+    "created_at": {"type": "number"},
+    "updated_at": {"type": "number"}
+  },
+  "additionalProperties": true
+}

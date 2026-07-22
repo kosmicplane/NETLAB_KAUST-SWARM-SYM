@@ -1,0 +1,167 @@
+{
+  "action_schema": {
+    "additionalProperties": true,
+    "type": "object"
+  },
+  "algorithm_id": "connectivity_aware_formation",
+  "api_version": "2.0",
+  "assumptions": [
+    "Local ENU coordinate frame",
+    "NETLAB safety and communication-feasibility shield remains authoritative"
+  ],
+  "author": "NETLAB Research Team",
+  "category": "formation_controller",
+  "checkpoint_contract": {
+    "supported": false
+  },
+  "citations": [
+    {
+      "authors": "Zavlanos, Egerstedt, Pappas",
+      "doi": "10.1109/JPROC.2011.2157884",
+      "title": "Graph-Theoretic Connectivity Control of Mobile Robot Networks",
+      "year": 2011
+    }
+  ],
+  "description": "Formation tracking with communication-margin and energy penalties.",
+  "deterministic_seed": true,
+  "entrypoint": "algorithm.py",
+  "execution_mode": "isolated_python",
+  "hooks": [
+    "initialize",
+    "validate",
+    "reset",
+    "step",
+    "plan_positions",
+    "plan_velocities",
+    "plan_trajectories",
+    "on_state_update",
+    "on_topology_update",
+    "on_link_update",
+    "on_failure",
+    "select_standby",
+    "recompute_topology",
+    "compute_metric",
+    "shutdown"
+  ],
+  "known_limitations": [
+    "Reference implementation prioritizes reproducibility and traceability over exact reproduction of every solver detail."
+  ],
+  "license": "MIT",
+  "name": "Connectivity-Aware Formation",
+  "observation_schema": {
+    "required": [
+      "uavs",
+      "topology",
+      "constraints"
+    ],
+    "type": "object"
+  },
+  "organization": "NETLAB",
+  "parameter_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "altitude_m": {
+        "default": 30,
+        "maximum": 120,
+        "minimum": 10,
+        "type": "number"
+      },
+      "connectivity_weight": {
+        "default": 2,
+        "maximum": 20,
+        "minimum": 0,
+        "type": "number"
+      },
+      "energy_weight": {
+        "default": 0.2,
+        "maximum": 10,
+        "minimum": 0,
+        "type": "number"
+      },
+      "formation_weight": {
+        "default": 1,
+        "maximum": 20,
+        "minimum": 0,
+        "type": "number"
+      },
+      "safety_distance_m": {
+        "default": 5,
+        "maximum": 50,
+        "minimum": 1,
+        "type": "number"
+      },
+      "spacing_m": {
+        "default": 28,
+        "maximum": 120,
+        "minimum": 5,
+        "type": "number"
+      }
+    },
+    "type": "object"
+  },
+  "parameters": {
+    "altitude_m": {
+      "default": 30,
+      "maximum": 120,
+      "minimum": 10,
+      "type": "number"
+    },
+    "connectivity_weight": {
+      "default": 2,
+      "maximum": 20,
+      "minimum": 0,
+      "type": "number"
+    },
+    "energy_weight": {
+      "default": 0.2,
+      "maximum": 10,
+      "minimum": 0,
+      "type": "number"
+    },
+    "formation_weight": {
+      "default": 1,
+      "maximum": 20,
+      "minimum": 0,
+      "type": "number"
+    },
+    "safety_distance_m": {
+      "default": 5,
+      "maximum": 50,
+      "minimum": 1,
+      "type": "number"
+    },
+    "spacing_m": {
+      "default": 28,
+      "maximum": 120,
+      "minimum": 5,
+      "type": "number"
+    }
+  },
+  "plugin_id": "connectivity_aware_formation",
+  "required_ros_interfaces": [
+    "/netlab/algorithm/action",
+    "/netlab/algorithm/status"
+  ],
+  "required_state_fields": [
+    "uavs",
+    "topology",
+    "links",
+    "constraints"
+  ],
+  "resource_budget": {
+    "cpu_cores": 1.0,
+    "gpu_required": false,
+    "memory_mb": 1024,
+    "network_policy": "deny",
+    "output_kb": 512,
+    "timeout_s": 1.0
+  },
+  "safety_fallback": "hold_position",
+  "supported_fidelity_profiles": [
+    "F1_ANALYTICAL",
+    "F2_STOCHASTIC"
+  ],
+  "timeout_s": 1.0,
+  "validity_domain": "Low-speed local formation updates; safety shield enforces hard constraints.",
+  "version": "1.0.0"
+}

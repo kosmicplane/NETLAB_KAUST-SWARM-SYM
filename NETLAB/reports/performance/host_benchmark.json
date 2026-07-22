@@ -1,0 +1,92 @@
+{
+  "benchmarks": {
+    "analytical_link_gate_10000": {
+      "cold_start_ms": 197.33121799981745,
+      "max_ms": 213.12986800012368,
+      "mean_ms": 204.30830666676533,
+      "median_ms": 211.46018400031608,
+      "min_ms": 188.33486799985621,
+      "repetitions": 3,
+      "result_summary": {
+        "evaluations": 10000,
+        "feasible": 10000
+      }
+    },
+    "packet_state_machine_10000": {
+      "cold_start_ms": 890.3731330001392,
+      "max_ms": 763.1448150000324,
+      "mean_ms": 745.2418600000783,
+      "median_ms": 756.8479410001601,
+      "min_ms": 715.7328240000425,
+      "repetitions": 3,
+      "result_summary": {
+        "delivered": 500,
+        "events": 10500,
+        "steps": 10000
+      }
+    },
+    "topology_chain_128": {
+      "cold_start_ms": 26.334740000038437,
+      "max_ms": 47.41658000011739,
+      "mean_ms": 33.457704600004945,
+      "median_ms": 30.863049999879877,
+      "min_ms": 28.6512060001769,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 128,
+        "node_count": 129
+      }
+    },
+    "topology_chain_16": {
+      "cold_start_ms": 0.5463039997266605,
+      "max_ms": 0.6159290001050977,
+      "mean_ms": 0.515146999987337,
+      "median_ms": 0.5039499997110397,
+      "min_ms": 0.4656619998968381,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 16,
+        "node_count": 17
+      }
+    },
+    "topology_chain_32": {
+      "cold_start_ms": 1.6516380001121433,
+      "max_ms": 1.3921909999226045,
+      "mean_ms": 1.3549750000493077,
+      "median_ms": 1.3686150000467023,
+      "min_ms": 1.3110590002725075,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 32,
+        "node_count": 33
+      }
+    },
+    "topology_chain_64": {
+      "cold_start_ms": 689.7404679998544,
+      "max_ms": 10.517689999687718,
+      "mean_ms": 9.349893600028736,
+      "median_ms": 8.847884999795497,
+      "min_ms": 8.647082000152295,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 64,
+        "node_count": 65
+      }
+    },
+    "topology_chain_8": {
+      "cold_start_ms": 0.6011370001033356,
+      "max_ms": 0.5418979999376461,
+      "mean_ms": 0.30316980000861804,
+      "median_ms": 0.24904600013542222,
+      "min_ms": 0.22758299974157126,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 8,
+        "node_count": 9
+      }
+    }
+  },
+  "platform": "Linux-4.4.0-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "scope": "host_side_python_core_only"
+}

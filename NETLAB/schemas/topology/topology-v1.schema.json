@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NETLAB Topology",
+  "type": "object",
+  "required": [
+    "mode",
+    "nodes",
+    "edges",
+    "source",
+    "sinks"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "chain",
+        "parallel",
+        "forest",
+        "manual"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "src",
+          "dst"
+        ]
+      }
+    },
+    "source": {
+      "type": "string"
+    },
+    "sinks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

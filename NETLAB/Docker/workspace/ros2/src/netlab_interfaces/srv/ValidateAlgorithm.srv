@@ -1,0 +1,8 @@
+string algorithm_id
+string manifest_json
+string source_hash
+---
+bool valid
+string[] errors
+string[] warnings
+string normalized_manifest_json

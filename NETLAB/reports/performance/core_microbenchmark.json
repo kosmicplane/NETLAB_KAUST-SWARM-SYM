@@ -1,0 +1,92 @@
+{
+  "benchmarks": {
+    "analytical_link_gate_10000": {
+      "cold_start_ms": 212.8839090000838,
+      "max_ms": 163.3992209972348,
+      "mean_ms": 161.2878919998669,
+      "median_ms": 162.01739800089854,
+      "min_ms": 158.44705700146733,
+      "repetitions": 3,
+      "result_summary": {
+        "evaluations": 10000,
+        "feasible": 10000
+      }
+    },
+    "packet_state_machine_10000": {
+      "cold_start_ms": 706.3013029983267,
+      "max_ms": 869.0106840003864,
+      "mean_ms": 814.2842010007977,
+      "median_ms": 808.3554100012407,
+      "min_ms": 765.4865090007661,
+      "repetitions": 3,
+      "result_summary": {
+        "delivered": 500,
+        "events": 10500,
+        "steps": 10000
+      }
+    },
+    "topology_chain_10": {
+      "cold_start_ms": 0.6477369970525615,
+      "max_ms": 0.5718470019928645,
+      "mean_ms": 0.3399996006919537,
+      "median_ms": 0.28445899806683883,
+      "min_ms": 0.2480040020600427,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 10,
+        "node_count": 11
+      }
+    },
+    "topology_chain_100": {
+      "cold_start_ms": 498.9892459998373,
+      "max_ms": 18.280167001648806,
+      "mean_ms": 17.53930440027034,
+      "median_ms": 17.452021998906275,
+      "min_ms": 16.62197200130322,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 100,
+        "node_count": 101
+      }
+    },
+    "topology_chain_250": {
+      "cold_start_ms": 93.04247800173471,
+      "max_ms": 152.2829300010926,
+      "mean_ms": 107.90383359999396,
+      "median_ms": 96.60601900031907,
+      "min_ms": 90.75565400053165,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 250,
+        "node_count": 251
+      }
+    },
+    "topology_chain_50": {
+      "cold_start_ms": 3.176449001330184,
+      "max_ms": 2.74187300237827,
+      "mean_ms": 2.604610600246815,
+      "median_ms": 2.5792790002014954,
+      "min_ms": 2.5458479976805393,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 50,
+        "node_count": 51
+      }
+    },
+    "topology_chain_500": {
+      "cold_start_ms": 216.84801599985803,
+      "max_ms": 405.3498029970797,
+      "mean_ms": 281.1725095991278,
+      "median_ms": 216.89120999872102,
+      "min_ms": 190.90220400175895,
+      "repetitions": 5,
+      "result_summary": {
+        "edge_count": 500,
+        "node_count": 501
+      }
+    }
+  },
+  "platform": "Linux-4.4.0-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "scope": "host_side_python_core_only"
+}

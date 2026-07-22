@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://netlab.local/schemas/experiment/netlab-experiment-v1.schema.json",
+  "title": "NETLAB Experiment Configuration",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "experiment",
+    "clock",
+    "world",
+    "service_region",
+    "station",
+    "swarm",
+    "topology",
+    "communication",
+    "antennas",
+    "traffic",
+    "failures",
+    "visualization",
+    "evidence",
+    "runtime"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "experiment": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "seed",
+        "duration_s",
+        "fidelity_profile"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "duration_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fidelity_profile": {
+          "enum": [
+            "F0_PREVIEW",
+            "F1_ANALYTICAL",
+            "F2_STOCHASTIC",
+            "F3_GEOMETRY_AWARE",
+            "F4_PROTOCOL_AWARE",
+            "F5_AUTOPILOT",
+            "F6_HARDWARE_ASSISTED",
+            "F4_AUTOPILOT",
+            "F5_HARDWARE_ASSISTED"
+          ]
+        }
+      }
+    },
+    "world": {
+      "type": "object",
+      "required": [
+        "coordinate_frame",
+        "origin",
+        "environment"
+      ],
+      "properties": {
+        "coordinate_frame": {
+          "enum": [
+            "ENU",
+            "NED",
+            "ECEF",
+            "WGS84",
+            "ISAAC_STAGE"
+          ]
+        },
+        "origin": {
+          "$ref": "#/$defs/vec3"
+        },
+        "assets": {
+          "type": "array"
+        }
+      }
+    },
+    "swarm": {
+      "type": "object",
+      "required": [
+        "drone_count",
+        "relay_count",
+        "standby_count",
+        "visual_asset_scale",
+        "drones"
+      ],
+      "properties": {
+        "drone_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
+        },
+        "relay_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "standby_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "visual_asset_scale": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 10
+        },
+        "drones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/drone"
+          }
+        }
+      }
+    },
+    "topology": {
+      "type": "object",
+      "required": [
+        "mode",
+        "branches"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "chain",
+            "parallel",
+            "forest",
+            "manual"
+          ]
+        },
+        "branches": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "manual_edges": {
+          "type": "array"
+        }
+      }
+    },
+    "communication": {
+      "type": "object",
+      "required": [
+        "model",
+        "carrier_frequency_hz",
+        "bandwidth_hz",
+        "operational_range_m",
+        "hard_outage_distance_m",
+        "min_snr_db",
+        "min_capacity_mbps"
+      ],
+      "properties": {
+        "carrier_frequency_hz": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "bandwidth_hz": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "operational_range_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "hard_outage_distance_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "antennas": {
+      "type": "object",
+      "required": [
+        "definitions",
+        "assignments"
+      ]
+    },
+    "traffic": {
+      "type": "object",
+      "required": [
+        "flows"
+      ]
+    }
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "quat": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "drone": {
+      "type": "object",
+      "required": [
+        "id",
+        "index",
+        "role",
+        "position",
+        "orientation_xyzw"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "role": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/$defs/vec3"
+        },
+        "orientation_xyzw": {
+          "$ref": "#/$defs/quat"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "failed": {
+          "type": "boolean"
+        },
+        "battery_soc_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}

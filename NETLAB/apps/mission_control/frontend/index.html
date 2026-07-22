@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NETLAB Mission Control for high-fidelity Swarm Network-as-a-Service research experiments.">
+  <title>NETLAB Mission Control</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app-shell">
+    <header class="topbar">
+      <button id="nav-toggle" class="icon-button" aria-label="Toggle navigation">☰</button>
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">N</div>
+        <div>
+          <div class="brand-title">NETLAB Mission Control</div>
+          <div class="brand-subtitle">Swarm Network-as-a-Service Research Platform</div>
+        </div>
+      </div>
+      <div id="global-status" class="global-status" aria-live="polite"></div>
+      <div class="top-actions">
+        <button id="theme-toggle" class="button secondary small" type="button">Dark theme</button>
+        <button id="refresh-all" class="button secondary small" type="button">Refresh</button>
+        <button id="start-stack-global" class="button primary small" type="button">Start Stack</button>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar" aria-label="Primary navigation">
+      <nav id="primary-nav"></nav>
+      <div class="sidebar-footer">
+        <div class="status-label">Runtime data source</div>
+        <div id="sidebar-source" class="source-badge offline">OFFLINE</div>
+        <div id="sidebar-version" class="muted small-text"></div>
+      </div>
+    </aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+      <div id="view-root" class="view-root"></div>
+    </main>
+
+    <aside id="command-drawer" class="command-drawer" aria-label="Command activity">
+      <div class="drawer-header">
+        <div>
+          <div class="eyebrow">COMMAND ACTIVITY</div>
+          <h2>Operations</h2>
+        </div>
+        <button id="command-drawer-close" class="icon-button" aria-label="Close command drawer">×</button>
+      </div>
+      <div id="command-list" class="command-list"></div>
+      <div class="drawer-header compact"><div><div class="eyebrow">EVENT CONSOLE</div><h3>Frontend and command events</h3></div></div>
+      <pre id="event-console" class="event-console" aria-live="polite">Mission Control frontend loading…</pre>
+    </aside>
+
+    <button id="command-drawer-open" class="activity-fab" aria-label="Open command activity">Activity <span id="activity-count">0</span></button>
+    <div id="toast-region" class="toast-region" aria-live="assertive" aria-atomic="true"></div>
+  </div>
+  <script src="/bootstrap_guard.js?v=9.0.0"></script>
+  <script type="module" src="/modules/app.js?v=9.0.0"></script>
+</body>
+</html>

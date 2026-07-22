@@ -1,0 +1,15 @@
+string command_id
+string trajectory_id
+string entity_ids_json
+string waypoints_json
+string coordinate_frame
+---
+bool success
+string revision_id
+string status
+string error_code
+string error_message
+---
+float32 progress_pct
+string phase
+string active_entity_id

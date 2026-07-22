@@ -1,0 +1,14 @@
+std_msgs/Header header
+string packet_id
+string flow_id
+string branch_id
+uint64 sequence_number
+string source_id
+string destination_id
+string current_node_id
+string next_node_id
+uint32 current_hop_index
+string status
+string gate_reason
+uint32 size_bytes
+string revision_id

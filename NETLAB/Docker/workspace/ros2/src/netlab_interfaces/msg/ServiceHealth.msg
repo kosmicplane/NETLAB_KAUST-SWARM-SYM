@@ -1,0 +1,10 @@
+std_msgs/Header header
+string service_name
+bool live
+bool ready
+bool synchronized
+string state
+string revision_id
+float64 heartbeat_age_s
+string error_code
+string error_message

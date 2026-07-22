@@ -1,0 +1,53 @@
+{
+  "action_schema": {
+    "type": "object"
+  },
+  "algorithm_id": "circular_orbit",
+  "api_version": "2.0",
+  "assumptions": [
+    "The NETLAB safety and communication-feasibility shield remains authoritative."
+  ],
+  "author": "NETLAB Research Team",
+  "category": "trajectory_planner",
+  "citations": [],
+  "description": "Generate deterministic circular relay positions.",
+  "deterministic_seed": true,
+  "entrypoint": "plugin.py",
+  "execution_mode": "isolated_python",
+  "known_limitations": [],
+  "license": "MIT",
+  "name": "Circular Orbit",
+  "observation_schema": {
+    "required": [
+      "uavs",
+      "topology",
+      "constraints"
+    ],
+    "type": "object"
+  },
+  "organization": "NETLAB",
+  "parameter_schema": {
+    "additionalProperties": true,
+    "properties": {},
+    "type": "object"
+  },
+  "parameters": {},
+  "plugin_id": "circular_orbit",
+  "required_fidelity": "F1_ANALYTICAL",
+  "resource_budget": {
+    "cpu_cores": 1.0,
+    "gpu_required": false,
+    "memory_mb": 1024,
+    "network_policy": "deny",
+    "output_kb": 256,
+    "timeout_s": 2.0
+  },
+  "safe_fallback": "hold_position",
+  "safety_fallback": "hold_position",
+  "supported_fidelity_profiles": [
+    "F1_ANALYTICAL"
+  ],
+  "timeout_s": 2.0,
+  "validity_domain": "Reference research plugin for NETLAB experiments.",
+  "version": "1.0.0"
+}

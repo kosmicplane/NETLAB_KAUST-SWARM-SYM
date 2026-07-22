@@ -1,0 +1,1177 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "name": "build-essential",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "catkin_pkg",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "curl",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "empy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "3.3.4"
+    },
+    {
+      "name": "git",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "htop",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "iputils-ping",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ipykernel",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "isaac",
+      "type": "container",
+      "version": "nvcr.io/nvidia/isaac-sim:5.1.0"
+    },
+    {
+      "name": "jupyterlab",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "lark",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "matplotlib",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "3.9.4"
+    },
+    {
+      "name": "matplotlib",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "matplotlib",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "nano",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "net-tools",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "netlab-algorithm-antenna_orientation_optimizer",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/antennas/antenna_orientation_optimizer/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-aoi_aware_scheduler",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/aoi_aware_scheduler/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-cbf_safety_filter",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/cbf_safety_filter/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-circular_orbit",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/trajectories/circular_orbit/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-collaborative_beamforming",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/collaborative_beamforming/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-communication_aware_spacing",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/controllers/communication_aware_spacing/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-connectivity_aware_formation",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/connectivity_aware_formation/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-connectivity_preserving_formation",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/controllers/connectivity_preserving_formation/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-coverage_grid",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/trajectories/coverage_grid/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-data_driven_connectivity_controller",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/data_driven_connectivity_controller/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-distributed_flocking_controller",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/distributed_flocking_controller/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-edge_offloading_policy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/schedulers/edge_offloading_policy/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-energy_aware_trajectory",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/optimizers/energy_aware_trajectory/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-fault_aware_standby",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/recovery/fault_aware_standby/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-graph_connectivity_controller",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/graph_connectivity_controller/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-joint_trajectory_communication_optimizer",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/joint_trajectory_communication_optimizer/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-latency_aware_routing",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/routing/latency_aware_routing/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-learn_as_you_fly_placement",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/learn_as_you_fly_placement/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-manual_trajectory_replay",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/trajectories/manual_trajectory_replay/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-maximum_bottleneck_routing",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/routing/maximum_bottleneck_routing/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-mobility_resilient_spectrum_sharing",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/mobility_resilient_spectrum_sharing/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-monte_carlo_sampler",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/experiments/monte_carlo_sampler/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-radio_map_metric",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/metrics/radio_map_metric/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-researcher_chain_spacing",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/researcher_chain_spacing/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-rotary_wing_energy_optimizer",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/rotary_wing_energy_optimizer/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-safe_marl_adapter",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/controllers/safe_marl_adapter/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "netlab-algorithm-voronoi_coverage_controller",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "plugins/research/voronoi_coverage_controller/manifest.json"
+        },
+        {
+          "name": "netlab.algorithm_api",
+          "value": "2.0"
+        },
+        {
+          "name": "netlab.execution_mode",
+          "value": "isolated_python"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.0"
+    },
+    {
+      "name": "numpy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "1.26.4"
+    },
+    {
+      "name": "numpy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "numpy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "pandas",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "2.2.3"
+    },
+    {
+      "name": "pandas",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "pandas",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "plotly",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "px4_optional",
+      "type": "container",
+      "version": "px4io/px4-dev:v1.16.0"
+    },
+    {
+      "name": "pytest",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "requirements-dev.txt"
+        }
+      ],
+      "type": "library",
+      "version": "8.3.5"
+    },
+    {
+      "name": "python3-argcomplete",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "python3-colcon-common-extensions",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "python3-pip",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "python3-rosdep",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "python3-yaml",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "PyYAML",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "requirements-dev.txt"
+        }
+      ],
+      "type": "library",
+      "version": "6.0.2"
+    },
+    {
+      "name": "pyyaml",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "pyyaml",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-dev-tools",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-ackermann-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-ament-cmake",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-builtin-interfaces",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-geometry-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-nav-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-rmw-cyclonedds-cpp",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-rmw-fastrtps-cpp",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-rosbridge-suite",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-rosgraph-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-rosidl-default-generators",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-rosidl-default-runtime",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-sensor-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-std-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-tf-transformations",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-tf2-ros",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros-jazzy-vision-msgs",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "ros2",
+      "type": "container",
+      "version": "ros:jazzy-ros-base-noble"
+    },
+    {
+      "name": "rospkg",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "scipy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "1.13.1"
+    },
+    {
+      "name": "scipy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/isaac-python.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "scipy",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "sionna",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "1.2.1"
+    },
+    {
+      "name": "sionna_base",
+      "type": "container",
+      "version": "nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04"
+    },
+    {
+      "name": "tensorflow",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/sionna-requirements.txt"
+        }
+      ],
+      "type": "library",
+      "version": "2.19.*"
+    },
+    {
+      "name": "tmux",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "vim",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    },
+    {
+      "name": "wget",
+      "properties": [
+        {
+          "name": "netlab.source",
+          "value": "Docker/requirements/ros2-jazzy-apt.txt"
+        }
+      ],
+      "type": "library",
+      "version": "system-or-range"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "description": "Swarm Network-as-a-Service research platform",
+      "name": "NETLAB",
+      "type": "application",
+      "version": "9.0.0"
+    },
+    "timestamp": "2026-07-22T03:02:51.333109+00:00"
+  },
+  "serialNumber": "urn:uuid:netlab-release",
+  "specVersion": "1.5",
+  "version": 1
+}

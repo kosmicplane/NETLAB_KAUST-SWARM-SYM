@@ -1,0 +1,786 @@
+{
+  "actions": [
+    {
+      "acknowledgement": "matching revision acknowledgements",
+      "api_route": "/api/algorithm/activate",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "AlgorithmRuntime.activate",
+      "frontend_control": "algorithm-activate",
+      "id": "algorithm.activate",
+      "label": "Activate and Synchronize",
+      "module": "Algorithm Lab",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "paired-seed comparison result",
+      "api_route": "/api/algorithm/compare",
+      "automated_test": "tests/unit/test_algorithm_runtime_v9.py",
+      "backend_operation": "AlgorithmRuntime.compare",
+      "frontend_control": "algorithm-compare",
+      "id": "algorithm.compare",
+      "label": "Compare Algorithms",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "created package contract",
+      "api_route": "/api/algorithm/create",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "AlgorithmRegistry.create_project",
+      "frontend_control": "algorithm-create",
+      "id": "algorithm.create",
+      "label": "Create Algorithm Project",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/algorithm/deactivate",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "deactivate_algorithm",
+      "frontend_control": "algorithm-deactivate",
+      "id": "algorithm.deactivate",
+      "label": "Deactivate Algorithm",
+      "module": "Algorithm Lab",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "isolated invocation and shield decision",
+      "api_route": "/api/algorithm/dry-run",
+      "automated_test": "tests/unit/test_algorithm_runtime_v9.py",
+      "backend_operation": "AlgorithmRuntime.dry_run",
+      "frontend_control": "algorithm-dry",
+      "id": "algorithm.dry_run",
+      "label": "Dry Run",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "archive path and SHA-256",
+      "api_route": "/api/algorithm/export",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "AlgorithmRuntime.export_bundle",
+      "frontend_control": "algorithm-export",
+      "id": "algorithm.export",
+      "label": "Export Evidence",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "rejection and fallback evidence",
+      "api_route": "/api/algorithm/dry-run",
+      "automated_test": "tests/unit/test_algorithm_runtime_v9.py",
+      "backend_operation": "AlgorithmRuntime.dry_run_negative",
+      "frontend_control": "algorithm-negative",
+      "id": "algorithm.negative_test",
+      "label": "Invalid-Output Test",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "registry response",
+      "api_route": "/api/algorithms",
+      "automated_test": "tests/frontend/test_algorithm_lab_contract.py",
+      "backend_operation": "AlgorithmRegistry.summary",
+      "frontend_control": "algorithm-refresh",
+      "id": "algorithm.refresh",
+      "label": "Refresh Registry",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "parameter form reset",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_algorithm_lab_contract.py",
+      "backend_operation": "algorithm_lab.default_parameters",
+      "frontend_control": "algorithm-reset-params",
+      "id": "algorithm.reset_params",
+      "label": "Reset Parameters",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "source hash and validation",
+      "api_route": "/api/algorithm/source",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "compile_and_save_algorithm_source",
+      "frontend_control": "algorithm-save-source",
+      "id": "algorithm.save_source",
+      "label": "Save Source",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "typed package validation",
+      "api_route": "/api/algorithm/validate",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "AlgorithmRegistry.get",
+      "frontend_control": "algorithm-validate",
+      "id": "algorithm.validate",
+      "label": "Validate Package",
+      "module": "Algorithm Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "draft antenna registry updated",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "antenna_editor.add",
+      "frontend_control": "antenna-add",
+      "id": "antenna-add",
+      "label": "Add Antenna",
+      "module": "Antenna Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/antennas",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "save_config",
+      "frontend_control": "antenna-save",
+      "id": "antenna-save",
+      "label": "Apply Antennas",
+      "module": "Antenna Lab",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "matching revision acknowledgements",
+      "api_route": "/api/topology",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "update_topology",
+      "frontend_control": "apply-node-coordinate",
+      "id": "apply-node-coordinate",
+      "label": "Apply Node Coordinate",
+      "module": "Topology Studio",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "step acknowledgement",
+      "api_route": "/api/guided-demo",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "guided_demo.step",
+      "frontend_control": "demo-execute",
+      "id": "demo-execute",
+      "label": "Execute Selected Step",
+      "module": "Guided Demo",
+      "runtime_participants": [
+        "depends on step"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "local progress state",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "guided_demo.local_progress",
+      "frontend_control": "demo-mark",
+      "id": "demo-mark",
+      "label": "Mark Step Complete",
+      "module": "Guided Demo",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "local progress reset",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "guided_demo.local_progress",
+      "frontend_control": "demo-reset",
+      "id": "demo-reset",
+      "label": "Reset Guide",
+      "module": "Guided Demo",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "step acknowledgement",
+      "api_route": "/api/guided-demo",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "guided_demo.step",
+      "frontend_control": "demo-run-next",
+      "id": "demo-run-next",
+      "label": "Run Next Step",
+      "module": "Guided Demo",
+      "runtime_participants": [
+        "depends on step"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "local progress state",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "guided_demo.local_progress",
+      "frontend_control": "demo-skip",
+      "id": "demo-skip",
+      "label": "Skip Safe Step",
+      "module": "Guided Demo",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "packet runtime diagnosis",
+      "api_route": "/api/packet-doctor",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "packet_diagnose",
+      "frontend_control": "diag-packet",
+      "id": "diag-packet",
+      "label": "Packet Doctor",
+      "module": "Diagnostics",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "diagnostic response",
+      "api_route": "/api/diagnostics",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "system_diagnose",
+      "frontend_control": "diag-refresh",
+      "id": "diag-refresh",
+      "label": "Refresh Diagnostics",
+      "module": "Diagnostics",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "evidence export response",
+      "api_route": "/api/evidence/export",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "export_evidence",
+      "frontend_control": "evidence-download",
+      "id": "evidence-download",
+      "label": "Download Evidence",
+      "module": "Evidence",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "evidence index response",
+      "api_route": "/api/evidence",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "index_evidence",
+      "frontend_control": "evidence-refresh",
+      "id": "evidence-refresh",
+      "label": "Refresh Evidence",
+      "module": "Evidence",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "new draft created",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "duplicate_configuration",
+      "frontend_control": "experiment-duplicate",
+      "id": "experiment-duplicate",
+      "label": "Duplicate Experiment",
+      "module": "Experiment Manager",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "typed command/job acknowledgement",
+      "api_route": "/api/command",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "orchestrator.start_experiment",
+      "frontend_control": "experiment-launch",
+      "id": "experiment-launch",
+      "label": "Launch Experiment",
+      "module": "Experiment Manager",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "draft failure schedule updated",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "failure_editor.add",
+      "frontend_control": "failure-add",
+      "id": "failure-add",
+      "label": "Add Failure Event",
+      "module": "Fault & Recovery",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "healing acknowledgement",
+      "api_route": "/api/command",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "orchestrator.heal_uav",
+      "frontend_control": "failure-heal",
+      "id": "failure-heal",
+      "label": "Heal UAV",
+      "module": "Fault & Recovery",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "failure event acknowledgement",
+      "api_route": "/api/command",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "orchestrator.inject_failure",
+      "frontend_control": "failure-inject",
+      "id": "failure-inject",
+      "label": "Inject Failure",
+      "module": "Fault & Recovery",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "feasible route acknowledgement",
+      "api_route": "/api/command",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "orchestrator.recompute_topology",
+      "frontend_control": "failure-recompute",
+      "id": "failure-recompute",
+      "label": "Recompute Topology",
+      "module": "Fault & Recovery",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/failures",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "save_config",
+      "frontend_control": "failure-save",
+      "id": "failure-save",
+      "label": "Apply Failure Schedule",
+      "module": "Fault & Recovery",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "draft traffic updated",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "traffic_editor.add_flow",
+      "frontend_control": "flow-add",
+      "id": "flow-add",
+      "label": "Add Flow",
+      "module": "Traffic & Services",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/traffic",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "save_config",
+      "frontend_control": "flow-save",
+      "id": "flow-save",
+      "label": "Apply Traffic",
+      "module": "Traffic & Services",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/swarm",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "update_swarm",
+      "frontend_control": "formation-chain",
+      "id": "formation-chain",
+      "label": "Apply Chain Formation",
+      "module": "Swarm Control",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "browser download created",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "download_configuration",
+      "frontend_control": "mission-export",
+      "id": "mission-export",
+      "label": "Export Configuration",
+      "module": "Mission Designer",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "validated form update",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "parse_and_validate_import",
+      "frontend_control": "mission-import-button",
+      "id": "mission-import-button",
+      "label": "Import Configuration",
+      "module": "Mission Designer",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/config",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "save_config",
+      "frontend_control": "mission-save",
+      "id": "mission-save",
+      "label": "Save and Synchronize",
+      "module": "Mission Designer",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "validation result",
+      "api_route": "/api/config/validate",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "validate_experiment",
+      "frontend_control": "mission-validate",
+      "id": "mission-validate",
+      "label": "Validate Experiment",
+      "module": "Mission Designer",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "diagnostic response",
+      "api_route": "/api/diagnostics",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "system_diagnose",
+      "frontend_control": "overview-doctor",
+      "id": "overview-doctor",
+      "label": "Run Diagnostics",
+      "module": "Overview",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "typed command/job acknowledgement",
+      "api_route": "/api/command",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "orchestrator.start_stack",
+      "frontend_control": "overview-start",
+      "id": "overview-start",
+      "label": "Start Stack",
+      "module": "Overview",
+      "runtime_participants": [
+        "Mission Control",
+        "Sionna",
+        "ROS 2",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "model result with provenance",
+      "api_route": "/api/research/a2g",
+      "automated_test": "tests/regression_contracts/test_research_models.py",
+      "backend_operation": "probabilistic_a2g_path_loss",
+      "frontend_control": "run-a2g",
+      "id": "run-a2g",
+      "label": "Evaluate A2G",
+      "module": "Research Tools",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "calibration result with residuals",
+      "api_route": "/api/research/calibrate",
+      "automated_test": "tests/regression_contracts/test_research_models.py",
+      "backend_operation": "calibrate_log_distance",
+      "frontend_control": "run-calibration",
+      "id": "run-calibration",
+      "label": "Calibrate Link Model",
+      "module": "Research Tools",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "model result with provenance",
+      "api_route": "/api/research/ntn",
+      "automated_test": "tests/regression_contracts/test_research_models.py",
+      "backend_operation": "ntn_geometry",
+      "frontend_control": "run-ntn",
+      "id": "run-ntn",
+      "label": "Evaluate NTN",
+      "module": "Research Tools",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "model result with provenance",
+      "api_route": "/api/research/offload",
+      "automated_test": "tests/regression_contracts/test_research_models.py",
+      "backend_operation": "edge_offload",
+      "frontend_control": "run-offload",
+      "id": "run-offload",
+      "label": "Evaluate Offloading",
+      "module": "Research Tools",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "model result with provenance",
+      "api_route": "/api/research/radio-map",
+      "automated_test": "tests/regression_contracts/test_research_models.py",
+      "backend_operation": "radio_environment_map",
+      "frontend_control": "run-radio-map",
+      "id": "run-radio-map",
+      "label": "Generate Radio Map",
+      "module": "Research Tools",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "local preference acknowledgement",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "settings.persist",
+      "frontend_control": "settings-save",
+      "id": "settings-save",
+      "label": "Save Settings",
+      "module": "Settings",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "fresh configuration response",
+      "api_route": "/api/config",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "load_config",
+      "frontend_control": "swarm-refresh",
+      "id": "swarm-refresh",
+      "label": "Refresh Swarm",
+      "module": "Swarm Control",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/swarm",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "update_swarm",
+      "frontend_control": "swarm-save",
+      "id": "swarm-save",
+      "label": "Apply Swarm State",
+      "module": "Swarm Control",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "browser download created",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "parameter_sweep.export",
+      "frontend_control": "sweep-export",
+      "id": "sweep-export",
+      "label": "Export Sweep",
+      "module": "Experiment Manager",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "preview table rendered",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "parameter_sweep.preview",
+      "frontend_control": "sweep-preview",
+      "id": "sweep-preview",
+      "label": "Preview Sweep",
+      "module": "Experiment Manager",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "matching revision acknowledgements",
+      "api_route": "/api/reconcile",
+      "automated_test": "tests/unit/test_revisions.py",
+      "backend_operation": "Synchronizer.reconcile",
+      "frontend_control": "sync-reconcile",
+      "id": "sync-reconcile",
+      "label": "Reconcile",
+      "module": "Synchronization",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "desired/observed revision state",
+      "api_route": "/api/synchronization",
+      "automated_test": "tests/unit/test_revisions.py",
+      "backend_operation": "RevisionManager.status",
+      "frontend_control": "sync-refresh",
+      "id": "sync-refresh",
+      "label": "Refresh Synchronization",
+      "module": "Synchronization",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "browser download created",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "telemetry.export",
+      "frontend_control": "telemetry-export",
+      "id": "telemetry-export",
+      "label": "Export Telemetry",
+      "module": "Live Telemetry",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "source-labelled telemetry response",
+      "api_route": "/api/telemetry",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "TelemetryCollector.snapshot",
+      "frontend_control": "telemetry-refresh",
+      "id": "telemetry-refresh",
+      "label": "Refresh Telemetry",
+      "module": "Live Telemetry",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "draft graph updated",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "topology_editor.add_edge",
+      "frontend_control": "topology-add-edge",
+      "id": "topology-add-edge",
+      "label": "Add Edge",
+      "module": "Topology Studio",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "draft graph updated",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "topology_editor.delete_edge",
+      "frontend_control": "topology-delete-edge",
+      "id": "topology-delete-edge",
+      "label": "Delete Edge",
+      "module": "Topology Studio",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "matching revision acknowledgements",
+      "api_route": "/api/topology",
+      "automated_test": "tests/integration/test_mission_control_api.py",
+      "backend_operation": "update_topology",
+      "frontend_control": "topology-save",
+      "id": "topology-save",
+      "label": "Apply Topology",
+      "module": "Topology Studio",
+      "runtime_participants": [
+        "ROS 2",
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    },
+    {
+      "acknowledgement": "structural/physical/communication validation",
+      "api_route": "/api/topology/validate",
+      "automated_test": "tests/unit/test_topology.py",
+      "backend_operation": "validate_config_topology",
+      "frontend_control": "topology-validate",
+      "id": "topology-validate",
+      "label": "Validate Topology",
+      "module": "Topology Studio",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "draft world updated",
+      "api_route": "local",
+      "automated_test": "tests/frontend/test_frontend_contract.py",
+      "backend_operation": "world_editor.add_asset",
+      "frontend_control": "world-add",
+      "id": "world-add",
+      "label": "Add World Asset",
+      "module": "World Lab",
+      "runtime_participants": [],
+      "timeout_s": 10
+    },
+    {
+      "acknowledgement": "revision participant acknowledgements",
+      "api_route": "/api/world",
+      "automated_test": "tests/browser/test_mission_control_browser.py",
+      "backend_operation": "save_config",
+      "frontend_control": "world-save",
+      "id": "world-save",
+      "label": "Apply World",
+      "module": "World Lab",
+      "runtime_participants": [
+        "Sionna",
+        "Isaac Sim"
+      ],
+      "timeout_s": 30
+    }
+  ],
+  "description": "Declarative Mission Control action-to-runtime contract. Local-only draft actions are explicitly distinguished from acknowledged runtime mutations.",
+  "release": "9.0.0",
+  "schema_version": "1.0"
+}

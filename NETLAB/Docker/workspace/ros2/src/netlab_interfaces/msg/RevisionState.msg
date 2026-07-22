@@ -1,0 +1,13 @@
+std_msgs/Header header
+string revision_id
+string parent_revision_id
+string command_id
+string status
+string config_hash
+string topology_hash
+string swarm_hash
+string antenna_hash
+string world_hash
+string traffic_hash
+string failure_hash
+string scene_checksum

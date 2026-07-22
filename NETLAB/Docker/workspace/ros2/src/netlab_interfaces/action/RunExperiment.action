@@ -1,0 +1,16 @@
+string experiment_id
+string scenario_path
+uint64 seed
+bool record_evidence
+---
+bool success
+string run_id
+string final_state
+string evidence_index_path
+string error_code
+string error_message
+---
+float32 progress_pct
+string phase
+uint64 generated_packets
+uint64 delivered_packets

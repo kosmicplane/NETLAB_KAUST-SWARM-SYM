@@ -1,0 +1,2776 @@
+{
+  "components": {
+    "compose": "Docker/compose/docker-compose.yml",
+    "core": "netlab",
+    "isaac": "Docker/workspace/isaac",
+    "mission_control": "apps/mission_control",
+    "plugins": "plugins",
+    "ros2": "Docker/workspace/ros2",
+    "scenarios": "scenarios",
+    "sionna": "Docker/workspace/sionna"
+  },
+  "entrypoints": {
+    "bootstrap": "scripts/bootstrap_host.sh --non-interactive",
+    "launch": "scripts/netlab launch",
+    "packet_doctor": "scripts/netlab packet-doctor",
+    "status": "scripts/netlab status",
+    "stop": "scripts/netlab stop",
+    "sync_doctor": "scripts/netlab sync-doctor",
+    "target_acceptance": "scripts/netlab target-acceptance"
+  },
+  "file_count": 458,
+  "generated_utc": "2026-07-22T03:15:14.850241+00:00",
+  "members": [
+    {
+      "mode": "0o644",
+      "path": ".dockerignore",
+      "sha256": "a1d49f10b3059f4b45c649a52569c03b52017bb496783287c877ae6b28e3626f",
+      "size_bytes": 242
+    },
+    {
+      "mode": "0o644",
+      "path": ".editorconfig",
+      "sha256": "d79ebaa64d58e00966a3cc30d864f877c8eff1a34293a970794c5375cd553770",
+      "size_bytes": 289
+    },
+    {
+      "mode": "0o644",
+      "path": ".github/workflows/ci.yml",
+      "sha256": "aaf019b2eb7a2e7a9c5b0f9968dc8d430d0024de45287554354c7c0e604c7c35",
+      "size_bytes": 1307
+    },
+    {
+      "mode": "0o644",
+      "path": ".gitignore",
+      "sha256": "2f483245ea28fffee8a3d782c073b2b93d618c46411f3ecf4a1a4729758a7d99",
+      "size_bytes": 634
+    },
+    {
+      "mode": "0o644",
+      "path": "CHANGELOG.md",
+      "sha256": "af55dd4a84ae3e5eba760525568782fe2f192d7c3879bb6051cbdb6a4eda3298",
+      "size_bytes": 2322
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/compose/.env.example",
+      "sha256": "1d5bbedad171c70363a82c5f8f1007a95f90e7e61533678f2e12cbdd2c103772",
+      "size_bytes": 220
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/compose/Makefile",
+      "sha256": "473fefb1f6999f6e3de65dc7edf97765665a4290fed7aa098ca8b264357bf13f",
+      "size_bytes": 1536
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/compose/docker-compose.yml",
+      "sha256": "0efe5f6f6e1f1383321f1864e983c1e41d301996689f9e4a6e477baa548d8e69",
+      "size_bytes": 7166
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/compose/fastdds.xml",
+      "sha256": "271aab4191a0ef976ace3c7f92dbd6975f56ef02f75c6a4826e54ee8835cd43f",
+      "size_bytes": 578
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/docker/PX4/Dockerfile",
+      "sha256": "dee3715ce8e1d8e4ce81fa15e96a8c2ba00f0098768ee025c2dfcff3518e6562",
+      "size_bytes": 501
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/docker/isaacsim/Dockerfile",
+      "sha256": "bb27b2fa844f0fb3ffda332991d4a4815809c1b9b39fb87bf84b8cc0d40ec239",
+      "size_bytes": 1482
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/docker/isaacsim/entrypoint.sh",
+      "sha256": "400997827db72d797724fed1c10cbcd9b13356cbf99bd3102a8bf0cfc611fb97",
+      "size_bytes": 1102
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/docker/ros2/Dockerfile",
+      "sha256": "52f778008cdaa5f05cb1d1cebf8ff4a7aee833ff103290e4b804113d758a6c88",
+      "size_bytes": 844
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/docker/sionna/Dockerfile",
+      "sha256": "d094788cbbd39e08100c9b30439fc826f81401d1b1198e6962b9f9c6092af7d5",
+      "size_bytes": 815
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/requirements/isaac-python.txt",
+      "sha256": "646bd376dfb13fc9e9404efdb88ae1114500f6f03d66a0742fec6631193e6819",
+      "size_bytes": 72
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/requirements/ros2-jazzy-apt.txt",
+      "sha256": "0bf973f237c06e2739a34cc1ec3637c3e973ede4f2d078ef82e5c12809cbc4f1",
+      "size_bytes": 640
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/requirements/ros2-python.txt",
+      "sha256": "d2145bcc5092e412d7bfd5c7efd6601d47dacab2c34befd051f69791bacd5c80",
+      "size_bytes": 270
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/requirements/sionna-requirements.txt",
+      "sha256": "14a250037ca157bf016cee610e2b1929c71d2bedfbf7d456941fac0055161e8a",
+      "size_bytes": 98
+    },
+    {
+      "mode": "0o755",
+      "path": "Docker/scripts/check_brev_gpu.sh",
+      "sha256": "c7240a2ba7ccf1a34797e74fa7cbf710f621db3fe9a8e385a1611fc0c5b37c48",
+      "size_bytes": 313
+    },
+    {
+      "mode": "0o755",
+      "path": "Docker/scripts/run_isaac_headless.sh",
+      "sha256": "b71dca19caf89e626ddaaf1d737c6a5a2da5877fbfef6b234e45540f87ef6861",
+      "size_bytes": 109
+    },
+    {
+      "mode": "0o755",
+      "path": "Docker/scripts/run_isaac_sample_scene.sh",
+      "sha256": "cc74dc5e1338ae75fa78db4abc34c7e4dae43d710c0edca3d5dbf4c8b3bb1f48",
+      "size_bytes": 389
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/exts/netlab.snaas.bridge/config/extension.toml",
+      "sha256": "5d6ee10ae2be2b5dbf337242593466fa276ffc3972dfb6f9d78f0d2e8261c13e",
+      "size_bytes": 407
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/exts/netlab.snaas.bridge/netlab/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/exts/netlab.snaas.bridge/netlab/snaas/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/exts/netlab.snaas.bridge/netlab/snaas/bridge/__init__.py",
+      "sha256": "ff0dead23f95a266afe9df84fc7bdf2e5313fbbb300bedc497ba7133904268da",
+      "size_bytes": 1167
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/local_assets/drones/tu_drone.usd",
+      "sha256": "a165336e9e147e999462453ba6ac31a0c982bd288526f7c2f43ffd529566d6bc",
+      "size_bytes": 11964848
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/local_assets/raw/drones/Roof_Antena_2.usdz",
+      "sha256": "28d7ffe3c3845968f61691a92d140bddb1de733d6b6a761de32228a6c777e32f",
+      "size_bytes": 1046664
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/local_assets/raw/drones/dji4.glb",
+      "sha256": "a183ef865d8d49114a70dc8cac3b7192491f4db633902adcbbfe78104c68ac9e",
+      "size_bytes": 3687816
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/add_dynamic_weather.py",
+      "sha256": "15ba7741d86d3a96a6646b9dc44d13c0a95f97106ba108dccfcf0f2c36b5661b",
+      "size_bytes": 5213
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/add_high_friction.py",
+      "sha256": "687fdc8cc9bb3477fe0e2f923a2188231b8b4c636a618c9522cc6035b5ff806a",
+      "size_bytes": 2265
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/add_sun_and_sky.py",
+      "sha256": "619220c32e74b7350818f8b2f649a2ff1243546d53908ad745f1fdf5e6f88302",
+      "size_bytes": 1897
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/apply_custom_drone_visual.py",
+      "sha256": "35c4f91f347bdb780bf2a12f986e0334da281c1e7fc4a67899ba19047249bd00",
+      "size_bytes": 4817
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/basic_swarm_scene.py",
+      "sha256": "e91d145a9d01e7c79b3694380d23330596cfc684f2149d7d618b15070a2d4d19",
+      "size_bytes": 3682
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/convert_drone_glb_to_usd.py",
+      "sha256": "37104b2849a9f85d82ba2ff23b32cd86e873a4302295220435db808a6fe2a0aa",
+      "size_bytes": 1535
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/load_selected_world.py",
+      "sha256": "21abb8df423ebb5f853f60901a87e4285de212a9af42f5890dfeb4f42d7631e6",
+      "size_bytes": 2056
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/load_test_drone_model.py",
+      "sha256": "8a52c6578b9c75e7175fa84b5b581e1d9047689a98c2d0c52c316a5a91248b4a",
+      "size_bytes": 829
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/netlab_fix_drone_usd.py",
+      "sha256": "028770d0c766103f2c4d575e3921f58d4f5aec34e7ff308b9da90373a33103f2",
+      "size_bytes": 1287
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/netlab_snaas_bridge.py",
+      "sha256": "2311b9426c46f8e61b7b8f87d0d18f9e6946320414e25dc71e1cec4cc0aa4922",
+      "size_bytes": 11279
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/snaas_autoload.py",
+      "sha256": "89ef770a7b9c12d0c1c3bd78cb3f7b4b78ad1fb4bfd3be89d77c564ca91dff60",
+      "size_bytes": 3735
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/snaas_relay_scene.py",
+      "sha256": "93357512728877b3933059e272d3967f6bfa5fb980f510fcea3dd5d5e77a897a",
+      "size_bytes": 70901
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/snaas_visual_controls.py",
+      "sha256": "cdd915fe6c75731cc7be3d84c9dab1d96dfbb01c143b40ac600b6ffd0fb99604",
+      "size_bytes": 4441
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/isaac/scripts/two_drone_hover_live.py",
+      "sha256": "4dec0770e74728cb65c387e2dc96a1dbc881b96d4acc8b436d12045e9ab15a39",
+      "size_bytes": 12136
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/plugins/example_orbit.py",
+      "sha256": "91fd816c72d464d515b1b040210fb79bfe02886aeabed90bdf4ff84ad0b034d8",
+      "size_bytes": 552
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/results/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o755",
+      "path": "Docker/workspace/ros2/netlab_revision_agent.py",
+      "sha256": "fc54ad643a25c7d3c8b5e85899e2cc1ed70860b2927d73c52928d796ebf842b5",
+      "size_bytes": 6166
+    },
+    {
+      "mode": "0o755",
+      "path": "Docker/workspace/ros2/netlab_ros_env.sh",
+      "sha256": "2addd1c1b11aa2fc65bb0d4453d2800132b91f017f9c9b271d335b8b6ba25fcd",
+      "size_bytes": 1206
+    },
+    {
+      "mode": "0o755",
+      "path": "Docker/workspace/ros2/runtime_entrypoint.sh",
+      "sha256": "be2a698d116fa24d536ee78942fcc31b87edb613ca46e9cc816cab59fb85871f",
+      "size_bytes": 4714
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/CMakeLists.txt",
+      "sha256": "7084d47977dd4fc6be38b7b5ef3a16699658c70e5fcf4fafdbf1aad3089e5284",
+      "size_bytes": 868
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/action/ExecuteTrajectory.action",
+      "sha256": "3f4b5c8b9381469c36728b92011b93e40ff80558580de6c8b1cdcb69b74f6a42",
+      "size_bytes": 259
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/action/RunAlgorithm.action",
+      "sha256": "c2088110fd05f9067c409185c26d5e7668eddbe2cb9299ae5c70cd021b422b5c",
+      "size_bytes": 345
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/action/RunExperiment.action",
+      "sha256": "8355dfffe78340c772b3effcd96e335b210d90e8f84e74961af5e9e6aa9f6702",
+      "size_bytes": 279
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/AlgorithmAction.msg",
+      "sha256": "0a0abbdf52d4477306c44d55efa80d596d31161e32d31fefbd12eaef8a952901",
+      "size_bytes": 410
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/AlgorithmObservation.msg",
+      "sha256": "f88c6c8a11b20a4214dff595fb6a8c81b61c7b1346b831ee2bad7e1ab857b9db",
+      "size_bytes": 331
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/AlgorithmStatus.msg",
+      "sha256": "c37822d75a52a2178109617a0df970387a8dff8bbfba7c890c9160824050df6f",
+      "size_bytes": 331
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/CommandState.msg",
+      "sha256": "541bd6e53343ddb3966c2b4ed83b7394b6c4ee09074ca5f4a806344ce50ca399",
+      "size_bytes": 212
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/EntityState.msg",
+      "sha256": "592d117ab498aad827cd82b2ba0baf7e4da410d3138236a0a44090390f637ad6",
+      "size_bytes": 188
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/LinkState.msg",
+      "sha256": "343340d4bef2f3065e2aa4be93b0ee6fcb479fc41476137e40ebfc8d3e933e4a",
+      "size_bytes": 300
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/PacketState.msg",
+      "sha256": "b3bc283fb08a94faea825f98b4631f12c265a08eec9395f07dd7e2e9de6e9fbe",
+      "size_bytes": 272
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/RevisionState.msg",
+      "sha256": "2b7387523a90ca88986e7bede9e065a410543a1f9e32ed36e926bdd3857eca5c",
+      "size_bytes": 258
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/msg/ServiceHealth.msg",
+      "sha256": "3f6d919bfb85edcfd8bbb3482523945da7c3ae7d9133c32c15cd17a079884bc1",
+      "size_bytes": 177
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/package.xml",
+      "sha256": "d7b120a7dd2ad2c5435a3e40dc83aa2015d3675d750ac5d6f4bea65ab7976af2",
+      "size_bytes": 698
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/srv/ApplyRevision.srv",
+      "sha256": "4680127f8ea2a534864719b4da22462e817e2ba13277fb3807f3272d129cba2c",
+      "size_bytes": 206
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/srv/EvaluateLink.srv",
+      "sha256": "eb8c8cb2337872d51a5ed76cc558403cc6a47c11030173a21f92f87e15e64384",
+      "size_bytes": 388
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/srv/InjectFailure.srv",
+      "sha256": "185810f39c337f787fba5229b8493ae7b3d63fdfc6ddfa134e6542d2cad19fee",
+      "size_bytes": 187
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_interfaces/srv/ValidateAlgorithm.srv",
+      "sha256": "fe2c3d0f1d5277499030f2628642cf0fa8af49da4c86c2a7a0e750bb27fafbe2",
+      "size_bytes": 141
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/__init__.py",
+      "sha256": "c51cf9e2d20251532e0295c41476074819a4fe76bd527940da2a6969b98693c3",
+      "size_bytes": 56
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/algorithm_bridge.py",
+      "sha256": "9fd5f40a4505f9998a48d38895585a428f988e54e616f05e7b163cba75dffc49",
+      "size_bytes": 11062
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/snaas_dashboard.py",
+      "sha256": "2e82aca18799491795b6a01d9c4e6716250485b9d4b690dd384c7b670e1cab73",
+      "size_bytes": 15214
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/snaas_pretty_echo.py",
+      "sha256": "30d1f6aabe7f2ad7c4d91aa410f451118c66358fca4f5bb30a86e21b467394cd",
+      "size_bytes": 5204
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/snaas_relay_chain.py",
+      "sha256": "1e94dc8071fadb104e3de0f0157d3101eb022686a9c642cadad5b43a2e2e6a37",
+      "size_bytes": 126620
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/swarm_bridge.py",
+      "sha256": "55858313475447888f4e36ba9906177f8e4fab6084f69eee6102a80bc030f950",
+      "size_bytes": 6877
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/netlab_swarm_demo/swarm_monitor.py",
+      "sha256": "73738f48f95e5ac163b660434dcf951a7c2001c2580c82e9d12f0fb02f0d8f26",
+      "size_bytes": 1859
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/package.xml",
+      "sha256": "25fb2b8c4e5fdff8e51ebe89c7fd66b3170732149fa1c69a0fe0fd848803a7e0",
+      "size_bytes": 732
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/resource/netlab_swarm_demo",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/setup.cfg",
+      "sha256": "e976da593ef0859b645f5f9f5b7096aa64e2be7a15770ab7f10e7de889c45133",
+      "size_bytes": 103
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/ros2/src/netlab_swarm_demo/setup.py",
+      "sha256": "89a491903b41382f025b22852816aba2e5575cbd088ae19e159ba9a091e52bd7",
+      "size_bytes": 1105
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/shared/fastdds.xml",
+      "sha256": "271aab4191a0ef976ace3c7f92dbd6975f56ef02f75c6a4826e54ee8835cd43f",
+      "size_bytes": 578
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/shared/snaas_relay_config.json",
+      "sha256": "71e1cb5ba7f36df9e7e0bd7b7ebfb135ef0b7c9fc84bb9d2b8cbbc81e63721ff",
+      "size_bytes": 11594
+    },
+    {
+      "mode": "0o644",
+      "path": "Docker/workspace/sionna/realtime_link_server.py",
+      "sha256": "82282767afaf116a91a4f7dc909686cb9d8e6dac1ee724b1bffc10a7f3ffaf74",
+      "size_bytes": 19980
+    },
+    {
+      "mode": "0o644",
+      "path": "LICENSE",
+      "sha256": "263dfd4b2025fd6d5601f05d0563e969947fcdb511df605e0089bf8410b25e66",
+      "size_bytes": 1082
+    },
+    {
+      "mode": "0o644",
+      "path": "README.md",
+      "sha256": "38a0b5184a8230fffbd37ebf723549754607415936489f32c49498090a9af7e7",
+      "size_bytes": 9196
+    },
+    {
+      "mode": "0o644",
+      "path": "VALIDATION.md",
+      "sha256": "1d0d8274053965ae7a251ed61c12d6e5bba45c294e6223749965c7bccdecb5fa",
+      "size_bytes": 2298
+    },
+    {
+      "mode": "0o644",
+      "path": "VERSION",
+      "sha256": "cdecb300baad839a6f62791229f551a4fa33f3cbdca08e378dc976466354e778",
+      "size_bytes": 6
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/action_registry.json",
+      "sha256": "80903d89693beeb721cabeb82c9f622e854700de68b700e3ffa346b0d10d564c",
+      "size_bytes": 26540
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/backend/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/backend/server.py",
+      "sha256": "3b58a1e457cb883876430352de42618d9f0e85c21eb5a7a49587432a1e1f140f",
+      "size_bytes": 73680
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/bootstrap_guard.js",
+      "sha256": "ae34e981f55e1ffd507b98d04f4ecf3f570f0ae746789647d3065acaf0fcfe49",
+      "size_bytes": 2090
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/index.html",
+      "sha256": "33f14f18c0937e4793e29e5e41758feda80ad91a4b30ab869b60368c86b0582c",
+      "size_bytes": 2788
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/algorithm_lab.js",
+      "sha256": "38dbc8b4f92f60e71835695200abbfa1a0fbeebc21bc7a3cd324aa74ed701b93",
+      "size_bytes": 22552
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/antenna_lab.js",
+      "sha256": "78d17124830f1e1b0100fefbb621d9b4336770be1f3612f046b2ee7ad1eab962",
+      "size_bytes": 9995
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/api.js",
+      "sha256": "4f7df3f309f90b60e66984d162a522b4c775b9834dd4bb45237c576010f144be",
+      "size_bytes": 5912
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/app.js",
+      "sha256": "ed1b1e56b6f6b41c8235c6179734306166318cd9be92136f4461284ebe42e247",
+      "size_bytes": 10929
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/components.js",
+      "sha256": "ad1f35938aaf7041a56fb6eadb9bf189d28c72afd171925a2a44dbf079ffd6a3",
+      "size_bytes": 14952
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/diagnostics.js",
+      "sha256": "3ed85a0332b89bf64c5c06286b278d1166a7291f65507f8ac8675a9b7b87e923",
+      "size_bytes": 4834
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/evidence.js",
+      "sha256": "551a1ddf857b089907fc10e843f70e0d6e342dbf9afe4c54cc2ff64a7967866c",
+      "size_bytes": 3026
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/experiment_manager.js",
+      "sha256": "cf11692cabb8d3d097f345f8d20a7c8d33fb2e175bb4f5ed5e73b7837908f48f",
+      "size_bytes": 7893
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/fault_recovery.js",
+      "sha256": "ce4a490ed9fea331d9eee06d0e294f97a9d9f0f1f5198e81f19a648caa57b689",
+      "size_bytes": 6726
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/guided_demo.js",
+      "sha256": "d4fd394ec5710ebeccb1768251655d92c35a74e0e848de6e28593c3ce429ec78",
+      "size_bytes": 7505
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/live_telemetry.js",
+      "sha256": "212fdf6c7c93e372292bb4d51a737ada1d276f0b34af9b92f3587978c6113e65",
+      "size_bytes": 7537
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/mission_designer.js",
+      "sha256": "96a9b289b1b9d40c4266f69155262b3f4a3d22363f7bebe1f69ef0e3c21a5342",
+      "size_bytes": 27029
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/overview.js",
+      "sha256": "7a69d03768d226098e73c4f95b2e0d8f5e0885aa91287fc58e956b808f0f270a",
+      "size_bytes": 9693
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/research_tools.js",
+      "sha256": "abc01de4c7eb1747f71fa508370b35e1fb81280c57820902d2d4d281c785a683",
+      "size_bytes": 4188
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/settings.js",
+      "sha256": "23aebed846d92c51376c11dfd6b85da22a05e56456f4d7cdec77a63b3ea870f4",
+      "size_bytes": 2672
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/state.js",
+      "sha256": "0f9661f2212eee5da886f324720762b7265e19a6c1ec80acd27ae8e28ec8716c",
+      "size_bytes": 1016
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/storage.js",
+      "sha256": "7d1449fc47775a0bc79efa9a70b3fb488a997f5b7af4a4afae1463cc7f13db75",
+      "size_bytes": 1050
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/swarm_control.js",
+      "sha256": "558e586a33c715a31c87f350842d49b68bd27b436c1f8a5adfb035b1f968f58c",
+      "size_bytes": 7587
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/synchronization.js",
+      "sha256": "00c139f0d5251e1013aacfce20e1978305010bdb25b5214c92e65f8b07d617fc",
+      "size_bytes": 2951
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/topology_studio.js",
+      "sha256": "7020096d821451bdfc75ebcc8b2c770376cb76969640e7abe01773d0fe6fae24",
+      "size_bytes": 14296
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/traffic_services.js",
+      "sha256": "0aee9421898a700739a4ee95cfbc56990f0c2c44a55d835f3ae37e8bdb12ad67",
+      "size_bytes": 5207
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/modules/world_lab.js",
+      "sha256": "34d1caf87ac836913af9b573f7b2d7af5922c0eda3fe9b359a294704fc17b4ee",
+      "size_bytes": 9437
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/package.json",
+      "sha256": "4f99c90e078fff81d878635dd5376df215ba52bbd4e78236fac7030f24c3dc31",
+      "size_bytes": 109
+    },
+    {
+      "mode": "0o644",
+      "path": "apps/mission_control/frontend/styles.css",
+      "sha256": "1390af490e55c6a83bf92a6ee1138406d0d0ceb3c6e09cd41d2f29b083cad79b",
+      "size_bytes": 17689
+    },
+    {
+      "mode": "0o644",
+      "path": "config/experiments/default.json",
+      "sha256": "71e1cb5ba7f36df9e7e0bd7b7ebfb135ef0b7c9fc84bb9d2b8cbbc81e63721ff",
+      "size_bytes": 11594
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/data_model.md",
+      "sha256": "dc94e1cca5eaccec9c3f62a46fe43c929ac4e8682cd1e47e2e0a553cc21ca9f3",
+      "size_bytes": 581
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/0001-authoritative-revision-control.md",
+      "sha256": "db61abd5520643c3db31b8a0e90a91cdea146728d005d05d2778f7aa9444b25c",
+      "size_bytes": 426
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/0002-shared-state-atomic-io.md",
+      "sha256": "0da47b06d401e05b450acaaf853e8f07b6d33dfe2935f723f41cec134301d093",
+      "size_bytes": 243
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-001-authoritative-state.md",
+      "sha256": "3ea27c81331f89e69b938e43ea05ea754343017054a2a942995fe85ccca186b2",
+      "size_bytes": 1238
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-002-feasibility-gate.md",
+      "sha256": "d407334647635722b39bd1adaccd0d973c72642b9a4e0c1e8fd22883c64dceaf",
+      "size_bytes": 799
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-003-compose-orchestration.md",
+      "sha256": "f4aafcfef70d41559e7650057ff238354600006eb1483d24235c881003a3801a",
+      "size_bytes": 924
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-004-dynamic-container-resolution.md",
+      "sha256": "4af9b259e531c211b0865b0e26cb6816334dc6f3cfb27284af983540b9f7be3b",
+      "size_bytes": 522
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-005-isaac-heartbeat.md",
+      "sha256": "8f8b7801ae5caed04ca17a6c01345fe25a3d43cdbfb98710f55047611d6dacf1",
+      "size_bytes": 693
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-006-brownfield-compatibility.md",
+      "sha256": "bdee4d5841e572197e89f974c5d170c1e30378b3b78694d67069c4bebcf56c27",
+      "size_bytes": 913
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-007-transactional-runtime-synchronization.md",
+      "sha256": "22a44447c6e9f8fb184400b53149bb8c010d6c0090cb05b2295d77e7aa2d2fe9",
+      "size_bytes": 1437
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-008-permission-safe-atomic-shared-state.md",
+      "sha256": "924c738da246638e3d891a821872d3ace555ff04b3ca846e45946e132e372655",
+      "size_bytes": 1065
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-009-bootstrap-and-single-orchestrator.md",
+      "sha256": "75d2c42904f0839497a905bc420a7eaa88c937fa1fc05668d27fb8ba7d2b92f7",
+      "size_bytes": 875
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/decision_records/ADR-010-preview-live-and-operational-separation.md",
+      "sha256": "fcd9e10c628457bffef4ad8fe6304dd3d583c170bc69466e8804bc0557a04b0e",
+      "size_bytes": 713
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/ros_interfaces.md",
+      "sha256": "03b42168c0fd4a25daad2d253763b4222adcb7df3dd6809c05add688953b64ec",
+      "size_bytes": 1647
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/runtime_sequence.md",
+      "sha256": "77ebb58490147fff266ee37d8cdfc98cccfc9ce39f3e686a0b322e85689b8e33",
+      "size_bytes": 697
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/synchronization_protocol.md",
+      "sha256": "4c024cc496633c61c3b0188e38ab39808575aa9d32c53d76e566fc308fb634cd",
+      "size_bytes": 912
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/architecture/system_architecture.md",
+      "sha256": "f3c70f46c1c01bedfdc5044609dfb3e0342e918ed0026a0003df4db14a1d987a",
+      "size_bytes": 1026
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/developer/algorithm_sdk.md",
+      "sha256": "7a09c68b5e08835685d531905153d083663d254d347368285c6452624418ef4d",
+      "size_bytes": 5948
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/developer/api_reference.md",
+      "sha256": "5c61270cf64f8275bd960a9ecab5f9271d35d190d6256cf98f6edfb722dff7fb",
+      "size_bytes": 446
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/developer/developer_guide.md",
+      "sha256": "c8f95f90abece200d706edf0a8caf50e588432f75f218f8a1bf300e5525e9310",
+      "size_bytes": 343
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/developer/plugin_sdk.md",
+      "sha256": "2da1424d5436a9e970e675c0764a4d1f953d9067095fb64f851c114cdfae2c67",
+      "size_bytes": 765
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/operator/installation.md",
+      "sha256": "e1da044074a45dc8b1c85a07582b1a318d3c9cad432211bdaacfbea313389026",
+      "size_bytes": 532
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/operator/operator_guide.md",
+      "sha256": "165b54757a58fbe5f07f309e60bff2c30e5af1a8c3f5d1f2004d6113ada3caba",
+      "size_bytes": 1457
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/operator/rollback.md",
+      "sha256": "de5ad7c6338e29a892de2c4fbea6b480c0b8c5e648a53d4211009f1a03089c17",
+      "size_bytes": 2657
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/operator/support_bundle.md",
+      "sha256": "45b2b0b7195daf0be27cf729f05c2fd7de47cbdee1d85e67966a5856d06eb40e",
+      "size_bytes": 329
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/operator/troubleshooting.md",
+      "sha256": "ca7f56bef512d15a01b648747414e555338f3cedbb4e0baf2076c2498b0dcc9f",
+      "size_bytes": 574
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/reference/configuration_schema.md",
+      "sha256": "2f8823235dd50062ab2c95a41e74f17de61df88695e7c8b3483f0045e091ecdd",
+      "size_bytes": 403
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/reference/error_catalog.md",
+      "sha256": "ea0947d24ca79eec42dc662f9284e4d44ff3972281414248633f18cfd757a09e",
+      "size_bytes": 1768
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/reference/metrics_catalog.md",
+      "sha256": "81a5a525563f7952819e3f91a2d70bc5f9be2c4c4065a34fda17e8a947d43e0d",
+      "size_bytes": 732
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/algorithm_benchmark_protocol.md",
+      "sha256": "3a2539bba32662ee7bd1f38b2a67f19b91ccbe081a16b93000597e1c0be6e55f",
+      "size_bytes": 2221
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/algorithm_source_matrix.csv",
+      "sha256": "55680efe9a368b098926a6b1a1b71974a8f5d44e18fe66dd33374b1d64e3351a",
+      "size_bytes": 13581
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/known_limitations.md",
+      "sha256": "9bfb0c6761838ed62fcbc8d412fe444a82ec6ceae309ce447a774d12217e2ba5",
+      "size_bytes": 472
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/literature_review.md",
+      "sha256": "b0c2d54f9b824ac24ca129c424a16769860a4fd06efdd41f88e1c3e349237630",
+      "size_bytes": 8128
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/mathematical_model.md",
+      "sha256": "e9f50fd40095f9e082c4eef71bbe46b25c0f629fed4e24a0445b6d1b4b7f6a46",
+      "size_bytes": 928
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/model_credibility.md",
+      "sha256": "a91bc29c549623f78eea34b127d5c4fcb17cf3ea03a0e9cdacf64ca926366d56",
+      "size_bytes": 473
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/model_source_matrix.csv",
+      "sha256": "8d38371c6680404a8807f3a32c58a59c9080ac677fb65b91b04105198aba2a8a",
+      "size_bytes": 3592
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/research_playbook.md",
+      "sha256": "aff92d257bbe288eeb6e69095bbd8739fd107efc4c4c1994b16116b6d0b2da5c",
+      "size_bytes": 5840
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/research/standards_traceability.md",
+      "sha256": "df94f86a444325a16cfa02ab572714dc6890684ce64bf50d3d621fe0c2a9a556",
+      "size_bytes": 2146
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/__init__.py",
+      "sha256": "36c1ad0f362f8d0b3fb1b7ba881a0d8617a60b7b0f485742f2ba6457b50e2542",
+      "size_bytes": 210
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/acceptance.py",
+      "sha256": "c109e86494a9ce28fe3fea8fd06722724afcaf7b1d3cba817760a6f9995a4ec1",
+      "size_bytes": 4556
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/algorithm_baselines.py",
+      "sha256": "8a61425629c80d5e3a8ef6af87bff1568302622e74b1e47768bcb09612ee554c",
+      "size_bytes": 25340
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/algorithm_contracts.py",
+      "sha256": "ded3629efc23597b4412f9180ac80aade066f3c940ba3fee03bddb186f535b4c",
+      "size_bytes": 17164
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/algorithm_runtime.py",
+      "sha256": "4e62c490f907caa582dc5ba787ce7f9263b76c61d2bcf305f8fc825fab90d464",
+      "size_bytes": 27641
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/algorithm_worker.py",
+      "sha256": "842f7b45c3da83b52fed7c67578241276f3e671bbafc71766316f0c0cdb9411a",
+      "size_bytes": 4143
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/bootstrap.py",
+      "sha256": "54dbb5501c25a8e1b5adf0181cdf732db3ff37bc3afa755fa9f3e54a6c65327d",
+      "size_bytes": 22344
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/cli.py",
+      "sha256": "87938d0e3676645ccbb6663330b8b9b35776c0af8140792eb32c2804822a3a34",
+      "size_bytes": 11118
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/clock.py",
+      "sha256": "0b1910c576eccc3cc7c2c7fc83d1f6bd2a280628058390821cb7f8e1ae346961",
+      "size_bytes": 1206
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/config.py",
+      "sha256": "9fbbcd8571f1c7b8658b469dd4b99864ed6e4cddd25bb50f3a946a72c3bc9123",
+      "size_bytes": 42319
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/configuration.py",
+      "sha256": "1cccf63d064cd6923ef1d2ea702e1c3aca83760c1438e527c10c30d5cf8ea658",
+      "size_bytes": 4151
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/contracts.py",
+      "sha256": "d6b84b867cf2336d0a8f489d7cd789e3e142b7dd9c28f2259dacbe66ad190f62",
+      "size_bytes": 4669
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/diagnostics.py",
+      "sha256": "f0e8df7e2393338097dd93ac42d900ab4914621d630e3230761bf9f477c3e9a1",
+      "size_bytes": 18114
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/docker.py",
+      "sha256": "05626dfabdd0bb92c7eeada793838b9f38f118a59df13b10684c43d604699b29",
+      "size_bytes": 11197
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/energy.py",
+      "sha256": "08898e4db2190b21f751795668bc943e3c06a460ef551b321f417fed010d9e24",
+      "size_bytes": 1341
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/errors.py",
+      "sha256": "bee2ea3e5aacf775d619bb4762efc1ff8428d76e2ba58da0d76ec638a6a8f030",
+      "size_bytes": 981
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/evidence.py",
+      "sha256": "19aafbfe9f656cfd5ac88986787e251424eb9724bc20f80fe029b21ca34189f3",
+      "size_bytes": 3131
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/experiment.py",
+      "sha256": "0a8548504356dac60a84f664713c7b47c4c85ce5aca4083640026d84bd9421f1",
+      "size_bytes": 2564
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/hashing.py",
+      "sha256": "8e07163c75d1f7e06e5c5b4aa6c389a5c4f4118cebfbf482b80faf7c6fcce1ef",
+      "size_bytes": 1300
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/interoperability.py",
+      "sha256": "0c7eba302adc993e46176231234f4af66a1c8d97f79cc49e85613d81e913b328",
+      "size_bytes": 1120
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/io.py",
+      "sha256": "b26b642ea109dc2561037c87bcad0deeaa2b126d424dbe8b137233a2f9b7e00a",
+      "size_bytes": 7781
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/link.py",
+      "sha256": "fbe1069163ce89a0a82a4b239143ef24987bd5b821634e53892bb833660b399c",
+      "size_bytes": 20116
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/marl.py",
+      "sha256": "7651fb1bee3c579df18e9b5a869b6033374800ec301c987770aae3df2bc2b0ee",
+      "size_bytes": 9929
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/metrics.py",
+      "sha256": "6b00bd5a33304b0ebb26455ce3ede5da801d9f24efe1a4f59ec135ba085068bb",
+      "size_bytes": 1162
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/models.py",
+      "sha256": "3a2a781b8f3b85cff4d5c7cd88fa1a411b92061b1c2ba87c1053c9ff5469d899",
+      "size_bytes": 9827
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/orchestrator.py",
+      "sha256": "ef2f001ad540447736fa986117cef2988dadd8aaaf3a198799625f206754bf23",
+      "size_bytes": 29548
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/packet.py",
+      "sha256": "304a5ebc1e02b06389a943bc548c604700111be90fca8ff7c6e36f20228db40f",
+      "size_bytes": 10463
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/plugin_worker.py",
+      "sha256": "2064ab0e6b385794ef4ddf7d9ff9fecd81737391979d10eb077bf378f44ed47d",
+      "size_bytes": 3473
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/plugins.py",
+      "sha256": "4e274f1c6050a39c1b2904d0982001be97fb079f9c8aababc1aa1bdb5f521a60",
+      "size_bytes": 10039
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/readiness.py",
+      "sha256": "4c0b8bf5161325de3ca5f35e2571d3946bba9db8a20e51e4cc9d8e85998e68cb",
+      "size_bytes": 1903
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/research_tools.py",
+      "sha256": "4c3aafef24713983d4684fae6afb1038f3d2592826f9c23002e769051ef33f82",
+      "size_bytes": 6593
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/revisions.py",
+      "sha256": "aa030b53f96d9918d7108d487a8b3c7487dbd33860836e51c4ff15d41f430522",
+      "size_bytes": 16299
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/runtime.py",
+      "sha256": "eebc168dc17e013160ad49259c0cde707ac187969f2fe21c2c51336fd5b5c40d",
+      "size_bytes": 14191
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/safety_shield.py",
+      "sha256": "2d89d6fb34904691819224f67949c4ac8549a8f94a02ec8726c15cca10b7aa0f",
+      "size_bytes": 17846
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/security.py",
+      "sha256": "bdd783938cc893e25665fcd8d22d6645c105e12f20a2c09e789c1d3bb509a875",
+      "size_bytes": 1927
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/state.py",
+      "sha256": "5a67f85afc1a744891d10f514f04be35729d03bdb23e2152eb957c7c31aab986",
+      "size_bytes": 11164
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/support.py",
+      "sha256": "03a44a96687c676bb8542d3e4dc3879251972d966258e5cd2cee18c806ac9ef7",
+      "size_bytes": 5482
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/synchronization.py",
+      "sha256": "41aadc64ba5a11133da8e917575869a95e66dc456753124e5898f22cccd1bbe4",
+      "size_bytes": 13626
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/telemetry.py",
+      "sha256": "faa87ed1a45a4bb4ade8299f62ec50ceacb7a052a4560344bc5a7890f20ffe98",
+      "size_bytes": 11365
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/topology.py",
+      "sha256": "bcbc38ca543a90ffeb5635a763d0b23a82108e8e6cdcd1a7405f1e555d35a02b",
+      "size_bytes": 35908
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/topology_metrics.py",
+      "sha256": "578d6e2927a1a06a3255402ea598185e482b1c28c66981e3d87ccb3e05c97632",
+      "size_bytes": 2268
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/traffic.py",
+      "sha256": "9bcee0e32205cdf311dfc241109f9685fe16c8c97ce1b82302c8da974aeee7f3",
+      "size_bytes": 1732
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/units.py",
+      "sha256": "1982dafeba22a2044f77f525ff2867286de8f23169243851f598f4ced55b6661",
+      "size_bytes": 1704
+    },
+    {
+      "mode": "0o644",
+      "path": "netlab/version.py",
+      "sha256": "3855c441b318e4ce6e2f61a85b63363c8da4442efbb772f596a93d12fbd76005",
+      "size_bytes": 135
+    },
+    {
+      "mode": "0o644",
+      "path": "openapi/netlab-openapi.yaml",
+      "sha256": "bb7f7311cd953070aa6d69db13c34a6e1a979e4f398651eec4cdc6912f2e57da",
+      "size_bytes": 2286
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/antennas/antenna_orientation_optimizer/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/antennas/antenna_orientation_optimizer/manifest.json",
+      "sha256": "c3199bc746116bafd3244e3e25efa8486d152ef5f2cf10c4f8742217c101be33",
+      "size_bytes": 1372
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/antennas/antenna_orientation_optimizer/plugin.py",
+      "sha256": "84801b234788f2120bc5a0fde1f73a9fada8dd4457d015ac6baf632bd3623597",
+      "size_bytes": 1211
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/antenna_orientation_optimizer.py",
+      "sha256": "d9ca1f2f97e1459968611e82782519038b366b01701c1e3b3829c0ed3fc53843",
+      "size_bytes": 1577
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/circular_orbit.py",
+      "sha256": "c53cffbb4142d3453aab96165122c5f55886988ab91e7b949587d757f687fa4d",
+      "size_bytes": 1488
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/communication_aware_spacing/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/communication_aware_spacing/manifest.json",
+      "sha256": "d44a21fe1da443ac970db0d5a70a5aa4d4367fa5a7ab296ed5978a09b41bcf7b",
+      "size_bytes": 1364
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/communication_aware_spacing/plugin.py",
+      "sha256": "8b5e049ac4521ef419eb169e7e2b84c8c95d43b630dfdc29a82b96eec23cba6a",
+      "size_bytes": 1210
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/communication_aware_spacing.py",
+      "sha256": "86f4d41524ccbdb6571b648493b018590340d25ad8687c05ea296c383b7e2623",
+      "size_bytes": 3759
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/connectivity_preserving_formation/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/connectivity_preserving_formation/manifest.json",
+      "sha256": "ab9ae7c06730781740e435859fc79ff3aabba993f84eda7a2d3d0c89c04b05a1",
+      "size_bytes": 1386
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/connectivity_preserving_formation/plugin.py",
+      "sha256": "90a80923d51be9696aefad4860451f408e8b4f1dbc7bf0191930249f6ef44072",
+      "size_bytes": 1220
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/connectivity_preserving_formation.py",
+      "sha256": "40292f7647d3620facc92cd7b077016d9a649148dddf6ed4ffdf10ec00b338f1",
+      "size_bytes": 2197
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/coverage_grid.py",
+      "sha256": "10aee74c703f6993aba4d432579b8c88b0ddd2161e61e2a6cd59406952e158c9",
+      "size_bytes": 1591
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/energy_aware_trajectory.py",
+      "sha256": "20760d414eec0a354dd9b3b4b91c349cf2754b28f9081255b046347676898152",
+      "size_bytes": 1950
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/fault_aware_standby.py",
+      "sha256": "17eab7f8792c23be2015965d77777c7c939b3a44c66e8625563aa1c0725eedd3",
+      "size_bytes": 1457
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/latency_aware_routing.py",
+      "sha256": "63c171e1f5a623d9d9946ca9e3440f9dd2be3a575e1ac73f98c550700f992808",
+      "size_bytes": 2107
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/maximum_bottleneck_routing.py",
+      "sha256": "71b4efebfc2d54b6fd3fd9fa37521a24f8a643162489c0368432f8f5d1d12357",
+      "size_bytes": 2351
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/monte_carlo_sampler.py",
+      "sha256": "e7edc8fe32e83493c220c202fed2f7c8c279246769860397670323da41d09be7",
+      "size_bytes": 1745
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/safe_marl_adapter/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/safe_marl_adapter/manifest.json",
+      "sha256": "6a5aa768d318b43e4c384af95fa37a180e212acfaca23f87cec2df8a74933918",
+      "size_bytes": 1346
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/controllers/safe_marl_adapter/plugin.py",
+      "sha256": "f46ad9e61fcd8b81ad2c483ddfe2c0b7e4ad610c45196a0006f473fa74c59276",
+      "size_bytes": 1212
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/experiments/monte_carlo_sampler/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/experiments/monte_carlo_sampler/manifest.json",
+      "sha256": "ca419250f04b190bac1d66158dec52fba173170b85bedaebd6e0b2b633056889",
+      "size_bytes": 1336
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/experiments/monte_carlo_sampler/plugin.py",
+      "sha256": "1546230ee1ca3eaa235e2f1d054ad42e01a208f94b17932943a34585bfb11cd3",
+      "size_bytes": 1199
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/metrics/radio_map_metric/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/metrics/radio_map_metric/manifest.json",
+      "sha256": "7beca8e27a807432b2bfbcf91082547012b8c29272fafb1ba876f4bad33490cf",
+      "size_bytes": 1315
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/metrics/radio_map_metric/plugin.py",
+      "sha256": "25b08786d36453d2cc834594ea14df0c566e1eb619ffd50db4d07a430f2ad313",
+      "size_bytes": 1187
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/optimizers/energy_aware_trajectory/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/optimizers/energy_aware_trajectory/manifest.json",
+      "sha256": "fc8f10bdbece60a6ca727ea89cadf111365d383d0f6877ab0b4e6d8823b5c471",
+      "size_bytes": 1356
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/optimizers/energy_aware_trajectory/plugin.py",
+      "sha256": "6658f4b9bdce0be2b3986b22d1f61935be30519e8619bf0da79400e6912c0f5f",
+      "size_bytes": 1211
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/recovery/fault_aware_standby/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/recovery/fault_aware_standby/manifest.json",
+      "sha256": "d8709a0a4b8823e55038c0b1801c4f70c14477434bdec2bcac1f2cc01a0e52e6",
+      "size_bytes": 1341
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/recovery/fault_aware_standby/plugin.py",
+      "sha256": "efabece95472f5ce75e73621fef0a36a8aac43eedc8e2825654dbaa18e60de4b",
+      "size_bytes": 1198
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/aoi_aware_scheduler/algorithm.py",
+      "sha256": "63d5ab2b9256403177206edc9526698f705819e74a0c09f3080e0f3f99e37871",
+      "size_bytes": 1113
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/aoi_aware_scheduler/manifest.json",
+      "sha256": "70861601b37e07f093652d66889026703989e0694053c813cbd60804aa811947",
+      "size_bytes": 2614
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/aoi_aware_scheduler/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/cbf_safety_filter/algorithm.py",
+      "sha256": "f7d552c50ae37b0e00fc18ca14b997e1e6805a676a7a5b8f4726e60f7a9089fd",
+      "size_bytes": 1099
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/cbf_safety_filter/manifest.json",
+      "sha256": "e0f78a5655c7acc54f3f459b844169163861a6633663d0b4a8f9b5b04075bd63",
+      "size_bytes": 3004
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/cbf_safety_filter/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/collaborative_beamforming/algorithm.py",
+      "sha256": "f039228416c5a4e52ced9c2907ffd6730e7e03b3c9c6d6470c8b5cd6ade89fd1",
+      "size_bytes": 1122
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/collaborative_beamforming/manifest.json",
+      "sha256": "760b073040f8b76262533d4c3d881bde814652913e6253359278d97dd37f423f",
+      "size_bytes": 3023
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/collaborative_beamforming/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/connectivity_aware_formation/algorithm.py",
+      "sha256": "7408599eed200886e3480952f2b044929abb782d10c99ed70279abd27259f9ee",
+      "size_bytes": 1128
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/connectivity_aware_formation/manifest.json",
+      "sha256": "66a255ebe81ef0d65ba35ae5cebc3c43bfc347e9985c8eda6f8077e32b696cdb",
+      "size_bytes": 3802
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/connectivity_aware_formation/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/data_driven_connectivity_controller/algorithm.py",
+      "sha256": "40081f6072ba05c040bdfaf2e769d9cf4b990b884abd789297d911f236c13bd6",
+      "size_bytes": 1131
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/data_driven_connectivity_controller/manifest.json",
+      "sha256": "dfab30d4760c01a09fce00fee29c49d71c87c249ffdbcbeffba5ad7cc8201257",
+      "size_bytes": 3139
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/data_driven_connectivity_controller/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/distributed_flocking_controller/algorithm.py",
+      "sha256": "5a35b1cb50997b95fc89fb965cc9f3184f3d6d32c13bd1e0e17787a51196c5f9",
+      "size_bytes": 1123
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/distributed_flocking_controller/manifest.json",
+      "sha256": "3befedaff9a2dbb4672cd8e7088d8fbfc6239b7346a18e2a0e4352f5f6436fd2",
+      "size_bytes": 3558
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/distributed_flocking_controller/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/graph_connectivity_controller/algorithm.py",
+      "sha256": "f56846d95f81281b17893e4b27df638d243103f75aa54b65c289a2a52b7f105e",
+      "size_bytes": 1119
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/graph_connectivity_controller/manifest.json",
+      "sha256": "3834b162654db228cd699e71c88e8b3760bbd9dd71d252237b4b6741fc471809",
+      "size_bytes": 3117
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/graph_connectivity_controller/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/joint_trajectory_communication_optimizer/algorithm.py",
+      "sha256": "0664bfbbe9072b19c8fbedd0cd0a215baa54cb3ce4ca0afda463b55f752c3175",
+      "size_bytes": 1146
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/joint_trajectory_communication_optimizer/manifest.json",
+      "sha256": "dcbf12177b80e17c437acaece9773f4bb7eea3e2ca781a64cde0171971316eda",
+      "size_bytes": 3876
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/joint_trajectory_communication_optimizer/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/learn_as_you_fly_placement/algorithm.py",
+      "sha256": "a030aac6e908700b3b3f3e6ed41531494ef4ca3b9a0380b227029e3f7b352fb4",
+      "size_bytes": 1114
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/learn_as_you_fly_placement/manifest.json",
+      "sha256": "6b4b3ca1e821188253b49405ec4e9bb685a24138629925efca2cf91f931b3ada",
+      "size_bytes": 3141
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/learn_as_you_fly_placement/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/mobility_resilient_spectrum_sharing/algorithm.py",
+      "sha256": "3ec3f8ee2c1272804437681c77b597ab8c78b2447996d4da504ff5f99b797c03",
+      "size_bytes": 1123
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/mobility_resilient_spectrum_sharing/manifest.json",
+      "sha256": "8a61089211c44c7e1fd51aa6d7c7c560b520c89152d8fed0c44b4ba529abf9aa",
+      "size_bytes": 3280
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/mobility_resilient_spectrum_sharing/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/researcher_chain_spacing/algorithm.py",
+      "sha256": "bd263c57db7b9363384d06057233e9cdf940bcf42929ec7dce2c14aa21a72ad3",
+      "size_bytes": 1120
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/researcher_chain_spacing/manifest.json",
+      "sha256": "5d48b8d0d61ff281bd5d44a779253cb2337fefa8948f49279082a4727dc2e159",
+      "size_bytes": 2845
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/researcher_chain_spacing/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/rotary_wing_energy_optimizer/algorithm.py",
+      "sha256": "f41c8e71da3d2907a3798689f4c827c3ffdcbe617e7f5115938c7be1ec1d89c5",
+      "size_bytes": 1118
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/rotary_wing_energy_optimizer/manifest.json",
+      "sha256": "872643107d5996256d1067b1cf569546edd4efaf150ad092fd551ae74e0e512e",
+      "size_bytes": 2826
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/rotary_wing_energy_optimizer/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/voronoi_coverage_controller/algorithm.py",
+      "sha256": "1a59e4f0a41d515f751919d46157c9eb4e56fe1c657f7ce38fde53151fdd1c0b",
+      "size_bytes": 1115
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/voronoi_coverage_controller/manifest.json",
+      "sha256": "8061b130d33073195c98e0789175051de1c18f0d8203650416c6e0c3bf20e113",
+      "size_bytes": 3050
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/research/voronoi_coverage_controller/test_algorithm.py",
+      "sha256": "a462973dfd3260c2c58baeddcb31b19daf8bcd25841332374daa754850445390",
+      "size_bytes": 1144
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/routing/latency_aware_routing/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/routing/latency_aware_routing/manifest.json",
+      "sha256": "04bdc5ac874a4cd09f470cf360cc913d017036654daace538bc009639ce489c3",
+      "size_bytes": 1340
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/routing/latency_aware_routing/plugin.py",
+      "sha256": "c10b2562c23ce14f011ea5a323c84000db717f7fcad5912b3fe4b9f139cddaff",
+      "size_bytes": 1194
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/routing/maximum_bottleneck_routing/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/routing/maximum_bottleneck_routing/manifest.json",
+      "sha256": "3f10eaa20ee8b5e7bb20b8e275b071a32091a02a2da0ea901da09c3103c71c6a",
+      "size_bytes": 1363
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/routing/maximum_bottleneck_routing/plugin.py",
+      "sha256": "478edbfee50e183fb5da9234f2ba7f2a5c033e2253b22fbbc916a97eb458394c",
+      "size_bytes": 1207
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/schedulers/edge_offloading_policy/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/schedulers/edge_offloading_policy/manifest.json",
+      "sha256": "d69d54d28e90fb476b7ef7c93c0c763f6af2ccf769556265c22c3a9b12598444",
+      "size_bytes": 1366
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/schedulers/edge_offloading_policy/plugin.py",
+      "sha256": "6b0521fa68e9ae1cc91dc584ab9d9aab8638b8fd1e3c3aa5ec1904425e498dc6",
+      "size_bytes": 1223
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/circular_orbit/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/circular_orbit/manifest.json",
+      "sha256": "b0f57108aaa81f5657101ba5cd1eff983aa41ef3df397f04a876b58d4e20a405",
+      "size_bytes": 1330
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/circular_orbit/plugin.py",
+      "sha256": "2ed6a399278ae4eeca43ade80f9994885c69f8983a4495cfd63d2f3d1ec61b26",
+      "size_bytes": 1194
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/coverage_grid/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/coverage_grid/manifest.json",
+      "sha256": "101e12a649b18ff99ce7f078cc49f3bee061cec2b2fa726caf994c38d908ff44",
+      "size_bytes": 1319
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/coverage_grid/plugin.py",
+      "sha256": "ace045cae0a0dd5e845f90cfe14d2d83b4bdc7d7b2043134fae2a1a834bba9ca",
+      "size_bytes": 1185
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/manual_trajectory_replay/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/manual_trajectory_replay/manifest.json",
+      "sha256": "3844a0adb9896d4df7a86b88cffceae0226b6c3882fc2a3ab64c0dee05d4e939",
+      "size_bytes": 1355
+    },
+    {
+      "mode": "0o644",
+      "path": "plugins/trajectories/manual_trajectory_replay/plugin.py",
+      "sha256": "0a29296f760a4781749877f9bbdd6d2deebd88aaf7d5cd8c90b9b4fccab9fa4e",
+      "size_bytes": 1199
+    },
+    {
+      "mode": "0o644",
+      "path": "pyproject.toml",
+      "sha256": "030ce24cda8d0feecde75083de7eb861f21ff2c1f08388ce4bc3339126ffbd4a",
+      "size_bytes": 826
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/performance/core_microbenchmark.json",
+      "sha256": "c1997b59667db1add3532c9aaaeb5467e1b69afcba0e432d60d1059e0c26a98a",
+      "size_bytes": 2512
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/performance/host_benchmark.json",
+      "sha256": "eeb04b7c68f9a4942465b0deb934d1dab9fa73d4d98524cb7301348ef66f7320",
+      "size_bytes": 2513
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/performance/performance_report.md",
+      "sha256": "f6e80394dd1bc8089a748577b487a7547a1766eb322ccd190435d7c8a6479074",
+      "size_bytes": 1405
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/security/security_review.md",
+      "sha256": "4bdfc574933f41725b436992005c5e686972ec54379e2de60c0d4b4d72a59ca7",
+      "size_bytes": 4258
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/security/software_inventory.json",
+      "sha256": "416bcd3e27fd806393df5c04c0001fc07e8075bdfaef6b8f474a2d0de3087e84",
+      "size_bytes": 2158
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/button_action_matrix.csv",
+      "sha256": "b0e46c897817a0dc9eef48dcd5e161496209f6cceb9e113a59a476995e2dbc1d",
+      "size_bytes": 13351
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/results/synchronization_status.json",
+      "sha256": "337ef46dfcaf04f5700f81e7c9ee5cbf8e6d29a0b13697ce5ab57063e701f37b",
+      "size_bytes": 3935
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revision_current.json",
+      "sha256": "105bbdc1a45cd98775ac38f7d8dda9ecd6c30f8c4fcb75798f1b240c67266270",
+      "size_bytes": 6489
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revision_desired.json",
+      "sha256": "ee18a61d0174af400365b604e8776760b3c76d05a72fa922afb52bd3c455a5dc",
+      "size_bytes": 3445
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revisions/24968c11-26c8-400f-bb01-f2f8ceeb76b0.json",
+      "sha256": "d6d86457340f21cfcf506841db9d138d3be6c174c90cc0cdd49b51c0583705a8",
+      "size_bytes": 6447
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revisions/3c9149f5-e40d-433a-9e38-7866595f09b3.json",
+      "sha256": "f03bc19c254ade79c9d3481ac5019aa0614fa07a1c0a7abe3a78da123b016b87",
+      "size_bytes": 6411
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revisions/839bdc4d-16b4-47f3-8e62-6d59330b56e1.json",
+      "sha256": "fb27c6c862bc627543363008116630bb110c4115b9c5a3152992a43faeb0dbdd",
+      "size_bytes": 6578
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revisions/91f28bea-2a8b-4889-aba4-9f645968a5a3.json",
+      "sha256": "3c9fc1183681e0c03400505467bd3cde87d652de72350d9b9e796918f381c7d9",
+      "size_bytes": 6490
+    },
+    {
+      "mode": "0o664",
+      "path": "reports/validation/embedded_acceptance/state/revisions/a23a12a0-8b5d-4b63-91ad-4efeff36bd18.json",
+      "sha256": "105bbdc1a45cd98775ac38f7d8dda9ecd6c30f8c4fcb75798f1b240c67266270",
+      "size_bytes": 6489
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/model_credibility_assessment.json",
+      "sha256": "099cbc6b635f76d3579b4f88e4f7b21cd9b1c85df042b90799919729220c3adf",
+      "size_bytes": 1912
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/p0_regression_results.md",
+      "sha256": "41b5cb37a5e6a82e6babfcd439a4523d0f4ef63bfbc2b35369c58f19e3540ed1",
+      "size_bytes": 2473
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/requirements_traceability.csv",
+      "sha256": "73e3a04aeb5ec47f19a0af48a8c5b5ea35ba4cceaa99265cae222583bcf787bf",
+      "size_bytes": 5217
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/screenshots/live_telemetry.png",
+      "sha256": "9824becf34b5ae9bc7bb069d58567ae5dab161f58c377b9611af953e310b1fbf",
+      "size_bytes": 194272
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/screenshots/mission_designer.png",
+      "sha256": "fccb5f798a1656f34c072d33745f8f0478898bbd948c2a2a5f6755f744238289",
+      "size_bytes": 557281
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/screenshots/overview.png",
+      "sha256": "77e75c510236631385cb9736f9d3076798b56bfcd56d7852f2f126c4a495596c",
+      "size_bytes": 221636
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/screenshots/research_tools.png",
+      "sha256": "e5e6b49e3fc56d94d3e4461618b60001b958a4379fbaa09c51433e2e8af84af9",
+      "size_bytes": 167924
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/screenshots/synchronization.png",
+      "sha256": "6ce2baeb68daa72ae7e1424ab2f1fd44d91361f4ae4f3704c581044b8cdf290b",
+      "size_bytes": 172306
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/screenshots/topology_studio.png",
+      "sha256": "92f648be68ffe8374a1fdbab53b5e57855dd8ea709dfe62a1185e3e4df81bafa",
+      "size_bytes": 241337
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/target_acceptance_runbook.md",
+      "sha256": "c80006a5121ae87a335ff9939a0fb6619ef4b7e5e0d52a488c1bde6a8431de08",
+      "size_bytes": 2439
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/test_report.md",
+      "sha256": "ece77071963a15e24359bf3a9e72b5d98a7ca9fe301ad3fcc4be2ddff0ffd908",
+      "size_bytes": 1257
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/v9_test_report.json",
+      "sha256": "2e3f22a15b5283c8bfd1c0d238f41444c925ec0e45376d7bfe9c09d3c43914e8",
+      "size_bytes": 39304
+    },
+    {
+      "mode": "0o644",
+      "path": "reports/validation/v9_test_report.md",
+      "sha256": "d249c5dfd196b154647f44ad4133fe75a9a3bd3357302f46d393bf934d28922f",
+      "size_bytes": 2622
+    },
+    {
+      "mode": "0o644",
+      "path": "requirements-dev.txt",
+      "sha256": "5a4b9648be8f1d05d10bafc7fa0efb348118ed9190ea234f552aa018a0622c4d",
+      "size_bytes": 151
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/antenna_orientation_sweep.json",
+      "sha256": "00fdc8571950826ef730d2acbed76a70a6e8eac6be267fc706e632e7916e43dc",
+      "size_bytes": 11580
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/aoi_aware_scheduler.json",
+      "sha256": "bab55cb074c47ab9762a834d70ad6b32e49231e40d88a8d6bf320216b43fd9ff",
+      "size_bytes": 12715
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/batch_scalability_128.json",
+      "sha256": "b9829adce25b0085f96782955b94f1616022c813e853d4a5a43967760535ff46",
+      "size_bytes": 11632
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/beam_steering_study.json",
+      "sha256": "a02275633bbe49db0b111971cbd11ab820934754130af613dc1c4e6f9757ba2a",
+      "size_bytes": 11758
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/cbf_safety_filter.json",
+      "sha256": "f7d555d02800c58fc30606ac09045991859863f0df50aabbc6925067a91a28c9",
+      "size_bytes": 12829
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/chain_capacity_outage.json",
+      "sha256": "e9f0aa083560aaf1a5adfcdbddf41395f3502fd3da64744144bd43f118947d4f",
+      "size_bytes": 11562
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/chain_range_outage.json",
+      "sha256": "db60db99ad937deb319452562500d0ce38e07810934185fe7681a6d9801ea718",
+      "size_bytes": 11568
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/chain_snr_outage.json",
+      "sha256": "d1c8aebd6f6ac00fe98d5458b07a7473f657539156d91eec3579a70400794f12",
+      "size_bytes": 11546
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/collaborative_beamforming.json",
+      "sha256": "4138388b28ba9b783c40429bb824f3ff462ce4a678c5425899b3aa2e11d14923",
+      "size_bytes": 12899
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/connectivity_aware_formation.json",
+      "sha256": "11337986d66dbe7bbf5ca9b64237e61184685aa674cefc1701f7efb017cbbd60",
+      "size_bytes": 13030
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/connectivity_preserving_formation.json",
+      "sha256": "69b66b959e3ac3103bcffae4e6a04dd2bba9d17ccd4f4854ac78aca21ebd1da8",
+      "size_bytes": 11619
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/custom_controller.json",
+      "sha256": "3486881e68f976d1c40003c1bff155fff604e052ac3f451f0ef8a89f30f63615",
+      "size_bytes": 11553
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/data_driven_connectivity_controller.json",
+      "sha256": "d67d2aacc5a25b646e2bc4c22e561050758be3eca5cbb90f0545d0232d35671d",
+      "size_bytes": 12893
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/distributed_flocking_controller.json",
+      "sha256": "c80fc8d11d274d08b66a48d769f721f293579aeb845db063f3d5bd88c39de352",
+      "size_bytes": 12993
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/edge_offloading.json",
+      "sha256": "78d0cd25e6707451c62e00818003b73059cb32fac8bda8593522065f40688e1d",
+      "size_bytes": 11735
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/energy_aware_trajectory.json",
+      "sha256": "663b47020b42ff82ca042b13b75d5dc952ca432aa11301b05b2154be3715cda3",
+      "size_bytes": 11581
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/first_feasible_relay_chain.json",
+      "sha256": "71e1cb5ba7f36df9e7e0bd7b7ebfb135ef0b7c9fc84bb9d2b8cbbc81e63721ff",
+      "size_bytes": 11594
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/forest_redundancy.json",
+      "sha256": "a2f20d1251f1f22cd0afdcf7ce4526363c1b5f06f993494568dab0a430f38a7d",
+      "size_bytes": 11596
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/gnss_degradation.json",
+      "sha256": "5a7681a8b9c9cfeea586a771043d81dabadedbaea1868502a267d423d6f32ec9",
+      "size_bytes": 11685
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/graph_connectivity_controller.json",
+      "sha256": "68ca4b9d6bc8ebc96da52731f7a9b16bbcfa980ad6860668a93b7fce062dd11b",
+      "size_bytes": 12877
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/haps_gateway.json",
+      "sha256": "0010e60d5a5f8f7ac43360a0c46d47be298c580331ced8913e01bcf8d67d52f6",
+      "size_bytes": 11618
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/jamming_resilience_defensive.json",
+      "sha256": "117ad1dec37c85c9a92515883df25c8649e4fe861e223162fd84404694dc8eee",
+      "size_bytes": 11755
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/joint_trajectory_communication_optimizer.json",
+      "sha256": "8d6835cc4cc7bbeb4409b528c20607bf115ac8bcffc285060a5ae93fb7cc8ad3",
+      "size_bytes": 13082
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/learn_as_you_fly_placement.json",
+      "sha256": "d8a60ae1e0f16f13b6409f59afc90776e4d13e2505e93e5b8d297bbb9955080d",
+      "size_bytes": 12834
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/manual_topology.json",
+      "sha256": "e78f67b9abaa9d7756a0762aea66e2ec46425205af8d928dd83d8f30eeb8557b",
+      "size_bytes": 11633
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/mobile_ground_users.json",
+      "sha256": "aab3c971fd4de4c696a7f74bef9e8c43533cd268495c3a04cd9cd3cd863385a5",
+      "size_bytes": 11725
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/mobility_resilient_spectrum_sharing.json",
+      "sha256": "eb9261d53d5cab3de9408b7f54b95b404cfb9144f5bdc604f4e18d39d8854e14",
+      "size_bytes": 13263
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/monte_carlo_uncertainty.json",
+      "sha256": "074d7bfee0a75e926e2517469aaf6c66b17b857621f80b0b834bdf12d1f5bb5f",
+      "size_bytes": 11713
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/multi_service_traffic.json",
+      "sha256": "c15ad52eb1a6fd3ee9c8117a3e3a300adc9191b05d257ab27dbc0de167858df6",
+      "size_bytes": 12573
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/ntn_leo_backhaul.json",
+      "sha256": "8bdca0191490584d41985e6f3fa381220e50c15f36d5b28e3a6f7443acfdb7ac",
+      "size_bytes": 11656
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/parallel_branch_resilience.json",
+      "sha256": "8c58138a2027d43a46ae737dd50aaab6d958b25644566a69726297ef10a1947e",
+      "size_bytes": 11636
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/parameter_sweep.json",
+      "sha256": "39893611a34e31f5a2363b24e48ff2aec915d518d8b6c1719a93ad9af68eda69",
+      "size_bytes": 11772
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/protocol_aware_cosimulation.json",
+      "sha256": "09a65ff9d4170e666c4cb81e0944578ff498d4960ffeca11fba95b9bfa19be1b",
+      "size_bytes": 11723
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/px4_sitl_reference.json",
+      "sha256": "625be5bc0ccc653fce78b4fc9a0ac7d4a8e9d2b76b3ec1f5237778c8dfdfe76f",
+      "size_bytes": 11635
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/radio_environment_map.json",
+      "sha256": "43ac6bb86ae6ce6e987ab0ff0e5dfa05de09b748c607f203e52178f50e8fab4f",
+      "size_bytes": 11657
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/radio_failure.json",
+      "sha256": "45e6bb948d1f53703f43a06e084713921b232b2f36b2996694b839ef7ee3921e",
+      "size_bytes": 11673
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/replay_and_calibration.json",
+      "sha256": "06ebe5a528e0557b55126bea8f55bce68ffe4c2b94b0ee1ea2d7855a8b86a889",
+      "size_bytes": 11709
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/researcher_chain_spacing.json",
+      "sha256": "125076a10a0390d754687e70be1c32a938e5f720d998142bb8e90169d8b677cd",
+      "size_bytes": 12818
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/rotary_wing_energy_optimizer.json",
+      "sha256": "3c2a28f5add5fd853f30410f4d29ad66eaa02668b6473824edbb53388b1d7c74",
+      "size_bytes": 12796
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/standby_recovery.json",
+      "sha256": "354fcb7de2256360bcea4aff09d85f0a0846077ad40bc84c70ca350b949271b4",
+      "size_bytes": 11698
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/urban_nlos_geometry.json",
+      "sha256": "4775ac469435127e2e9cb3232f6f4339c508d62d2fea73f538ae30ee08db837d",
+      "size_bytes": 12350
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/voronoi_coverage_controller.json",
+      "sha256": "bce5ca0dc760e583ba6e344b688839b549366da87ae55a8881edb14edf2e8169",
+      "size_bytes": 12837
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/examples/world_material_study.json",
+      "sha256": "6e368e95e31d16fac1f285ae007de60a904205a7bc3d5df1e7e51b0600e04deb",
+      "size_bytes": 11725
+    },
+    {
+      "mode": "0o644",
+      "path": "scenarios/templates/first_feasible_relay_chain.json",
+      "sha256": "71e1cb5ba7f36df9e7e0bd7b7ebfb135ef0b7c9fc84bb9d2b8cbbc81e63721ff",
+      "size_bytes": 11594
+    },
+    {
+      "mode": "0o644",
+      "path": "schemas/api/openapi-v1.yaml",
+      "sha256": "1694fd4cd1cdfaf5d62703229665fe70413276b780f648e5c75d3140d7939a26",
+      "size_bytes": 17130
+    },
+    {
+      "mode": "0o644",
+      "path": "schemas/experiment/netlab-experiment-v1.schema.json",
+      "sha256": "4681fc90614342e26a1bcd32b0f10faa4571e10d8d73bccada47f007b42b396d",
+      "size_bytes": 5573
+    },
+    {
+      "mode": "0o644",
+      "path": "schemas/plugin/plugin-manifest-v1.schema.json",
+      "sha256": "300eb531585d6826f3ec3cec697e43506b2b5ca155e250a048d0e9023a1ff96b",
+      "size_bytes": 3129
+    },
+    {
+      "mode": "0o644",
+      "path": "schemas/runtime/command-v1.schema.json",
+      "sha256": "4ee54f2f07cceca10101506221f13b45f72cb23ef701031385f9700ee2e25595",
+      "size_bytes": 900
+    },
+    {
+      "mode": "0o644",
+      "path": "schemas/runtime/revision-v1.schema.json",
+      "sha256": "6156f29b16427e12dfa46229949ff08d4c14454213828fcd3907c6b79f507faf",
+      "size_bytes": 1517
+    },
+    {
+      "mode": "0o644",
+      "path": "schemas/topology/topology-v1.schema.json",
+      "sha256": "37abac28c2febc4c408c58bc8c4c9a09a99bfefd7d7806d7bca9cc81b8fc7317",
+      "size_bytes": 767
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/bootstrap_host.sh",
+      "sha256": "8104bef5ecc5bee78a78ae0719b897c8189ce70b494893b75a47df95e0c1c284",
+      "size_bytes": 3048
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/diagnostics/validate_release.sh",
+      "sha256": "e77335851f09bfa6013bc1d29ed490b1ede229bcb9dca2fb2f0f7b1fea78aa6d",
+      "size_bytes": 8369
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/migration/migrate_from_v4.sh",
+      "sha256": "968f7bdfa6e1c8c9833d18caf1425585a0027ee2510b3cff364373a95e23cb17",
+      "size_bytes": 4636
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/migration/rollback_installation.sh",
+      "sha256": "8765e8703adb9dbd10bb12744846db3e19160c7f0197315104ef4aca770bc386",
+      "size_bytes": 1070
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab",
+      "sha256": "854a2975edfd34f616f474383d52eda984211a71ae32cf78b93b3dc85c3b306f",
+      "size_bytes": 178
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab_brev_webrtc.sh",
+      "sha256": "fea2169a31bdf2eac5122696306b4bc6081774ca11e93c6ca0c5d69c09aa1f5f",
+      "size_bytes": 17394
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab_mission_control.sh",
+      "sha256": "117aa580a8469ba31221c55726ebd36b120d7ac5507dacae18dec5eff2a31720",
+      "size_bytes": 1302
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab_snaas_relay_demo.sh",
+      "sha256": "660867a6898ab49fe3eed478c7745b8355214d1c8a6f7cc1a3564ee9b6875881",
+      "size_bytes": 7775
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab_snaas_visuals.sh",
+      "sha256": "6cb64fb92305be23be316dfe8ef30d403d885db4fdf899b267b2478b6d5ad098",
+      "size_bytes": 2473
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab_swarm_demo.sh",
+      "sha256": "81d85e7fd61f7349ae62f8ee4a9451c06797e45d0cb256293e493024401288f8",
+      "size_bytes": 1152
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/netlab_world_loader.sh",
+      "sha256": "63f55669d479474b90cd81bf7038cfcbf96a198044d5fd4bbd8139b2c7621c0e",
+      "size_bytes": 3309
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/release/package_release.sh",
+      "sha256": "3bfe771021814d262245b90820b2cab9ac54e567e7b21600d15e7ad2b04ce2c7",
+      "size_bytes": 6924
+    },
+    {
+      "mode": "0o644",
+      "path": "security/sbom.cdx.json",
+      "sha256": "ee7e75cbdadf51b428374e1e25dc61f6bffdd9b9d308f5b95a756e75f737520b",
+      "size_bytes": 27830
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/browser/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/browser/test_mission_control_browser.py",
+      "sha256": "49e8fa21e3e5241a6c98e95d8224f57781133ecdb58bae8f11b2c982285dc1b0",
+      "size_bytes": 10059
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/docker/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/docker/test_authoritative_config_projection.py",
+      "sha256": "0c8e86a855477b9447bb3444faad4c7ed6d11db3cc7d671fded967c46cea35c3",
+      "size_bytes": 919
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/docker/test_compose_contract.py",
+      "sha256": "0dbf778c0b2ee3e666c99ed49914060d17e11e4f7760fe2fa733780dd14736c2",
+      "size_bytes": 1296
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/docker/test_research_algorithm_ros_contract.py",
+      "sha256": "12047d9fccab575fae2e5c7f6e70fc2b77bdc6e7cb4a1b7e1ad0c81ef27abdeb",
+      "size_bytes": 2929
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/docker/test_ros_entrypoint_contract.py",
+      "sha256": "e914671d77740e73a8c13c5ec55060b0dc0b650b03e21dd22557d82b0b578ad7",
+      "size_bytes": 1176
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/docker/test_ros_revision_application_contract.py",
+      "sha256": "72fd84a2fa2c7eab90923e5220048c02528cdf0fc3efd13f24f7708c0ce5ff5c",
+      "size_bytes": 1103
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/frontend/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/frontend/test_algorithm_lab_contract.py",
+      "sha256": "ac7828a41d6acd6e12ae76cc1d15e42b72beed3f1d3db3a16b0af7961b2c069f",
+      "size_bytes": 3556
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/frontend/test_frontend_contract.py",
+      "sha256": "5ed5cb066f847917f7ef0665d62e755dbd6edb62fe9cd8250310018d0a84f93d",
+      "size_bytes": 3256
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/integration/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/integration/test_mission_control_api.py",
+      "sha256": "fa05b25bbcc7f348b0d1311ee2d9cbc145d4a9bbdc349e0121d3b0f25fee93e2",
+      "size_bytes": 8429
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/integration/test_openapi_contract.py",
+      "sha256": "e1913216fc7b92da63974eafb83047a90675ed333512d1e0506216bb7690fa88",
+      "size_bytes": 1264
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/integration/test_sionna_service_api.py",
+      "sha256": "1972d5d26f3f13e1d6113637f5ef96cd78d1164ed8c17f631cd41b4822684037",
+      "size_bytes": 2177
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/performance/benchmark_core.py",
+      "sha256": "55a79f2468f957b05fb77fb6bba79a48620782541431d42e8984267d93764f58",
+      "size_bytes": 4069
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_acceptance.py",
+      "sha256": "86f83d29507886a9eb59117e77d59f35c976150baeb8e3a5897739ec54cd3d67",
+      "size_bytes": 393
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_atomic_io.py",
+      "sha256": "77017bbdb00764d711ebfde5d365de000ddc5b795467944399ac6c52fef490c1",
+      "size_bytes": 1004
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_backend_api.py",
+      "sha256": "81c86077a09da478780e024e24e971438ce9ca19adf29edae12b6f83922c17da",
+      "size_bytes": 1625
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_configuration.py",
+      "sha256": "bb961107d077dd5cb4905b5b83533699fc9628161bb9abfee3782e1085ba44e7",
+      "size_bytes": 959
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_frontend_contract.py",
+      "sha256": "68eeb01c9c5a4b9ac30693970b25938d77c3693f54e6d58431b86311641582d0",
+      "size_bytes": 928
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_isaac_contract.py",
+      "sha256": "6480b2da2bba3c2d6e495fd1b535e9d037d65c5c816ea92a716721f411eaf7fa",
+      "size_bytes": 1893
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_openapi_sbom.py",
+      "sha256": "20e5be8e0eb39c6d5208ce123cab95373bb6e68240493c0fec37dabc2f329a0a",
+      "size_bytes": 477
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_plugins.py",
+      "sha256": "8315bd80976cc26b8e3ade8a0bd4c8b069d78e595283cebfd45a4ce12cc63944",
+      "size_bytes": 743
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_readiness.py",
+      "sha256": "99e9231cb0802d4e10b7ed04928a9febd6293d9ef0a5942319e8e55fe2624989",
+      "size_bytes": 618
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_research_models.py",
+      "sha256": "102730b826a8ce7f6db64cfdd0c3d226c21c65e4a98e5d0fdd11b21d64323f59",
+      "size_bytes": 1121
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_revision_sync.py",
+      "sha256": "5a750547ef886d2842a624695e6293769bac6aad1f5c3fe523a3f85b924b714e",
+      "size_bytes": 3186
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_ros_entrypoint.py",
+      "sha256": "9200c407f1829f8cecdb25d6a1dc51de6e027443435fe604f982284995dd41be",
+      "size_bytes": 1078
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_security.py",
+      "sha256": "b516c58fd009b11d12b18d07da735617b8f942b6a55abd758da6f754b9ce82c1",
+      "size_bytes": 631
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_sionna_service.py",
+      "sha256": "8867238c9e8afdc3a28149b63539e6a4ec4dde2793de16870772b91b4df50bac",
+      "size_bytes": 948
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/regression_contracts/test_topology_metrics.py",
+      "sha256": "63d5583e7edb6e1fc1df55be7faeb9387383932f74d0096010a6829608130d37",
+      "size_bytes": 583
+    },
+    {
+      "mode": "0o755",
+      "path": "tests/run_all.py",
+      "sha256": "03874a08dbb8f93993d25cbae2ac1cb776b5bb29e5307c9be744bb3889d0cf53",
+      "size_bytes": 4899
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/scientific_validation/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/scientific_validation/test_link_budget_reference.py",
+      "sha256": "4c2ee44d559abbc3f52ecb7273f3d5266d16cc1baeebd5f882a1c321cc989242",
+      "size_bytes": 533
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_algorithm_runtime_v9.py",
+      "sha256": "e16fd6ca6545e8bacbd96cb572ef9f643ac9c6fbf674eece88c0821ff303c5b4",
+      "size_bytes": 9842
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_bootstrap.py",
+      "sha256": "4fe009603e44044d2ad2b507bc4e02eca821b31c9ea337b7cf164172078c0aa2",
+      "size_bytes": 9209
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_config.py",
+      "sha256": "0ce1398a847a3fe8bf5fd13709d10e62130b9a670b8e9b0d1385afeb416c0c74",
+      "size_bytes": 2849
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_docker_resolution.py",
+      "sha256": "05751c471a137526126b05fd83882233923411c5b4bdeb5843b3087569ca1b5f",
+      "size_bytes": 1012
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_host_bootstrap_contract.py",
+      "sha256": "2d66b25712349d4f1f8c322b13100065fa29fa5f302d5bb9f3e21db5cbb019fc",
+      "size_bytes": 862
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_link_gate.py",
+      "sha256": "53d295998f2dd3c8396e1be8494bb58debc5e51aba7448ae3c0a187721ae83ea",
+      "size_bytes": 2813
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_link_preview.py",
+      "sha256": "7bd2f84704119a4f06c4b54f2cabcb1e5810112d368c43d1598e38f9cbfc531e",
+      "size_bytes": 1102
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_orchestrator_idempotence.py",
+      "sha256": "c1934dbb39d8846804f20744250286d36ab550beeef1f156d30e48755d95bba9",
+      "size_bytes": 1418
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_packet.py",
+      "sha256": "a30d7123925cad7921a0eba00bc9c026cc14d6fc179de322ea42a86478309260",
+      "size_bytes": 1987
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_plugins.py",
+      "sha256": "f71054cdc7e220c0ee1c6a316ff5677b534816e3cdceac320e9e9ea682033040",
+      "size_bytes": 2779
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_revisions.py",
+      "sha256": "5387d2c0b89997e371f51e075ce331ad180b18194449bff5acd08f2dc72e966c",
+      "size_bytes": 5994
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_shared_io.py",
+      "sha256": "76249c8efb171fdc092d72e1398097e48337ddcea8ea51f9c5a538c54c86b130",
+      "size_bytes": 2556
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_state_telemetry.py",
+      "sha256": "55ded1deba70eac2b0f7c51bde28d52531605326df04230c12cbc69672f3fdb3",
+      "size_bytes": 2504
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/unit/test_topology.py",
+      "sha256": "93f1bdd150243c9ea55213fb18e06de0dfc2c0bf13d3c5fe2c1c121361c4f904",
+      "size_bytes": 2587
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/netlab_mission_control.py",
+      "sha256": "f4a6c6968bdc14470164705c4fac3c52863b4d85c69ff4cceae772d99e48ccc5",
+      "size_bytes": 2841
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/index.html",
+      "sha256": "edbfe45e5114f2d663418f52094e599a3c02e7141368f63a8569dec1258ae180",
+      "size_bytes": 739
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/algorithm_lab.js",
+      "sha256": "1b85b352873b8b643d8addbbb9635aefd58704bd73bb1de5ccb762d1baae39f4",
+      "size_bytes": 832
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/antenna_lab.js",
+      "sha256": "23b0c94eca7956de300c2461f318f0f59c513751d0cd8d1093aba236228ff20a",
+      "size_bytes": 844
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/api.js",
+      "sha256": "61a252aa3211e7dccdc998f32547163bbecd4dd84048f7c4d5bb1fb67eae62d3",
+      "size_bytes": 430
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/app.js",
+      "sha256": "d43623fdca99774fd6301a48f2c80b3187c38fbe96fe668b5f1efedae8cdc4f7",
+      "size_bytes": 2675
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/components.js",
+      "sha256": "6685a68784d5f9cfef6effc7fee54e8b7c91f9968b5629429526f27898e32d4c",
+      "size_bytes": 14749
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/diagnostics.js",
+      "sha256": "2c048c7ccbd50c34b6c1012e7527ee7d438600921614a5f3d1d7bab9cef4d3f2",
+      "size_bytes": 633
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/evidence.js",
+      "sha256": "8fb2ab3ea49a83b35ee126ec23c24ee2c47a05ac1c47f8a50f8618070ecff67a",
+      "size_bytes": 560
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/experiment_manager.js",
+      "sha256": "b1413fe16abded27114f79d137127880d655fe8f413505a2d159991a8c487d95",
+      "size_bytes": 811
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/fault_recovery.js",
+      "sha256": "1c118a4f1201790c8399d9f0da147b65eb7258f12f22b3cd6227ff35fcef1090",
+      "size_bytes": 919
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/guided_demo.js",
+      "sha256": "ab81d17e8fe7e0ff2b50b4c44ef9c0dd1268b876da4d196b189c291995695fb4",
+      "size_bytes": 2076
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/live_telemetry.js",
+      "sha256": "a68c25d114402fedacb8c54bfb3f56ee073b92a782529efc622b306fcd5537d1",
+      "size_bytes": 948
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/mission_designer.js",
+      "sha256": "a87bea5b378dbd5ffd1ea441f32d97ecf83906f42e40b963209381e5bf02ab63",
+      "size_bytes": 1037
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/overview.js",
+      "sha256": "194989fb7db14ffd92da2c3f0ae7e2125d300d777bdf9dcf1a7a82680001423a",
+      "size_bytes": 2106
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/research_tools.js",
+      "sha256": "112a72d6c3133cee32c4684a932bb6615a11de2df2f7c6cc96075c8af3c9ecab",
+      "size_bytes": 1815
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/settings.js",
+      "sha256": "b112dc7b85ca7e1de3886535fc8e6a571331c1e1506e4327398def2f8712a6c1",
+      "size_bytes": 663
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/state.js",
+      "sha256": "c6fb9678ac6df180a83cdf6a3b78553432f94c6438d65d299dbc1eda8faf613f",
+      "size_bytes": 301
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/swarm_control.js",
+      "sha256": "9f372d9907722bebd3718e4dd334f3c68bbc809823e948740353cb1763ac5e52",
+      "size_bytes": 788
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/synchronization.js",
+      "sha256": "4011aedb7b5f42322798ad70556b51d9552f518a422575e14bdec4a2fa5af59e",
+      "size_bytes": 1029
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/topology_studio.js",
+      "sha256": "9da368a30ce29a1222f6648fae05ad71fd391c37f89a723cb4fd0d1bc7c8ea61",
+      "size_bytes": 2343
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/traffic_services.js",
+      "sha256": "01abc40e5ea0699108d1975358403b6e14ad4f2c90156970c45b81962a83045b",
+      "size_bytes": 590
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/ui.js",
+      "sha256": "4a808d3a603690e29ae8591615695ba5e041df0e4daa119044be9f245289b019",
+      "size_bytes": 2044
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/modules/world_lab.js",
+      "sha256": "18b6522692b0b568816f76dbea67763caed4483d19c67cf93023f126f255e046",
+      "size_bytes": 958
+    },
+    {
+      "mode": "0o644",
+      "path": "tools/mission_control/static/styles.css",
+      "sha256": "fdd683e18270e79ec1ca9a58fe38adbba2ad1da65f589f8aa3d37958846565fa",
+      "size_bytes": 5159
+    }
+  ],
+  "release": "9.0.0",
+  "root": "NETLAB/",
+  "total_file_bytes": 20533426
+}

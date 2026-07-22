@@ -1,0 +1,16 @@
+std_msgs/Header header
+string link_id
+string source_id
+string destination_id
+float64 distance_m
+float64 path_loss_db
+float64 received_power_dbm
+float64 snr_db
+float64 sinr_db
+float64 capacity_mbps
+float64 delay_ms
+bool feasible
+string gate_reason
+string fidelity
+string model_name
+string revision_id

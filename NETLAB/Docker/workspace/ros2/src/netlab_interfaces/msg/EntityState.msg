@@ -1,0 +1,10 @@
+std_msgs/Header header
+string entity_id
+string entity_type
+string role
+bool active
+bool failed
+geometry_msgs/Pose pose
+geometry_msgs/Twist twist
+float32 battery_soc_pct
+string revision_id

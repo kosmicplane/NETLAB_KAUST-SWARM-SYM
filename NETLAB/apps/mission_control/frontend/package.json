@@ -1,0 +1,6 @@
+{
+  "name": "netlab-mission-control-frontend",
+  "private": true,
+  "type": "module",
+  "version": "9.0.0"
+}

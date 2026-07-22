@@ -1,0 +1,21 @@
+# Goal
+string algorithm_id
+string parameters_json
+string experiment_id
+string requested_revision_id
+float64 duration_s
+---
+# Result
+bool success
+string run_id
+string final_state
+string evidence_path
+string error_json
+---
+# Feedback
+string stage
+uint64 sequence
+float64 progress
+float64 last_execution_ms
+uint64 rejected_actions
+uint64 fallbacks

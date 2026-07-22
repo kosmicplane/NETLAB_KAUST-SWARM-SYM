@@ -1,0 +1,26 @@
+{
+  "assessment_version": "1.0",
+  "generated_utc": "2026-07-15T00:00:00Z",
+  "intended_use": [
+    "research prototyping",
+    "communication-gated swarm execution studies",
+    "fault and recovery experiments",
+    "software integration and evidence collection"
+  ],
+  "not_intended_for": [
+    "flight safety certification",
+    "spectrum compliance certification",
+    "operational network planning without calibration",
+    "human-safety critical decisions"
+  ],
+  "models": [
+    {"id":"fspl","status":"VERIFIED","fidelity":"F1_ANALYTICAL","validation":"analytical reference equivalence","limitations":["unobstructed far-field reference only"]},
+    {"id":"link_gate","status":"VERIFIED","fidelity":"F1+","validation":"predicate and boundary unit tests","limitations":["inherits credibility of selected link model"]},
+    {"id":"packet_runtime","status":"VERIFIED_HOST_MODEL","fidelity":"F1+","validation":"cursor invariants and branch independence","limitations":["live ROS 2 execution requires target validation"]},
+    {"id":"topology","status":"VERIFIED_HOST_MODEL","fidelity":"all","validation":"structural and graph metric tests","limitations":["not a complete routing protocol"]},
+    {"id":"isaac_scene","status":"ENVIRONMENT_VALIDATION_REQUIRED","fidelity":"embodied visualization","validation":"static inspection only in sandbox","limitations":["GPU and Isaac runtime unavailable"]},
+    {"id":"sionna_rt","status":"ARCHITECTED_ONLY","fidelity":"F3_GEOMETRY_AWARE","validation":"not executed","limitations":["geometry/material/antenna synchronization required"]},
+    {"id":"px4","status":"ARCHITECTED_ONLY","fidelity":"F4_AUTOPILOT","validation":"not executed","limitations":["optional profile; no SITL/HITL evidence"]},
+    {"id":"energy_simple","status":"UNCALIBRATED","fidelity":"F1_ANALYTICAL","validation":"configuration and sanity only","limitations":["constant-power abstraction"]}
+  ]
+}

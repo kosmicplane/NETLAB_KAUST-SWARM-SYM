@@ -1,0 +1,522 @@
+{
+  "antennas": {
+    "assignments": {
+      "drone_1": "uav_omni_reference",
+      "drone_2": "uav_omni_reference",
+      "drone_3": "uav_omni_reference",
+      "drone_4": "uav_omni_reference",
+      "drone_5": "uav_omni_reference",
+      "drone_6": "uav_omni_reference",
+      "drone_7": "uav_omni_reference",
+      "drone_8": "uav_omni_reference",
+      "station": "ground_sector_reference"
+    },
+    "definitions": [
+      {
+        "bandwidth_hz": 20000000.0,
+        "beamwidth_azimuth_deg": 110,
+        "beamwidth_elevation_deg": 60,
+        "cable_loss_db": 1,
+        "center_frequency_hz": 3500000000.0,
+        "efficiency": 0.8,
+        "front_to_back_ratio_db": 20,
+        "gain_dbi": 8,
+        "id": "ground_sector_reference",
+        "model": "sector",
+        "name": "Ground Sector Reference",
+        "polarization": "vertical",
+        "position_offset_m": [
+          0,
+          0,
+          0
+        ],
+        "provenance": "analytical_reference",
+        "rotation_rpy_deg": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "bandwidth_hz": 20000000.0,
+        "beamwidth_azimuth_deg": 360,
+        "beamwidth_elevation_deg": 120,
+        "cable_loss_db": 0.5,
+        "center_frequency_hz": 3500000000.0,
+        "efficiency": 0.75,
+        "front_to_back_ratio_db": 0,
+        "gain_dbi": 2.5,
+        "id": "uav_omni_reference",
+        "model": "omnidirectional",
+        "name": "UAV Omni Reference",
+        "polarization": "vertical",
+        "position_offset_m": [
+          0,
+          0,
+          0.12
+        ],
+        "provenance": "analytical_reference",
+        "rotation_rpy_deg": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "clock": {
+    "control_step_s": 0.1,
+    "link_update_period_s": 0.5,
+    "mode": "REAL_TIME",
+    "physics_step_s": 0.016666666666666666,
+    "telemetry_period_s": 0.25,
+    "use_sim_time": false
+  },
+  "communication": {
+    "allow_fallback": true,
+    "bandwidth_hz": 20000000.0,
+    "carrier_frequency_hz": 3500000000.0,
+    "clutter_enabled": false,
+    "fallback_model": "free_space",
+    "fidelity": "F1_ANALYTICAL",
+    "foliage_enabled": false,
+    "hard_outage_distance_m": 220,
+    "implementation_loss_db": 2,
+    "interference_enabled": false,
+    "interference_margin_db": 0,
+    "metric_ttl_s": 2,
+    "min_capacity_mbps": 1,
+    "min_sinr_db": 3,
+    "min_snr_db": 3,
+    "model": "sionna_analytical",
+    "operational_range_m": 90,
+    "path_loss_exponent": 2,
+    "rain_enabled": false,
+    "receiver_noise_figure_db": 7,
+    "shadowing_sigma_db": 0,
+    "spectral_efficiency_factor": 0.75,
+    "tx_power_dbm": 23
+  },
+  "evidence": {
+    "capture_screenshots": true,
+    "output_directory": "/workspace/results",
+    "record_rosbag": false,
+    "record_video": false,
+    "retention_policy": "keep_completed_runs",
+    "write_csv_metrics": true,
+    "write_jsonl_events": true,
+    "write_run_manifest": true
+  },
+  "experiment": {
+    "author": "",
+    "description": "Tree-like relay structure with redundant subtree routes.",
+    "duration_s": 300.0,
+    "fidelity_profile": "F1_ANALYTICAL",
+    "id": "forest_redundancy",
+    "name": "Forest Redundancy",
+    "replications": 1,
+    "seed": 20260715,
+    "tags": [
+      "snaas",
+      "reference"
+    ]
+  },
+  "failures": {
+    "failure_detection_s": 1.5,
+    "operator_approval_required": false,
+    "recovery_policy": "communication_aware_standby",
+    "recovery_timeout_s": 20,
+    "retry_limit": 3,
+    "schedule": []
+  },
+  "runtime": {
+    "command_timeout_s": 30,
+    "isaac_heartbeat_timeout_s": 20,
+    "packet_heartbeat_timeout_s": 8,
+    "retry_count": 3,
+    "sionna_health_url": "http://127.0.0.1:8090/health",
+    "sionna_url": "http://127.0.0.1:8090/link",
+    "startup_timeout_s": 900
+  },
+  "schema_version": "2.0.0",
+  "service_region": {
+    "center": [
+      120,
+      0,
+      0
+    ],
+    "geofence_enabled": true,
+    "length_m": 240,
+    "max_altitude_m": 120,
+    "min_altitude_m": 10,
+    "restricted_regions": [],
+    "shape": "rectangle",
+    "width_m": 120
+  },
+  "station": {
+    "active": true,
+    "antenna_id": "ground_sector_reference",
+    "backhaul_capacity_mbps": 1000,
+    "id": "station",
+    "orientation_xyzw": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "position": [
+      0,
+      0,
+      1.5
+    ],
+    "type": "ground_station"
+  },
+  "swarm": {
+    "controller": {
+      "collision_avoidance": true,
+      "command_timeout_s": 1,
+      "plugin_id": null,
+      "safe_fallback": "hold_position",
+      "type": "communication_aware_formation",
+      "update_rate_hz": 10
+    },
+    "drone_count": 8,
+    "drones": [
+      {
+        "active": true,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_1",
+        "index": 1,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          28.0,
+          0.0,
+          29.0
+        ],
+        "role": "relay",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": true,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_2",
+        "index": 2,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          56.0,
+          0.0,
+          30.0
+        ],
+        "role": "relay",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": true,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_3",
+        "index": 3,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          84.0,
+          0.0,
+          28.0
+        ],
+        "role": "relay",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": true,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_4",
+        "index": 4,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          112.0,
+          0.0,
+          29.0
+        ],
+        "role": "relay",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": true,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_5",
+        "index": 5,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          140.0,
+          0.0,
+          30.0
+        ],
+        "role": "relay",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": true,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_6",
+        "index": 6,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          168.0,
+          0.0,
+          28.0
+        ],
+        "role": "relay",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": false,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_7",
+        "index": 7,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          196.0,
+          0.0,
+          29.0
+        ],
+        "role": "standby",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "active": false,
+        "antenna_id": "uav_omni_reference",
+        "battery_soc_pct": 100,
+        "failed": false,
+        "id": "drone_8",
+        "index": 8,
+        "orientation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "position": [
+          224.0,
+          0.0,
+          30.0
+        ],
+        "role": "standby",
+        "type": "quadrotor_reference",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "energy": {
+      "battery_capacity_wh": 180,
+      "communication_power_w": 8,
+      "computing_power_w": 15,
+      "hover_power_w": 180,
+      "initial_soc_pct": 100,
+      "model": "rotary_wing_analytical",
+      "reserve_soc_pct": 20
+    },
+    "mass_kg": 1.4,
+    "max_acceleration_mps2": 5,
+    "max_climb_rate_mps": 4,
+    "max_deceleration_mps2": 6,
+    "max_descent_rate_mps": 3,
+    "max_horizontal_speed_mps": 12,
+    "max_jerk_mps3": 8,
+    "max_vertical_speed_mps": 4,
+    "max_yaw_rate_deg_s": 90,
+    "minimum_separation_m": 4,
+    "mobility": {
+      "formation": "chain",
+      "model": "hold",
+      "parameters": {},
+      "waypoint_smoothing": true,
+      "wind_response": true
+    },
+    "payload_mass_kg": 0.2,
+    "physical_collision_dimensions_m": [
+      0.32,
+      0.32,
+      0.12
+    ],
+    "reference_dimensions_m": [
+      0.32,
+      0.32,
+      0.12
+    ],
+    "relay_count": 6,
+    "standby_count": 2,
+    "visual_asset_scale": 0.2
+  },
+  "topology": {
+    "branch_count": 2,
+    "branches": [
+      [
+        1,
+        2,
+        4,
+        6
+      ],
+      [
+        1,
+        3,
+        5,
+        6
+      ]
+    ],
+    "forwarding_policy": "store_and_forward",
+    "manual_edges": [],
+    "mode": "forest",
+    "queue_model": "fifo",
+    "recompute_on_failure": true,
+    "redundancy_target": 2,
+    "routing_policy": "ordered_path",
+    "sinks": [
+      "drone_6"
+    ],
+    "source": "station",
+    "update_period_s": 0.5
+  },
+  "traffic": {
+    "flows": [
+      {
+        "branch_id": "branch_0",
+        "destination": "drone_6",
+        "generation_model": "constant_packet_rate",
+        "id": "service_flow_1",
+        "max_delay_ms": 150,
+        "min_throughput_mbps": 1,
+        "packet_rate_pps": 2,
+        "packet_size_bytes": 512,
+        "priority": 1,
+        "queue_capacity_packets": 128,
+        "reliability_target": 0.99,
+        "service_class": "user_data",
+        "source": "station",
+        "start_time_s": 0,
+        "stop_time_s": 300
+      }
+    ],
+    "queue_model": "fifo",
+    "scheduler": "round_robin"
+  },
+  "visualization": {
+    "camera_preset": "overview",
+    "coverage_opacity": 0.035,
+    "custom_drone_usd": "/workspace/isaac/local_assets/drones/tu_drone.usd",
+    "packet_marker_scale": 0.9,
+    "show_coverage_preview": true,
+    "show_link_lines": true,
+    "show_packet_markers": true,
+    "show_service_region": true,
+    "status_marker_scale": 0.7,
+    "visual_asset_scale": 0.2
+  },
+  "world": {
+    "assets": [],
+    "coordinate_frame": "ENU",
+    "electromagnetic_materials": [],
+    "environment": {
+      "fog_visibility_m": 10000,
+      "gust_speed_mps": 0.8,
+      "humidity_pct": 40,
+      "rain_rate_mm_h": 0,
+      "temperature_c": 25,
+      "turbulence_intensity": 0.15,
+      "wind_direction_deg": 35,
+      "wind_speed_mps": 1.2
+    },
+    "origin": [
+      0,
+      0,
+      0
+    ],
+    "stage_units_m": 1.0,
+    "template": "open_reference",
+    "terrain": "flat"
+  }
+}

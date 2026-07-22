@@ -1,0 +1,11 @@
+string revision_id
+string candidate_json
+bool require_isaac
+bool require_sionna
+---
+bool accepted
+string status
+string applied_revision_id
+string observed_hashes_json
+string error_code
+string error_message

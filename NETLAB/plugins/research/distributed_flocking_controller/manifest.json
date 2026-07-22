@@ -1,0 +1,155 @@
+{
+  "action_schema": {
+    "additionalProperties": true,
+    "type": "object"
+  },
+  "algorithm_id": "distributed_flocking_controller",
+  "api_version": "2.0",
+  "assumptions": [
+    "Local ENU coordinate frame",
+    "NETLAB safety and communication-feasibility shield remains authoritative"
+  ],
+  "author": "NETLAB Research Team",
+  "category": "formation_controller",
+  "checkpoint_contract": {
+    "supported": false
+  },
+  "citations": [
+    {
+      "authors": "Olfati-Saber",
+      "doi": "10.1109/TAC.2005.864190",
+      "title": "Flocking for Multi-Agent Dynamic Systems: Algorithms and Theory",
+      "year": 2006
+    }
+  ],
+  "description": "Cohesion, separation, velocity consensus, and communication-aware neighborhood baseline.",
+  "deterministic_seed": true,
+  "entrypoint": "algorithm.py",
+  "execution_mode": "isolated_python",
+  "hooks": [
+    "initialize",
+    "validate",
+    "reset",
+    "step",
+    "plan_positions",
+    "plan_velocities",
+    "plan_trajectories",
+    "on_state_update",
+    "on_topology_update",
+    "on_link_update",
+    "on_failure",
+    "select_standby",
+    "recompute_topology",
+    "compute_metric",
+    "shutdown"
+  ],
+  "known_limitations": [
+    "Reference implementation prioritizes reproducibility and traceability over exact reproduction of every solver detail."
+  ],
+  "license": "MIT",
+  "name": "Distributed Flocking Controller",
+  "observation_schema": {
+    "required": [
+      "uavs",
+      "topology",
+      "constraints"
+    ],
+    "type": "object"
+  },
+  "organization": "NETLAB",
+  "parameter_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "cohesion_gain": {
+        "default": 0.1,
+        "maximum": 2,
+        "minimum": 0,
+        "type": "number"
+      },
+      "consensus_gain": {
+        "default": 0.2,
+        "maximum": 2,
+        "minimum": 0,
+        "type": "number"
+      },
+      "neighbor_radius_m": {
+        "default": 80,
+        "maximum": 500,
+        "minimum": 5,
+        "type": "number"
+      },
+      "separation_gain": {
+        "default": 1,
+        "maximum": 5,
+        "minimum": 0,
+        "type": "number"
+      },
+      "separation_m": {
+        "default": 8,
+        "maximum": 50,
+        "minimum": 1,
+        "type": "number"
+      }
+    },
+    "type": "object"
+  },
+  "parameters": {
+    "cohesion_gain": {
+      "default": 0.1,
+      "maximum": 2,
+      "minimum": 0,
+      "type": "number"
+    },
+    "consensus_gain": {
+      "default": 0.2,
+      "maximum": 2,
+      "minimum": 0,
+      "type": "number"
+    },
+    "neighbor_radius_m": {
+      "default": 80,
+      "maximum": 500,
+      "minimum": 5,
+      "type": "number"
+    },
+    "separation_gain": {
+      "default": 1,
+      "maximum": 5,
+      "minimum": 0,
+      "type": "number"
+    },
+    "separation_m": {
+      "default": 8,
+      "maximum": 50,
+      "minimum": 1,
+      "type": "number"
+    }
+  },
+  "plugin_id": "distributed_flocking_controller",
+  "required_ros_interfaces": [
+    "/netlab/algorithm/action",
+    "/netlab/algorithm/status"
+  ],
+  "required_state_fields": [
+    "uavs",
+    "topology",
+    "links",
+    "constraints"
+  ],
+  "resource_budget": {
+    "cpu_cores": 1.0,
+    "gpu_required": false,
+    "memory_mb": 1024,
+    "network_policy": "deny",
+    "output_kb": 512,
+    "timeout_s": 1.0
+  },
+  "safety_fallback": "hold_position",
+  "supported_fidelity_profiles": [
+    "F1_ANALYTICAL",
+    "F2_STOCHASTIC"
+  ],
+  "timeout_s": 1.0,
+  "validity_domain": "Distributed first-order flocking reference for low-speed swarms.",
+  "version": "1.0.0"
+}
